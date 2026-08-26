@@ -1,0 +1,64 @@
+name: CI
+
+# Runs on every push and pull request. Nothing here needs secrets or a live
+# database — the tests are pure logic, so CI stays fast and free.
+on:
+  push:
+    branches: ["**"]
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  backend:
+    name: Backend — typecheck & tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: backend/package-lock.json
+
+      # --ignore-scripts mirrors local setup: esbuild's postinstall is
+      # unreliable and we do not need it to run tests.
+      - name: Install
+        run: npm ci --ignore-scripts
+
+      - name: Typecheck
+        run: npx tsc -p tsconfig.json --noEmit
+
+      - name: Tests
+        run: npx vitest run
+
+  frontend:
+    name: Frontend — build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: frontend-jsx
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+          cache-dependency-path: frontend-jsx/package-lock.json
+
+      - name: Install
+        run: npm ci --ignore-scripts
+
+      # Catches the defects a build will happily ignore: components declared
+      # inside render, setState in effects, use-before-declare, dead variables.
+      - name: Lint
+        run: npm run lint
+
+      # A failed build is the single most common way to ship a broken site,
+      # so this job exists purely to catch that before it reaches the founder.
+      - name: Build
+        run: npm run build

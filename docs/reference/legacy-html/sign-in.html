@@ -1,0 +1,407 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAF8F3" />
+<title>Sign in — Naam Dekho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FAF8F3; --bg-2:#F3EFE5; --ink:#0F1419; --ink-2:#3D4751; --ink-3:#6B7480;
+    --line:#E5DFD0; --line-2:#D8D0BC; --accent:#B8501C; --accent-2:#7A2E0E;
+    --ok-ink:#1B5E20; --no-ink:#880E4F; --gold:#E8C76A;
+    --shadow-md:0 1px 0 rgba(15,20,25,0.04), 0 12px 32px -16px rgba(15,20,25,0.12);
+    --shadow-lg:0 1px 0 rgba(15,20,25,0.04), 0 32px 80px -24px rgba(15,20,25,0.28);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  body{
+    background:
+      radial-gradient(800px 500px at 80% 10%, rgba(184,80,28,0.08), transparent 60%),
+      radial-gradient(700px 500px at 0% 80%, rgba(232,199,106,0.08), transparent 60%),
+      var(--bg);
+    min-height:100vh;display:flex;flex-direction:column;
+  }
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px;width:100%}
+
+  /* Nav */
+  nav.topnav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line)}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);display:grid;place-items:center;color:#fff;font-family:'Noto Sans Devanagari',serif;font-weight:600;font-size:17px}
+  .logo-text{display:flex;flex-direction:column;line-height:1}
+  .logo-text .name{font-family:'Fraunces',serif;font-weight:500;font-size:20px;letter-spacing:-0.02em}
+  .logo-text .name em{font-style:italic;color:var(--accent);font-weight:500}
+  .logo-text .deva{font-family:'Noto Sans Devanagari',serif;font-size:11px;color:var(--ink-3);margin-top:2px}
+  .nav-back{font-size:13px;color:var(--ink-3);display:flex;align-items:center;gap:6px}
+  .nav-back:hover{color:var(--ink)}
+
+  /* Layout */
+  main{flex:1;display:grid;place-items:center;padding:60px 0}
+  .auth-wrap{width:100%;max-width:440px;margin:0 auto}
+  .auth-card{
+    background:#fff;border:1px solid var(--line-2);border-radius:20px;
+    padding:40px;box-shadow:var(--shadow-lg);
+  }
+  .auth-head{text-align:center;margin-bottom:32px}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:14px}
+  h1{font-family:'Fraunces',serif;font-weight:400;font-size:32px;letter-spacing:-0.02em;line-height:1.15;margin:0 0 10px}
+  h1 em{font-style:italic;color:var(--accent)}
+  .sub{font-size:14px;color:var(--ink-3);line-height:1.55;margin:0}
+
+  /* Phone input */
+  .field{display:flex;flex-direction:column;gap:8px;margin-bottom:18px}
+  .field label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3)}
+  .phone-input{
+    display:flex;align-items:stretch;background:var(--bg-2);border:1px solid var(--line-2);
+    border-radius:12px;overflow:hidden;transition:border-color .15s, background .15s;
+  }
+  .phone-input:focus-within{border-color:var(--ink);background:#fff}
+  .phone-cc{
+    padding:14px 14px;font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:500;
+    color:var(--ink);background:transparent;border:0;border-right:1px solid var(--line);
+    display:flex;align-items:center;gap:6px;outline:none;flex-shrink:0;
+  }
+  .phone-input input{
+    flex:1;border:0;outline:0;background:transparent;padding:14px 16px;font-size:18px;
+    color:var(--ink);font-family:inherit;letter-spacing:0.02em;
+  }
+  .phone-input input::placeholder{color:var(--ink-3)}
+
+  /* OTP boxes */
+  .otp-boxes{display:flex;gap:10px;justify-content:center;margin:6px 0 12px}
+  .otp-box{
+    width:48px;height:56px;border:1px solid var(--line-2);background:var(--bg-2);
+    border-radius:12px;font-family:'Fraunces',serif;font-size:28px;text-align:center;
+    font-weight:500;color:var(--ink);outline:none;transition:border-color .15s, background .15s;
+  }
+  .otp-box:focus{border-color:var(--ink);background:#fff;box-shadow:0 0 0 4px rgba(184,80,28,0.1)}
+
+  .submit-btn{
+    width:100%;background:var(--ink);color:#FAF8F3;border:0;
+    padding:16px 22px;border-radius:12px;font-weight:500;font-size:15px;
+    cursor:pointer;display:flex;justify-content:center;align-items:center;gap:8px;
+    transition:transform .15s, background .15s;min-height:54px;font-family:inherit;
+  }
+  .submit-btn:hover{transform:translateY(-1px);background:var(--accent)}
+  .submit-btn:disabled{background:var(--ink-3);cursor:not-allowed;transform:none}
+
+  .helper{margin-top:18px;font-size:13px;color:var(--ink-3);text-align:center;line-height:1.6}
+  .helper a{color:var(--accent);font-weight:500}
+  .helper a:hover{text-decoration:underline}
+
+  .resend{
+    background:none;border:0;color:var(--accent);font-weight:500;font-size:13px;
+    cursor:pointer;padding:0;font-family:inherit;
+  }
+  .resend:disabled{color:var(--ink-3);cursor:not-allowed}
+
+  /* Trust signals */
+  .trust-row{display:flex;justify-content:center;gap:18px;margin-top:22px;font-size:11px;color:var(--ink-3);font-family:'JetBrains Mono',monospace;flex-wrap:wrap}
+  .trust-row span{display:inline-flex;align-items:center;gap:5px}
+  .trust-row svg{width:13px;height:13px;color:var(--ok-ink)}
+
+  /* Step indicator */
+  .steps-bar{display:flex;justify-content:center;gap:8px;margin-bottom:24px}
+  .step-dot{width:24px;height:4px;border-radius:2px;background:var(--line)}
+  .step-dot.active{background:var(--accent)}
+  .step-dot.done{background:var(--ok-ink)}
+
+  /* Step visibility */
+  .step-pane{display:none}
+  .step-pane.active{display:block;animation:fadeIn .25s ease}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  /* Intent banner */
+  .intent-banner{
+    background:linear-gradient(180deg, #FFF4D9 0%, #fff 100%);
+    border:1px solid var(--gold);border-radius:12px;padding:14px 16px;
+    font-size:13px;color:var(--ink);margin-bottom:24px;display:flex;align-items:center;gap:10px;line-height:1.5;
+  }
+  .intent-banner svg{flex-shrink:0;color:var(--accent)}
+  .intent-banner b{color:var(--accent);font-weight:500}
+
+  /* Phone number echo */
+  .phone-echo{
+    background:var(--bg-2);border:1px solid var(--line);border-radius:10px;
+    padding:12px 16px;font-family:'JetBrains Mono',monospace;font-size:14px;
+    color:var(--ink);display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;
+  }
+  .phone-echo button{
+    background:none;border:0;color:var(--accent);font-weight:500;font-size:13px;
+    cursor:pointer;font-family:inherit;padding:0;
+  }
+
+  /* Footer */
+  footer.mini{
+    padding:24px 0;color:var(--ink-3);font-size:11px;text-align:center;
+    font-family:'JetBrains Mono',monospace;border-top:1px solid var(--line);
+  }
+
+  /* Responsive */
+  @media (max-width: 480px){
+    .container{padding:0 18px}
+    .auth-card{padding:28px 22px;border-radius:16px}
+    h1{font-size:26px}
+    .otp-box{width:42px;height:50px;font-size:24px}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="container" style="display:contents">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">ना</span>
+      <span class="logo-text">
+        <span class="name">Naam <em>Dekho</em></span>
+        <span class="deva">नाम देखो</span>
+      </span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+      Back to home
+    </a>
+  </div>
+</nav>
+
+<main>
+  <div class="container auth-wrap">
+    <div class="auth-card">
+
+      <div class="steps-bar">
+        <div class="step-dot active" id="dot1"></div>
+        <div class="step-dot" id="dot2"></div>
+        <div class="step-dot" id="dot3"></div>
+      </div>
+
+      <!-- INTENT BANNER -->
+      <div class="intent-banner" id="intentBanner" style="display:none">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 2v6m0 8v6M4.93 4.93l4.24 4.24m5.66 5.66l4.24 4.24M2 12h6m8 0h6M4.93 19.07l4.24-4.24m5.66-5.66l4.24-4.24"/></svg>
+        <span id="intentText"></span>
+      </div>
+
+      <!-- STEP 1: PHONE NUMBER -->
+      <div class="step-pane active" id="step1">
+        <div class="auth-head">
+          <div class="eyebrow">— Sign in</div>
+          <h1>Welcome to <em>Naam Dekho</em></h1>
+          <p class="sub">Sign in with your phone number. We will send a 6-digit OTP via SMS or WhatsApp.</p>
+        </div>
+
+        <form id="phoneForm" autocomplete="off">
+          <div class="field">
+            <label for="phone">Mobile number</label>
+            <div class="phone-input">
+              <select class="phone-cc" id="cc" aria-label="Country code">
+                <option value="+91">🇮🇳 +91</option>
+                <option value="+1">🇺🇸 +1</option>
+                <option value="+44">🇬🇧 +44</option>
+                <option value="+971">🇦🇪 +971</option>
+                <option value="+65">🇸🇬 +65</option>
+                <option value="+61">🇦🇺 +61</option>
+              </select>
+              <input id="phone" type="tel" inputmode="numeric" pattern="[0-9]*" maxlength="10" placeholder="98765 43210" autocomplete="tel" required />
+            </div>
+          </div>
+          <button type="submit" class="submit-btn" id="sendOtpBtn">
+            Send OTP
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+          </button>
+        </form>
+
+        <div class="trust-row">
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg> Bank-grade encryption</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> DPDP Act compliant</span>
+          <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"/></svg> India-region storage</span>
+        </div>
+
+        <p class="helper">By continuing, you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</p>
+      </div>
+
+      <!-- STEP 2: OTP -->
+      <div class="step-pane" id="step2">
+        <div class="auth-head">
+          <div class="eyebrow">— Verify</div>
+          <h1>Enter the <em>6-digit code</em></h1>
+          <p class="sub">We sent it to <b id="phoneDisplay">+91 98765 43210</b>.</p>
+        </div>
+
+        <div class="phone-echo">
+          <span id="phoneEcho">+91 98765 43210</span>
+          <button id="changePhoneBtn">Change</button>
+        </div>
+
+        <form id="otpForm" autocomplete="off">
+          <div class="field">
+            <label style="text-align:center">Enter OTP</label>
+            <div class="otp-boxes">
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" autocomplete="one-time-code" />
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" />
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" />
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" />
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" />
+              <input class="otp-box" type="text" inputmode="numeric" pattern="[0-9]*" maxlength="1" />
+            </div>
+          </div>
+          <button type="submit" class="submit-btn" id="verifyBtn" disabled>
+            Verify & continue
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </button>
+        </form>
+
+        <p class="helper">
+          Didn't receive it?
+          <button class="resend" id="resendBtn" disabled>Resend in <span id="resendTimer">30</span>s</button>
+        </p>
+      </div>
+
+      <!-- STEP 3: SUCCESS -->
+      <div class="step-pane" id="step3">
+        <div class="auth-head">
+          <div class="eyebrow" style="color:var(--ok-ink)">— Signed in</div>
+          <div style="width:72px;height:72px;border-radius:50%;background:var(--bg-2);display:grid;place-items:center;margin:8px auto 18px;border:2px solid var(--ok-ink)">
+            <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="#1B5E20" stroke-width="2.5" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <h1>You're <em>in</em>.</h1>
+          <p class="sub" id="successCopy">Taking you back to the search…</p>
+        </div>
+        <a href="index.html" class="submit-btn" style="text-decoration:none">
+          Continue
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer class="mini">
+  © 2026 Naam Dekho Technologies Pvt Ltd · नाम देखो · Made for Indian founders & families
+</footer>
+
+<script>
+  // ── Intent banner ──────────────────────────────────────────────
+  const INTENT = new URLSearchParams(location.search).get('intent');
+  const intents = {
+    'deep-scan': 'After signing in, your <b>₹49 Deep Legal Scan</b> will be ready to launch.',
+    'keepsake':  'After signing in, your <b>₹29 Keepsake PDF</b> will be ready to generate.',
+    'shortlist': 'After signing in, your <b>₹99 Shortlist of Five</b> comparison will be ready.',
+    'founder-pro': 'After signing in, you can subscribe to <b>Founder Pro</b> at ₹499/month.',
+  };
+  if (INTENT && intents[INTENT]) {
+    document.getElementById('intentBanner').style.display = 'flex';
+    document.getElementById('intentText').innerHTML = intents[INTENT];
+  }
+
+  // ── Step navigation ────────────────────────────────────────────
+  const panes = ['step1','step2','step3'].map(id => document.getElementById(id));
+  const dots = ['dot1','dot2','dot3'].map(id => document.getElementById(id));
+  function gotoStep(i) {
+    panes.forEach((p,idx) => p.classList.toggle('active', idx === i));
+    dots.forEach((d,idx) => {
+      d.classList.toggle('active', idx === i);
+      d.classList.toggle('done', idx < i);
+    });
+  }
+
+  // ── Step 1: phone ──────────────────────────────────────────────
+  const phoneForm = document.getElementById('phoneForm');
+  phoneForm.addEventListener('submit', e => {
+    e.preventDefault();
+    const cc = document.getElementById('cc').value;
+    const num = document.getElementById('phone').value.trim();
+    if (num.length < 7) return;
+    const formatted = cc + ' ' + (num.length === 10 ? num.replace(/(\d{5})(\d{5})/, '$1 $2') : num);
+    document.getElementById('phoneDisplay').textContent = formatted;
+    document.getElementById('phoneEcho').textContent = formatted;
+    gotoStep(1);
+    setTimeout(() => document.querySelector('.otp-box').focus(), 200);
+    startResendTimer();
+  });
+
+  // ── Step 2: OTP boxes ──────────────────────────────────────────
+  const otpBoxes = document.querySelectorAll('.otp-box');
+  const verifyBtn = document.getElementById('verifyBtn');
+  otpBoxes.forEach((box, i) => {
+    box.addEventListener('input', () => {
+      box.value = box.value.replace(/\D/g, '').slice(0, 1);
+      if (box.value && i < otpBoxes.length - 1) otpBoxes[i + 1].focus();
+      const filled = [...otpBoxes].every(b => b.value);
+      verifyBtn.disabled = !filled;
+    });
+    box.addEventListener('keydown', e => {
+      if (e.key === 'Backspace' && !box.value && i > 0) otpBoxes[i - 1].focus();
+    });
+    // Paste support
+    box.addEventListener('paste', e => {
+      const text = (e.clipboardData || window.clipboardData).getData('text').replace(/\D/g, '').slice(0, 6);
+      if (text.length) {
+        e.preventDefault();
+        text.split('').forEach((c, idx) => { if (otpBoxes[idx]) otpBoxes[idx].value = c; });
+        otpBoxes[Math.min(text.length, 5)].focus();
+        verifyBtn.disabled = text.length < 6;
+      }
+    });
+  });
+
+  document.getElementById('otpForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const code = [...otpBoxes].map(b => b.value).join('');
+    if (code.length !== 6) return;
+    // In production: POST to /api/auth/verify-otp
+    verifyBtn.disabled = true;
+    verifyBtn.innerHTML = 'Verifying…';
+    setTimeout(() => {
+      gotoStep(2);
+      // Redirect after intent
+      if (INTENT) {
+        const redirectMap = {
+          'deep-scan': 'index.html?launch=deep-scan',
+          'keepsake':  'index.html?mode=baby&launch=keepsake',
+          'shortlist': 'index.html?mode=baby&launch=shortlist',
+          'founder-pro': 'pricing.html?subscribed=founder-pro',
+        };
+        setTimeout(() => { location.href = redirectMap[INTENT] || 'index.html'; }, 1600);
+      } else {
+        setTimeout(() => { location.href = 'index.html'; }, 1600);
+      }
+    }, 700);
+  });
+
+  document.getElementById('changePhoneBtn').addEventListener('click', () => {
+    gotoStep(0);
+    otpBoxes.forEach(b => b.value = '');
+    verifyBtn.disabled = true;
+  });
+
+  // ── Resend timer ───────────────────────────────────────────────
+  const resendBtn = document.getElementById('resendBtn');
+  const resendTimer = document.getElementById('resendTimer');
+  let resendInterval;
+  function startResendTimer() {
+    clearInterval(resendInterval);
+    let secs = 30;
+    resendBtn.disabled = true;
+    resendBtn.innerHTML = 'Resend in <span id="resendTimer">' + secs + '</span>s';
+    resendInterval = setInterval(() => {
+      secs--;
+      if (secs <= 0) {
+        clearInterval(resendInterval);
+        resendBtn.disabled = false;
+        resendBtn.textContent = 'Resend OTP';
+      } else {
+        document.getElementById('resendTimer').textContent = secs;
+      }
+    }, 1000);
+  }
+  resendBtn.addEventListener('click', () => {
+    if (!resendBtn.disabled) startResendTimer();
+  });
+</script>
+
+</body>
+</html>

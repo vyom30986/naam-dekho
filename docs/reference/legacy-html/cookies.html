@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAF8F3" />
+<title>Cookies Policy — Naam Dekho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FAF8F3; --bg-2:#F3EFE5; --ink:#0F1419; --ink-2:#3D4751; --ink-3:#6B7480;
+    --line:#E5DFD0; --line-2:#D8D0BC; --accent:#B8501C; --accent-2:#7A2E0E;
+    --ok-bg:#E7F2E9; --ok-ink:#1B5E20; --warn-bg:#FFF4D9; --warn-ink:#8A5A00;
+    --gold:#E8C76A;
+    --radius:14px; --radius-lg:18px;
+    --shadow-sm:0 1px 2px rgba(15,20,25,0.04), 0 4px 12px -4px rgba(15,20,25,0.06);
+    --shadow-md:0 1px 0 rgba(15,20,25,0.04), 0 12px 32px -16px rgba(15,20,25,0.12);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  body{background:radial-gradient(900px 500px at 80% -200px, rgba(184,80,28,0.05), transparent 60%), var(--bg);min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav.topnav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(250,248,243,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:50}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);display:grid;place-items:center;color:#fff;font-family:'Noto Sans Devanagari',serif;font-weight:600;font-size:17px}
+  .logo-text{display:flex;flex-direction:column;line-height:1}
+  .logo-text .name{font-family:'Fraunces',serif;font-weight:500;font-size:20px;letter-spacing:-0.02em}
+  .logo-text .name em{font-style:italic;color:var(--accent);font-weight:500}
+  .logo-text .deva{font-family:'Noto Sans Devanagari',serif;font-size:11px;color:var(--ink-3);margin-top:2px}
+  .nav-right{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2)}
+  .nav-right a.nav-link{padding:8px 14px;border-radius:8px;font-weight:500;transition:background .15s}
+  .nav-right a.nav-link:hover{background:var(--bg-2)}
+  .nav-cta{padding:10px 18px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--bg);font-weight:500;font-size:13px}
+
+  /* Hero */
+  .page-hero{padding:56px 0 28px;text-align:center;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:14px}
+  h1.page-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(32px,4.5vw,52px);line-height:1.05;letter-spacing:-0.025em;margin:0 0 14px;max-width:880px;margin-left:auto;margin-right:auto}
+  h1.page-title em{font-style:italic;color:var(--accent)}
+  .page-sub{font-size:15px;color:var(--ink-2);max-width:640px;margin:0 auto;line-height:1.65}
+  .effective-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.1em;margin-top:14px}
+
+  /* Policy tab strip — links to other pages */
+  .policy-tabs-wrap{position:sticky;top:75px;background:rgba(250,248,243,0.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:30;padding:18px 0;border-bottom:1px solid var(--line)}
+  .policy-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+  .policy-tabs::-webkit-scrollbar{display:none}
+  .policy-tab{
+    padding:11px 18px;border-radius:12px;background:#fff;border:1px solid var(--line);
+    font-weight:500;font-size:13.5px;color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+    box-shadow:var(--shadow-sm);transition:all .2s;white-space:nowrap;flex-shrink:0;font-family:inherit;text-decoration:none;
+  }
+  .policy-tab:hover{border-color:var(--ink-3);transform:translateY(-1px);color:var(--ink)}
+  .policy-tab.active{background:var(--ink);color:#FAF8F3;border-color:var(--ink);box-shadow:0 4px 14px -4px rgba(15,20,25,0.3)}
+  .policy-tab .num{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg-2);padding:3px 7px;border-radius:5px;color:var(--ink-3)}
+  .policy-tab.active .num{background:rgba(255,255,255,0.15);color:#FAF8F3}
+
+  /* Content */
+  .policy-section{padding:48px 0 64px}
+  .policy-layout{display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:flex-start}
+
+  /* Sidebar */
+  .policy-toc{position:sticky;top:160px;font-size:13px;line-height:1.7}
+  .policy-toc h4{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);margin:0 0 10px}
+  .policy-toc a{display:block;color:var(--ink-3);padding:5px 10px;border-radius:6px;margin-bottom:2px;transition:all .15s;border-left:2px solid transparent}
+  .policy-toc a:hover{color:var(--ink);background:var(--bg-2)}
+  .policy-toc a.current{color:var(--accent);background:var(--bg-2);border-left-color:var(--accent);font-weight:500}
+
+  /* Body */
+  .policy-body{max-width:780px}
+  .policy-body h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;margin:0 0 18px;line-height:1.2;scroll-margin-top:200px}
+  .policy-body h3{font-family:'Fraunces',serif;font-weight:500;font-size:22px;margin:42px 0 12px;line-height:1.25;scroll-margin-top:200px}
+  .policy-body h4{font-family:'Fraunces',serif;font-weight:500;font-size:18px;margin:28px 0 10px;line-height:1.25;color:var(--ink-2)}
+  .policy-body p{font-size:15.5px;line-height:1.75;color:var(--ink-2);margin:0 0 14px}
+  .policy-body p b, .policy-body li b{color:var(--ink);font-weight:600}
+  .policy-body ul{margin:6px 0 18px;padding-left:0;list-style:none}
+  .policy-body ul li{font-size:15px;line-height:1.7;color:var(--ink-2);margin:0 0 10px;padding-left:24px;position:relative}
+  .policy-body ul li::before{content:"";position:absolute;left:6px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .policy-body ol{margin:6px 0 18px;padding-left:24px}
+  .policy-body ol li{font-size:15px;line-height:1.7;color:var(--ink-2);margin:0 0 10px}
+
+  /* Tables */
+  .policy-body table{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:13.5px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .policy-body th{background:var(--ink);color:#FAF8F3;text-align:left;padding:12px 14px;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace}
+  .policy-body td{padding:12px 14px;border-top:1px solid var(--line);color:var(--ink-2);vertical-align:top;line-height:1.55}
+  .policy-body td b{color:var(--ink);font-weight:500}
+
+  /* Callout */
+  .callout{background:var(--warn-bg);border-left:4px solid var(--accent);padding:18px 22px;border-radius:0 12px 12px 0;margin:22px 0}
+  .callout-title{font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:var(--accent);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+  .callout p{font-size:14.5px;color:var(--ink);margin:0;line-height:1.65}
+
+  /* Plain-language summary */
+  .plain-summary{background:var(--ok-bg);border:1px solid var(--ok-ink);border-radius:12px;padding:16px 20px;margin:18px 0}
+  .plain-summary .label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ok-ink);font-weight:600;margin-bottom:6px}
+  .plain-summary p{margin:0;color:var(--ok-ink);font-size:14.5px;line-height:1.6}
+
+  /* Next-prev navigation */
+  .policy-nav-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:48px 0 0;padding-top:32px;border-top:1px solid var(--line)}
+  .policy-nav-bottom a{padding:18px 22px;background:#fff;border:1px solid var(--line);border-radius:14px;transition:all .2s;display:flex;flex-direction:column;gap:4px}
+  .policy-nav-bottom a:hover{border-color:var(--ink-3);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .policy-nav-bottom .label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3)}
+  .policy-nav-bottom .name{font-family:'Fraunces',serif;font-weight:500;font-size:18px;color:var(--ink)}
+  .policy-nav-bottom .next{text-align:right}
+
+  /* Footer */
+  .site-footer{background:#0F1419;color:#C5B58A;padding:48px 0 24px;margin-top:40px}
+  .footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;padding-bottom:32px;border-bottom:1px solid rgba(245,235,216,0.1)}
+  .footer-brand .logo-text .name{color:#F5EBD8}
+  .footer-brand .logo-text .name em{color:var(--gold)}
+  .footer-brand .logo-text .deva{color:#8A7E5E}
+  .footer-tagline{font-size:13px;color:#8A9099;max-width:340px;margin:16px 0 0;line-height:1.6}
+  .footer-col h4{font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:#F5EBD8;margin:0 0 12px}
+  .footer-col a{display:block;color:#8A9099;font-size:13px;padding:4px 0;transition:color .15s}
+  .footer-col a:hover{color:var(--gold)}
+  .footer-bottom{padding-top:20px;font-size:11px;color:#6B7480;font-family:'JetBrains Mono',monospace;text-align:center}
+
+  /* Responsive */
+  @media (max-width: 1024px){
+    .policy-layout{grid-template-columns:1fr}
+    .policy-toc{position:static;display:none}
+    .footer-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width: 760px){
+    .container{padding:0 18px}
+    .nav-right .nav-link{display:none}
+    .page-hero{padding:36px 0 24px}
+    .policy-tabs-wrap{top:69px;padding:14px 0}
+    .policy-tabs{margin:0 -18px;padding:0 18px}
+    .policy-tab{padding:10px 14px;font-size:13px}
+    .policy-section{padding:32px 0 48px}
+    .policy-body h2{font-size:24px}
+    .policy-body h3{font-size:18px;margin:32px 0 10px}
+    .policy-body p, .policy-body ul li, .policy-body ol li{font-size:14.5px}
+    .policy-body table{font-size:12px}
+    .policy-body th, .policy-body td{padding:8px 10px}
+    .policy-nav-bottom{grid-template-columns:1fr;gap:10px}
+    .policy-nav-bottom .next{text-align:left}
+    .footer-grid{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+</head>
+<body>
+
+
+<nav class="topnav">
+  <div class="container" style="display:contents">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">ना</span>
+      <span class="logo-text">
+        <span class="name">Naam <em>Dekho</em></span>
+        <span class="deva">नाम देखो</span>
+      </span>
+    </a>
+    <div class="nav-right">
+      <a href="how-it-works.html" class="nav-link">How it works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="pricing.html#agencies" class="nav-link">For agencies</a>
+      <a href="sign-in.html" class="nav-cta">Sign in</a>
+    </div>
+  </div>
+</nav>
+
+
+<header class="page-hero">
+  <div class="container">
+    <div class="eyebrow">— Legal</div>
+    <h1 class="page-title">Our <em>Cookies Policy</em>.</h1>
+    <p class="page-sub">What we use cookies for, how to manage them, and which third-party cookies appear on the Platform.</p>
+    <div class="effective-date">Effective date — 15 May 2026  ·  Version 1.0</div>
+  </div>
+</header>
+
+
+<div class="policy-tabs-wrap">
+  <div class="container">
+    <div class="policy-tabs" role="tablist">
+      <a href="privacy.html" class="policy-tab"><span class="num">1</span>Privacy Policy</a><a href="terms.html" class="policy-tab"><span class="num">2</span>Terms of Use</a><a href="cookies.html" class="policy-tab active"><span class="num">3</span>Cookies Policy</a><a href="cancellation-refund.html" class="policy-tab"><span class="num">4</span>Cancellation & Refund</a><a href="payment-terms.html" class="policy-tab"><span class="num">5</span>Payment Terms</a>
+    </div>
+  </div>
+</div>
+
+
+<section class="policy-section">
+  <div class="container policy-layout">
+    <aside class="policy-toc">
+      <h4>On this page</h4>
+      <a href="#what" class="toc-link current">What are cookies</a><a href="#cats" class="toc-link">Categories we use</a><a href="#consent" class="toc-link">Consent & management</a><a href="#browser" class="toc-link">Browser controls</a><a href="#dnt" class="toc-link">Do Not Track</a><a href="#updates" class="toc-link">Updates</a>
+    </aside>
+    <div class="policy-body">
+      
+<h2 id="what">3. Cookies Policy</h2>
+<p>A "cookie" is a small text file that a website places on your browser or device. Cookies allow the website to recognise you on subsequent visits, remember your preferences, and enable certain functionality. Some cookies expire at the end of the session ("session cookies"); others persist for a defined period ("persistent cookies"). For simplicity, we use "cookies" to refer to all tracking technologies, including HTML5 local storage, IndexedDB, web beacons / pixel tags, and device fingerprinting.</p>
+
+<h3 id="cats">Categories we use</h3>
+
+<h4>Strictly Necessary cookies</h4>
+<p>Essential for the Platform to function. Cannot be disabled without rendering the Platform substantially non-functional.</p>
+<table>
+  <thead><tr><th>Cookie</th><th>Purpose</th><th>Duration</th><th>Set by</th></tr></thead>
+  <tbody>
+    <tr><td><b>naamdekho-mode</b></td><td>Remembers Startup vs Baby mode</td><td>12 months</td><td>Naam Dekho</td></tr>
+    <tr><td><b>nd_session</b></td><td>Sign-in session token (HttpOnly, Secure, SameSite=Lax)</td><td>Session / 30 days</td><td>Naam Dekho</td></tr>
+    <tr><td><b>nd_csrf</b></td><td>CSRF protection token</td><td>Session</td><td>Naam Dekho</td></tr>
+    <tr><td><b>__cf_bm</b></td><td>Cloudflare bot-management</td><td>30 minutes</td><td>Cloudflare</td></tr>
+    <tr><td><b>rzp_*</b></td><td>Razorpay checkout session</td><td>Session</td><td>Razorpay</td></tr>
+    <tr><td><b>paytm_*</b></td><td>Paytm fallback gateway session</td><td>Session</td><td>Paytm</td></tr>
+  </tbody>
+</table>
+
+<h4>Functional cookies</h4>
+<p>Enable enhanced functionality and personalisation. If you disable these, some services may not function properly.</p>
+<table>
+  <thead><tr><th>Cookie</th><th>Purpose</th><th>Duration</th><th>Set by</th></tr></thead>
+  <tbody>
+    <tr><td><b>nd_last_search</b></td><td>Restores last name searched</td><td>30 days</td><td>Naam Dekho</td></tr>
+    <tr><td><b>nd_audience</b></td><td>Pricing audience tab</td><td>3 months</td><td>Naam Dekho</td></tr>
+    <tr><td><b>nd_theme</b></td><td>Light/dark theme preference</td><td>12 months</td><td>Naam Dekho</td></tr>
+  </tbody>
+</table>
+
+<h4>Analytics & Performance cookies</h4>
+<p>Help us count visits and traffic sources, so we can measure and improve performance. All info collected is aggregated.</p>
+<table>
+  <thead><tr><th>Cookie</th><th>Purpose</th><th>Duration</th><th>Set by</th></tr></thead>
+  <tbody>
+    <tr><td><b>_pk_id.*</b></td><td>Self-hosted Plausible / Matomo visitor analytics</td><td>13 months</td><td>Naam Dekho (self-hosted)</td></tr>
+    <tr><td><b>_pk_ses.*</b></td><td>Analytics session</td><td>30 minutes</td><td>Naam Dekho (self-hosted)</td></tr>
+    <tr><td><b>nd_perf</b></td><td>Real-user performance metrics (Web Vitals)</td><td>24 hours</td><td>Naam Dekho</td></tr>
+  </tbody>
+</table>
+
+<h4>Marketing cookies — only with consent</h4>
+<p>May be set by advertising or marketing partners to show relevant ads on other sites. <b>We will not set marketing cookies without your explicit opt-in via the cookie consent banner.</b></p>
+<table>
+  <thead><tr><th>Cookie</th><th>Purpose</th><th>Duration</th><th>Set by</th></tr></thead>
+  <tbody>
+    <tr><td><b>_fbp</b></td><td>Meta (Facebook) advertising conversion measurement</td><td>3 months</td><td>Meta — only with consent</td></tr>
+    <tr><td><b>_gcl_au</b></td><td>Google Ads conversion measurement</td><td>3 months</td><td>Google — only with consent</td></tr>
+  </tbody>
+</table>
+
+<h3 id="consent">Consent and management</h3>
+<ul>
+  <li>On your first visit, a cookie-consent banner is presented. You may (a) accept all cookies, (b) reject all non-essential, or (c) customise category-level consent.</li>
+  <li>Your choice is stored for 12 months in a strictly-necessary cookie (nd_cookie_consent), after which you are re-prompted.</li>
+  <li>You may revoke or modify consent at any time by clicking the "Cookie settings" link in the footer.</li>
+  <li>Strictly-necessary cookies cannot be disabled through this mechanism — you may disable them through browser settings, but this will likely render the Platform non-functional.</li>
+</ul>
+
+<h3 id="browser">Browser-level controls</h3>
+<p>Most modern browsers allow you to view, manage, delete and block cookies:</p>
+<ul>
+  <li><b>Chrome</b> — <a href="https://support.google.com/chrome/answer/95647" style="color:var(--accent)">support.google.com/chrome/answer/95647</a></li>
+  <li><b>Firefox</b> — <a href="https://support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer" style="color:var(--accent)">support.mozilla.org/en-US/kb/cookies-information-websites-store-on-your-computer</a></li>
+  <li><b>Safari</b> — <a href="https://support.apple.com/guide/safari/manage-cookies-sfri11471/mac" style="color:var(--accent)">support.apple.com/guide/safari/manage-cookies-sfri11471/mac</a></li>
+  <li><b>Edge</b> — <a href="https://support.microsoft.com/en-us/microsoft-edge/delete-cookies-in-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" style="color:var(--accent)">support.microsoft.com</a></li>
+</ul>
+<p>Please note that disabling cookies, particularly strictly-necessary cookies, may impair or prevent the use of the Platform.</p>
+
+<h3 id="dnt">Do Not Track signals</h3>
+<p>Some browsers transmit "Do Not Track" signals. As there is no industry-consensus interpretation, we do not respond to them at present. You retain all controls described above.</p>
+
+<h3 id="updates">Updates to this Cookies Policy</h3>
+<p>We may update this policy from time to time. The Effective Date at the top indicates the last update. We will re-prompt for consent if our use of cookies materially expands.</p>
+
+      <div class="policy-nav-bottom"><a href="terms.html"><span class="label">← Previous</span><span class="name">Terms of Use</span></a><a href="cancellation-refund.html" class="next"><span class="label">Next →</span><span class="name">Cancellation & Refund</span></a></div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">ना</span>
+        <span class="logo-text">
+          <span class="name">Naam <em>Dekho</em></span>
+          <span class="deva">नाम देखो</span>
+        </span>
+      </a>
+      <p class="footer-tagline">India's first all-in-one name verification platform. From boardroom to baby cot — one search, every check that matters.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="sign-in.html">Sign in</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="terms.html">Terms of use</a>
+      <a href="cookies.html">Cookies policy</a>
+      <a href="cancellation-refund.html">Cancellation & refund</a>
+      <a href="payment-terms.html">Payment terms</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@naamdekho.in">hello@naamdekho.in</a>
+      <a href="mailto:support@naamdekho.in">support@naamdekho.in</a>
+      <a href="mailto:refunds@naamdekho.in">refunds@naamdekho.in</a>
+      <a href="mailto:grievance@naamdekho.in">grievance@naamdekho.in</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">© 2026 Naam Dekho Technologies Pvt Ltd · नाम देखो · All rights reserved</div>
+</footer>
+
+
+<script>
+  // Active anchor in side TOC as user scrolls
+  const allTocLinks = document.querySelectorAll('.toc-link');
+  const allHeadings = document.querySelectorAll('.policy-body h2, .policy-body h3');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.target.id) {
+        const id = e.target.id;
+        allTocLinks.forEach(l => l.classList.toggle('current', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-180px 0px -70% 0px' });
+  allHeadings.forEach(h => h.id && observer.observe(h));
+</script>
+
+</body>
+</html>

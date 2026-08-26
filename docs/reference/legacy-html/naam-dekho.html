@@ -1,0 +1,1385 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAF8F3" />
+<title>Naam Dekho — One name. Every check that matters.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FAF8F3;
+    --bg-2:#F3EFE5;
+    --bg-3:#EBE5D3;
+    --ink:#0F1419;
+    --ink-2:#3D4751;
+    --ink-3:#6B7480;
+    --ink-4:#8A9099;
+    --line:#E5DFD0;
+    --line-2:#D8D0BC;
+    --accent:#B8501C;
+    --accent-2:#7A2E0E;
+    --accent-soft:rgba(184,80,28,0.08);
+
+    --ok-bg:#E7F2E9;
+    --ok-bg-2:#D4E8D8;
+    --ok-ink:#1B5E20;
+    --ok-line:#9CC2A2;
+
+    --no-bg:#FCE4EC;
+    --no-bg-2:#F8D0DD;
+    --no-ink:#880E4F;
+    --no-line:#E89AB3;
+
+    --warn-bg:#FFF4D9;
+    --warn-ink:#8A5A00;
+    --warn-line:#E8C76A;
+
+    --pending-bg:#EFEAD9;
+    --pending-ink:#6B7480;
+
+    --radius:14px;
+    --radius-sm:10px;
+    --radius-lg:18px;
+
+    --shadow-sm:0 1px 2px rgba(15,20,25,0.04), 0 4px 12px -4px rgba(15,20,25,0.06);
+    --shadow-md:0 1px 0 rgba(15,20,25,0.04), 0 12px 32px -16px rgba(15,20,25,0.12);
+    --shadow-lg:0 1px 0 rgba(15,20,25,0.04), 0 24px 56px -20px rgba(15,20,25,0.22);
+  }
+  *{box-sizing:border-box}
+  *::-webkit-tap-highlight-color{-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  body{
+    background:
+      radial-gradient(1200px 600px at 80% -200px, rgba(184,80,28,0.06), transparent 60%),
+      radial-gradient(900px 500px at -10% 300px, rgba(27,94,32,0.04), transparent 60%),
+      var(--bg);
+    min-height:100vh;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit;cursor:pointer}
+  input{font-family:inherit}
+  .container{max-width:1240px;margin:0 auto;padding:0 24px}
+
+  /* ── NAV ────────────────────────────────────────────────────── */
+  nav.topnav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:20px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(250,248,243,0.85);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:50;
+  }
+  .logo{display:flex;align-items:center;gap:12px;font-family:'Fraunces',serif;font-weight:600;font-size:22px;letter-spacing:-0.02em}
+  .logo-mark{
+    width:34px;height:34px;border-radius:10px;
+    background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);
+    display:grid;place-items:center;color:#fff;font-family:'Noto Sans Devanagari',serif;font-weight:600;font-size:17px;
+    box-shadow:0 4px 12px -2px rgba(184,80,28,0.4);
+  }
+  .logo-text{display:flex;flex-direction:column;line-height:1}
+  .logo-text .name{font-family:'Fraunces',serif;font-weight:500;font-size:20px;letter-spacing:-0.02em}
+  .logo-text .name em{font-style:italic;color:var(--accent);font-weight:500}
+  .logo-text .deva{font-family:'Noto Sans Devanagari',serif;font-size:11px;color:var(--ink-3);margin-top:2px;letter-spacing:0}
+  .nav-right{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2)}
+  .nav-right a.nav-link{padding:8px 14px;border-radius:8px;transition:background .15s;font-weight:500}
+  .nav-right a.nav-link:hover{background:var(--bg-2)}
+  .nav-cta{padding:10px 18px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--bg);font-weight:500;font-size:13px;transition:transform .15s, box-shadow .15s}
+  .nav-cta:hover{transform:translateY(-1px);box-shadow:0 8px 20px -8px rgba(15,20,25,0.4)}
+  .nav-toggle{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--line-2);background:#fff;align-items:center;justify-content:center;padding:0}
+  .nav-toggle svg{width:20px;height:20px}
+
+  /* ── HERO / SEARCH ──────────────────────────────────────────── */
+  header.hero{padding:56px 0 36px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:20px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .eyebrow::before{content:"";width:24px;height:1px;background:var(--accent)}
+  .eyebrow em{font-style:italic;color:var(--ink-2);font-weight:400}
+  h1{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(34px,5.5vw,72px);line-height:1.04;letter-spacing:-0.025em;margin:0 0 18px;max-width:980px}
+  h1 em{font-style:italic;color:var(--accent);font-weight:400}
+  .sub{font-size:clamp(15px,1.6vw,17px);color:var(--ink-2);max-width:680px;line-height:1.6;margin-bottom:32px}
+
+  .search{
+    display:flex;align-items:center;background:#fff;border:1px solid var(--line-2);
+    border-radius:var(--radius);padding:8px 8px 8px 22px;max-width:760px;gap:8px;
+    box-shadow:var(--shadow-md);
+    transition:border-color .2s, box-shadow .2s, transform .2s;
+  }
+  .search:focus-within{border-color:var(--ink);box-shadow:var(--shadow-lg);transform:translateY(-1px)}
+  .search input{flex:1;min-width:0;border:0;outline:0;font-family:'Fraunces',serif;font-size:clamp(20px,3vw,26px);color:var(--ink);background:transparent;padding:14px 0;font-weight:400}
+  .search input::placeholder{color:var(--ink-3);font-style:italic}
+  .search button.search-btn{
+    background:var(--ink);color:var(--bg);border:0;border-radius:10px;padding:14px 22px;
+    font-weight:500;font-size:14px;letter-spacing:0.01em;
+    display:flex;align-items:center;gap:10px;white-space:nowrap;
+    transition:transform .15s, background .15s;flex-shrink:0;
+  }
+  .search button.search-btn:hover{background:var(--accent);transform:translateY(-1px)}
+  .search button.search-btn .kbd{font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.7;padding:2px 6px;border:1px solid rgba(255,255,255,0.2);border-radius:4px}
+  .hint{margin-top:16px;font-size:13px;color:var(--ink-3);display:flex;gap:20px;flex-wrap:wrap;align-items:center}
+  .hint span{display:inline-flex;align-items:center;gap:6px}
+  .hint kbd{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg-2);padding:3px 7px;border-radius:4px;border:1px solid var(--line);color:var(--ink-2)}
+  .hint .dot{width:5px;height:5px;border-radius:50%;background:var(--accent);display:inline-block}
+
+  /* ── SUMMARY STRIP — CARD BOXES ─────────────────────────────── */
+  .summary{
+    display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:14px;
+    padding:28px 0;
+  }
+  .summary > div{
+    padding:22px 24px;
+    background:#fff;
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    box-shadow:var(--shadow-sm);
+    transition:transform .2s, border-color .2s, box-shadow .2s;
+    cursor:pointer;
+    display:flex;flex-direction:column;
+  }
+  .summary > div:hover{
+    transform:translateY(-2px);
+    border-color:var(--ink-3);
+    box-shadow:var(--shadow-md);
+  }
+  .summary .label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px}
+  .summary .big{font-family:'Fraunces',serif;font-size:34px;line-height:1;letter-spacing:-0.02em;font-weight:400}
+  .summary .big em{font-style:normal;color:var(--ok-ink);font-weight:500}
+  .summary .big.bad em{color:var(--no-ink)}
+  .summary .meta{font-size:13px;color:var(--ink-2);margin-top:auto;padding-top:12px;line-height:1.45}
+  .bar{height:6px;background:var(--bg-2);border-radius:3px;overflow:hidden;margin-top:14px;display:flex}
+  .bar span{display:block;height:100%}
+  .bar .g{background:var(--ok-ink)}
+  .bar .p{background:var(--no-ink)}
+  .bar .w{background:var(--warn-ink)}
+  .bar .x{background:var(--line-2)}
+
+  /* ── FILTER TABS — BUTTON BOXES ─────────────────────────────── */
+  .tabs-wrap{position:relative;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .tabs{
+    display:flex;gap:10px;padding:20px 0;
+    overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;
+    scroll-snap-type:x proximity;
+  }
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{
+    font-size:13px;color:var(--ink-2);padding:11px 18px;border-radius:12px;cursor:pointer;
+    white-space:nowrap;border:1px solid var(--line);display:inline-flex;align-items:center;gap:9px;
+    background:#fff;font-weight:500;transition:all .18s;scroll-snap-align:start;flex-shrink:0;
+    box-shadow:var(--shadow-sm);
+  }
+  .tab:hover{
+    border-color:var(--ink-3);
+    transform:translateY(-1px);
+    box-shadow:var(--shadow-md);
+  }
+  .tab .count{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg-2);padding:3px 8px;border-radius:6px;color:var(--ink-3);font-weight:500;border:1px solid var(--line)}
+  .tab.active{background:var(--ink);color:var(--bg);border-color:var(--ink);box-shadow:0 4px 14px -4px rgba(15,20,25,0.3)}
+  .tab.active .count{background:rgba(255,255,255,0.15);color:var(--bg);border-color:rgba(255,255,255,0.1)}
+
+  /* ── SECTION ────────────────────────────────────────────────── */
+  section.module{padding:56px 0;border-bottom:1px solid var(--line)}
+  .section-head{display:flex;align-items:baseline;justify-content:space-between;margin-bottom:28px;gap:24px;flex-wrap:wrap}
+  .section-title{font-family:'Fraunces',serif;font-size:clamp(22px,3vw,30px);letter-spacing:-0.02em;margin:0;display:flex;align-items:baseline;gap:14px;font-weight:400}
+  .section-title .num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);font-weight:400;letter-spacing:0.08em;flex-shrink:0}
+  .section-title .tag{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.08em;margin-left:8px;background:var(--bg-2);padding:3px 8px;border-radius:4px}
+  .section-desc{font-size:13px;color:var(--ink-3);max-width:480px;line-height:1.55}
+
+  /* ── TILES GRID ─────────────────────────────────────────────── */
+  .grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+  .grid.cols-3{grid-template-columns:repeat(3,1fr)}
+  .grid.cols-2{grid-template-columns:repeat(2,1fr)}
+
+  .tile{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius);
+    padding:18px;display:flex;flex-direction:column;gap:10px;
+    transition:transform .2s, border-color .2s, box-shadow .2s;
+    position:relative;overflow:hidden;
+  }
+  .tile:hover{transform:translateY(-2px);border-color:var(--ink-3);box-shadow:var(--shadow-md)}
+  .tile-head{display:flex;align-items:center;justify-content:space-between;gap:10px}
+  .tile-platform{display:flex;align-items:center;gap:10px;font-weight:500;font-size:14px;min-width:0}
+  .tile-platform .pname{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .tile-icon{width:30px;height:30px;border-radius:8px;background:var(--bg-2);display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:600;font-size:13px;color:var(--ink);flex-shrink:0;border:1px solid var(--line)}
+  .pill{
+    font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;border-radius:999px;
+    text-transform:uppercase;letter-spacing:0.08em;font-weight:500;border:1px solid;
+    display:inline-flex;align-items:center;gap:6px;flex-shrink:0;
+  }
+  .pill::before{content:"";width:5px;height:5px;border-radius:50%;background:currentColor}
+  .pill.ok{background:var(--ok-bg);color:var(--ok-ink);border-color:var(--ok-line)}
+  .pill.no{background:var(--no-bg);color:var(--no-ink);border-color:var(--no-line)}
+  .pill.warn{background:var(--warn-bg);color:var(--warn-ink);border-color:var(--warn-line)}
+  .pill.pending{background:var(--pending-bg);color:var(--pending-ink);border-color:var(--line-2)}
+  .pill.pending::before{animation:pulse 1.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:.3}50%{opacity:1}}
+
+  .tile-detail{font-size:13px;color:var(--ink-2);line-height:1.5;min-height:36px}
+  .tile-detail b{color:var(--ink);font-weight:500}
+  .tile-foot{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--ink-3);font-family:'JetBrains Mono',monospace;padding-top:10px;border-top:1px dashed var(--line);gap:8px}
+  .tile-foot a{color:var(--accent);text-decoration:none;font-weight:500;white-space:nowrap}
+  .tile-foot a:hover{text-decoration:underline}
+
+  .tile.ok{background:linear-gradient(180deg,var(--ok-bg) 0%, #fff 70%);border-color:var(--ok-line)}
+  .tile.no{background:linear-gradient(180deg,var(--no-bg) 0%, #fff 70%);border-color:var(--no-line)}
+  .tile.warn{background:linear-gradient(180deg,var(--warn-bg) 0%, #fff 70%);border-color:var(--warn-line)}
+
+  /* ── LEGAL TABLE (TRADEMARK CLASSES) ────────────────────────── */
+  .tm-wrap{margin-top:24px}
+  .tm-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px}
+  .tm-table{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  .tm-row{display:grid;grid-template-columns:60px 1fr 130px 140px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);font-size:13px;gap:12px}
+  .tm-row:last-child{border-bottom:0}
+  .tm-row.head{background:var(--bg-2);font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--ink-3);letter-spacing:0.08em;padding:12px 18px}
+  .tm-class{font-family:'JetBrains Mono',monospace;color:var(--ink-3);font-weight:500}
+  .tm-name{color:var(--ink);line-height:1.4}
+  .tm-name b{font-weight:500}
+  .tm-status{justify-self:start}
+  .tm-action{font-size:11px;color:var(--accent);font-family:'JetBrains Mono',monospace;text-decoration:none;justify-self:end;font-weight:500}
+
+  /* ── LINGUISTIC PANEL ───────────────────────────────────────── */
+  .lang-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:18px}
+  .lang-card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:28px}
+  .deva-meta{font-size:11px;color:var(--ink-3);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:0.1em}
+  .deva{font-family:'Noto Sans Devanagari','Fraunces',serif;font-size:clamp(56px,8vw,80px);line-height:1;letter-spacing:-0.01em;color:var(--ink);margin:10px 0 20px;font-weight:500}
+  .lang-list{display:flex;flex-direction:column;gap:0;margin-top:8px}
+  .lang-row{display:grid;grid-template-columns:1fr auto auto;align-items:center;gap:14px;padding:12px 0;border-bottom:1px dashed var(--line);font-size:13px}
+  .lang-row:last-child{border-bottom:0}
+  .lang-row .lname{color:var(--ink);font-weight:500}
+  .lang-row .lscript{font-family:'Noto Sans Devanagari','Fraunces',serif;font-size:18px;color:var(--ink-2)}
+
+  /* ── NUMEROLOGY ─────────────────────────────────────────────── */
+  .numerology{
+    background:linear-gradient(135deg, #1A1410 0%, #2A1A0E 100%);
+    color:#F5EBD8;border-radius:var(--radius-lg);padding:48px;
+    position:relative;overflow:hidden;
+  }
+  .numerology::before{
+    content:"";position:absolute;inset:0;
+    background-image:radial-gradient(circle at 20% 20%, rgba(232,199,106,0.08), transparent 40%),
+                     radial-gradient(circle at 80% 80%, rgba(184,80,28,0.12), transparent 50%);
+    pointer-events:none;
+  }
+  .num-grid{display:grid;grid-template-columns:240px 1fr 1fr;gap:36px;align-items:center;position:relative}
+  .num-big-wrap{text-align:center}
+  .num-big{font-family:'Fraunces',serif;font-size:clamp(120px,18vw,200px);line-height:0.85;font-weight:300;background:linear-gradient(180deg,#E8C76A 0%, #B8501C 100%);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:italic}
+  .num-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:#B8A480;text-transform:uppercase;letter-spacing:0.12em;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+  .num-label.center{justify-content:center}
+  .num-label::before{content:"";width:20px;height:1px;background:#B8A480}
+  .num-title{font-family:'Fraunces',serif;font-size:clamp(22px,3vw,30px);line-height:1.15;letter-spacing:-0.015em;margin:0 0 14px;color:#F5EBD8;font-weight:400}
+  .num-title em{font-style:italic;color:#E8C76A}
+  .num-desc{font-size:14px;color:#C5B58A;line-height:1.65;max-width:360px}
+  .num-desc b{color:#E8C76A;font-weight:500}
+  .num-verdict{display:flex;flex-direction:column;gap:16px}
+  .num-stat{border-left:2px solid rgba(232,199,106,0.3);padding-left:16px}
+  .num-stat .k{font-family:'JetBrains Mono',monospace;font-size:10px;color:#B8A480;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:5px}
+  .num-stat .v{font-family:'Fraunces',serif;font-size:17px;color:#F5EBD8;line-height:1.35}
+  .num-fit{display:flex;gap:6px;margin-top:18px;flex-wrap:wrap}
+  .num-fit span{font-size:11px;padding:6px 11px;border:1px solid rgba(245,235,216,0.2);border-radius:999px;color:#C5B58A;font-family:'JetBrains Mono',monospace}
+  .num-fit span.match{background:rgba(232,199,106,0.12);color:#E8C76A;border-color:rgba(232,199,106,0.4)}
+  .num-foot{margin-top:32px;padding-top:24px;border-top:1px solid rgba(245,235,216,0.1);font-size:11px;color:#8A7E5E;font-family:'JetBrains Mono',monospace;display:flex;justify-content:space-between;position:relative;gap:14px;flex-wrap:wrap}
+
+  /* ── CTA STRIP ──────────────────────────────────────────────── */
+  .cta-strip{
+    background:var(--ink);color:var(--bg);border-radius:var(--radius-lg);padding:40px;
+    display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:center;margin:56px 0;
+    position:relative;overflow:hidden;
+  }
+  .cta-strip::before{
+    content:"";position:absolute;inset:0;
+    background:radial-gradient(circle at 90% 10%, rgba(232,199,106,0.1), transparent 50%);
+    pointer-events:none;
+  }
+  .cta-strip > *{position:relative}
+  .cta-strip h3{font-family:'Fraunces',serif;font-size:clamp(22px,3vw,30px);font-weight:400;letter-spacing:-0.02em;margin:0 0 12px;line-height:1.15}
+  .cta-strip h3 em{color:#E8C76A;font-style:italic}
+  .cta-strip p{font-size:14px;color:#B8B0A0;line-height:1.6;margin:0}
+  .cta-buttons{display:flex;flex-direction:column;gap:10px}
+  .cta-btn{background:var(--bg);color:var(--ink);border:0;padding:16px 22px;border-radius:12px;font-weight:500;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;transition:transform .15s,background .15s}
+  .cta-btn:hover{transform:translateY(-1px);background:#fff}
+  .cta-btn.outline{background:transparent;color:var(--bg);border:1px solid rgba(245,235,216,0.2)}
+  .cta-btn.outline:hover{background:rgba(245,235,216,0.05)}
+  .cta-btn small{font-family:'JetBrains Mono',monospace;font-size:11px;opacity:0.7;font-weight:500}
+
+  /* ── PROFESSIONAL FOOTER ──────────────────────────────────── */
+  .site-footer{
+    background:#0F1419;
+    color:#C5B58A;
+    margin-top:80px;
+    padding:64px 0 28px;
+    border-top:1px solid var(--line);
+  }
+  .footer-grid{
+    display:grid;
+    grid-template-columns:1.8fr 1fr 1fr 1fr 1fr 1.4fr;
+    gap:36px;
+    padding-bottom:48px;
+    border-bottom:1px solid rgba(245,235,216,0.1);
+  }
+  .footer-brand .logo{margin-bottom:18px}
+  .footer-brand .logo-text .name{color:#F5EBD8}
+  .footer-brand .logo-text .name em{color:#E8C76A}
+  .footer-brand .logo-text .deva{color:#8A7E5E}
+  .footer-tagline{font-size:14px;line-height:1.6;color:#8A9099;max-width:340px;margin:0 0 22px}
+  .footer-social{display:flex;gap:10px;flex-wrap:wrap}
+  .social-btn{
+    width:42px;height:42px;border-radius:12px;
+    background:rgba(245,235,216,0.05);
+    border:1px solid rgba(245,235,216,0.12);
+    display:grid;place-items:center;color:#C5B58A;
+    transition:all .2s;
+  }
+  .social-btn:hover{background:#E8C76A;color:#1A1410;border-color:#E8C76A;transform:translateY(-2px)}
+  .social-btn svg{width:18px;height:18px}
+  .footer-col h4{
+    font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:#F5EBD8;
+    margin:0 0 16px;letter-spacing:0.01em;
+  }
+  .footer-col a{
+    display:block;color:#8A9099;font-size:13px;line-height:1.7;
+    padding:5px 0;transition:color .15s;text-decoration:none;
+  }
+  .footer-col a:hover{color:#E8C76A}
+  .footer-contact p{font-size:12px;line-height:1.7;color:#8A9099;margin:0 0 12px}
+  .footer-contact p b{color:#C5B58A;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace;display:block;margin-bottom:2px}
+  .footer-contact a{color:#E8C76A;text-decoration:none}
+  .footer-contact a:hover{text-decoration:underline}
+  .footer-addr{color:#6B7480;font-size:11px;font-style:italic;margin-top:14px}
+  .footer-bottom{
+    padding-top:24px;display:flex;justify-content:space-between;align-items:center;
+    font-size:12px;color:#6B7480;font-family:'JetBrains Mono',monospace;
+    gap:16px;flex-wrap:wrap;
+  }
+  .footer-meta{font-style:italic}
+
+  /* ── MOBILE MENU ───────────────────────────────────────────── */
+  .mobile-menu{
+    position:fixed;inset:0;background:rgba(15,20,25,0.4);backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);z-index:100;opacity:0;pointer-events:none;transition:opacity .2s;
+  }
+  .mobile-menu.open{opacity:1;pointer-events:auto}
+  .mobile-menu-panel{
+    position:absolute;top:0;right:0;height:100%;width:min(85%,360px);background:var(--bg);
+    padding:24px;display:flex;flex-direction:column;gap:4px;transform:translateX(100%);transition:transform .25s;
+    box-shadow:-20px 0 40px -10px rgba(0,0,0,0.2);
+  }
+  .mobile-menu.open .mobile-menu-panel{transform:translateX(0)}
+  .mobile-menu-head{display:flex;justify-content:space-between;align-items:center;padding-bottom:20px;border-bottom:1px solid var(--line);margin-bottom:16px}
+  .mobile-menu a{padding:14px 12px;border-radius:10px;font-size:16px;font-weight:500;color:var(--ink-2);transition:background .15s}
+  .mobile-menu a:hover, .mobile-menu a:active{background:var(--bg-2)}
+  .mobile-menu .nav-cta{margin-top:12px;text-align:center;justify-content:center;display:flex;font-size:15px;padding:14px 18px}
+  .menu-close{width:42px;height:42px;border-radius:10px;border:1px solid var(--line-2);background:#fff;display:grid;place-items:center;padding:0}
+
+  /* ── MODE SWITCHER ──────────────────────────────────────────── */
+  .mode-bar{
+    display:flex;justify-content:center;padding:18px 0 4px;
+  }
+  .mode-switcher{
+    display:inline-flex;background:#fff;border:1px solid var(--line-2);
+    border-radius:999px;padding:5px;gap:4px;box-shadow:var(--shadow-sm);
+    position:relative;
+  }
+  .mode-pill{
+    background:transparent;border:0;padding:11px 22px;border-radius:999px;
+    font-family:'Inter',sans-serif;font-weight:500;font-size:13.5px;color:var(--ink-2);
+    cursor:pointer;display:inline-flex;align-items:center;gap:9px;
+    transition:color .2s;letter-spacing:0.01em;
+  }
+  .mode-pill svg{width:16px;height:16px;flex-shrink:0}
+  .mode-pill:hover{color:var(--ink)}
+  .mode-pill.active{
+    background:var(--ink);color:#FAF8F3;
+    box-shadow:0 4px 14px -4px rgba(15,20,25,0.4);
+  }
+  .mode-pill .deva{font-family:'Noto Sans Devanagari',serif;font-size:12px;opacity:0.7;margin-left:4px}
+  .mode-pill.active .deva{opacity:0.85}
+
+  body[data-mode="business"] .baby-only{display:none !important}
+  body[data-mode="baby"] .business-only{display:none !important}
+
+  /* Body mode transition */
+  body{transition:background-color .3s}
+  body[data-mode="baby"]{
+    background:
+      radial-gradient(1200px 600px at 80% -200px, rgba(184,80,28,0.04), transparent 60%),
+      radial-gradient(900px 500px at -10% 300px, rgba(232,199,106,0.06), transparent 60%),
+      var(--bg);
+  }
+
+  /* Baby-mode pronunciation tile */
+  .pron-card{
+    background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);
+    padding:32px;display:grid;grid-template-columns:1fr 1.4fr;gap:36px;align-items:center;
+    box-shadow:var(--shadow-sm);
+  }
+  .pron-syllables{
+    display:flex;gap:10px;flex-wrap:wrap;align-items:baseline;
+  }
+  .pron-syl{
+    font-family:'Fraunces',serif;font-size:clamp(36px,5vw,56px);font-weight:400;
+    color:var(--ink);padding:6px 14px;background:var(--bg-2);border-radius:12px;
+    border:1px solid var(--line);line-height:1;letter-spacing:-0.01em;
+  }
+  .pron-syl.stress{background:linear-gradient(180deg,#FFF4D9 0%,#fff 100%);border-color:var(--warn-line);color:var(--accent);font-style:italic}
+  .pron-ipa{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--ink-3);margin-top:14px}
+  .pron-rules{display:flex;flex-direction:column;gap:14px}
+  .pron-rule{display:flex;gap:14px;align-items:flex-start;padding:14px 16px;background:var(--bg-2);border-radius:12px;border:1px solid var(--line)}
+  .pron-rule.good{background:var(--ok-bg);border-color:var(--ok-line)}
+  .pron-rule.tricky{background:var(--warn-bg);border-color:var(--warn-line)}
+  .pron-rule-icon{width:32px;height:32px;border-radius:8px;display:grid;place-items:center;font-family:'Fraunces',serif;font-weight:600;flex-shrink:0;background:#fff}
+  .pron-rule.good .pron-rule-icon{color:var(--ok-ink)}
+  .pron-rule.tricky .pron-rule-icon{color:var(--warn-ink)}
+  .pron-rule-text{font-size:14px;color:var(--ink-2);line-height:1.5}
+  .pron-rule-text b{color:var(--ink);font-weight:500}
+
+  /* ──────── RESPONSIVE: TABLETS ──────── */
+  @media (max-width: 1024px){
+    .grid{grid-template-columns:repeat(3,1fr)}
+    .summary{grid-template-columns:repeat(2,1fr)}
+    .num-grid{grid-template-columns:200px 1fr;gap:28px}
+    .num-verdict{grid-column:1 / -1;flex-direction:row;flex-wrap:wrap;margin-top:8px}
+    .num-stat{flex:1;min-width:160px}
+  }
+
+  /* ──────── RESPONSIVE: MOBILE ──────── */
+  @media (max-width: 760px){
+    .container{padding:0 18px}
+
+    /* Nav */
+    .nav-right .nav-link, .nav-right > a.nav-cta{display:none}
+    .nav-toggle{display:flex}
+
+    /* Hero */
+    header.hero{padding:36px 0 28px}
+    .eyebrow{font-size:10px;margin-bottom:16px}
+    h1{font-size:clamp(30px,8vw,42px);margin-bottom:14px;line-height:1.08}
+    .sub{font-size:15px;margin-bottom:24px;line-height:1.55}
+
+    /* Search — stacked for mobile */
+    .search{flex-direction:column;align-items:stretch;padding:14px;gap:10px;border-radius:16px}
+    .search input{padding:8px 6px;font-size:22px;width:100%}
+    .search button.search-btn{width:100%;justify-content:center;padding:16px 22px;font-size:15px;border-radius:12px;min-height:52px}
+    .search button.search-btn .kbd{display:none}
+    .hint{gap:10px 16px;font-size:12px;margin-top:14px}
+    .hint .kbd-hint{display:none}
+
+    /* Summary — 2-col grid of card boxes */
+    .summary{grid-template-columns:repeat(2,1fr);gap:10px;padding:20px 0}
+    .summary > div{padding:18px 16px;border-radius:14px}
+    .summary .big{font-size:26px}
+    .summary .meta{font-size:13px;padding-top:10px}
+
+    /* Tabs — keep button-box style, scroll horizontally */
+    .tabs{padding:16px 0;margin:0 -18px;padding-left:18px;padding-right:18px;gap:8px}
+    .tab{padding:11px 16px;font-size:13px;min-height:42px;border-radius:12px}
+
+    /* Sections */
+    section.module{padding:40px 0}
+    .section-head{flex-direction:column;align-items:flex-start;gap:8px;margin-bottom:22px}
+    .section-title{font-size:24px;flex-wrap:wrap}
+    .section-title .tag{margin-left:0;margin-top:4px}
+    .section-desc{font-size:14px;line-height:1.55}
+
+    /* Grids — stack to 1 column for clarity */
+    .grid, .grid.cols-3, .grid.cols-2{grid-template-columns:1fr;gap:12px}
+
+    /* Tiles */
+    .tile{padding:18px;border-radius:14px;gap:12px}
+    .tile-platform{font-size:15px}
+    .tile-detail{font-size:14px;min-height:0}
+    .tile-foot{font-size:11px}
+
+    /* TM table — card-style on mobile */
+    .tm-table{border-radius:14px}
+    .tm-row{grid-template-columns:auto 1fr;grid-template-rows:auto auto;gap:6px 12px;padding:14px 16px;font-size:13px}
+    .tm-row.head{display:none}
+    .tm-row .tm-class{grid-column:1;grid-row:1;font-size:11px;background:var(--bg-2);padding:3px 8px;border-radius:4px}
+    .tm-row .tm-name{grid-column:2;grid-row:1;font-size:14px;line-height:1.4;font-weight:500;color:var(--ink)}
+    .tm-row .tm-status{grid-column:1 / -1;grid-row:2;justify-self:start;margin-top:4px}
+    .tm-row .tm-action{display:none}
+
+    /* Linguistic */
+    .lang-grid{grid-template-columns:1fr;gap:14px}
+    .lang-card{padding:22px;border-radius:14px}
+    .deva{font-size:64px;margin:10px 0 16px}
+    .lang-row{grid-template-columns:1fr auto;grid-template-rows:auto auto;gap:4px 12px;padding:14px 0}
+    .lang-row .lname{grid-column:1;grid-row:1;font-size:14px}
+    .lang-row .lscript{grid-column:2;grid-row:1;font-size:18px;justify-self:end}
+    .lang-row .pill{grid-column:1 / -1;grid-row:2;justify-self:start;margin-top:2px}
+
+    /* Numerology */
+    .numerology{padding:32px 24px;border-radius:16px}
+    .num-grid{grid-template-columns:1fr;gap:24px;text-align:left}
+    .num-big-wrap{text-align:center}
+    .num-big{font-size:140px}
+    .num-title{font-size:22px;line-height:1.2}
+    .num-desc{font-size:14px;max-width:none}
+    .num-verdict{flex-direction:column;gap:14px;margin-top:0}
+    .num-stat{min-width:0}
+    .num-foot{flex-direction:column;align-items:flex-start;gap:8px}
+
+    /* CTA */
+    .cta-strip{grid-template-columns:1fr;padding:28px 24px;gap:24px;border-radius:16px;margin:40px 0}
+    .cta-strip h3{font-size:22px}
+    .cta-btn{padding:18px 20px;min-height:56px;font-size:15px;border-radius:12px}
+
+    /* Footer */
+    footer{padding:32px 0 44px;flex-direction:column;align-items:flex-start;gap:10px;font-size:11px}
+  }
+
+  /* Footer responsive */
+  @media (max-width: 1024px){
+    .footer-grid{grid-template-columns:1fr 1fr 1fr;gap:32px}
+    .footer-brand{grid-column:1 / -1;max-width:520px}
+    .footer-contact{grid-column:1 / -1}
+  }
+  @media (max-width: 760px){
+    .site-footer{padding:48px 0 24px;margin-top:48px}
+    .footer-grid{grid-template-columns:1fr 1fr;gap:28px;padding-bottom:32px}
+    .footer-brand{grid-column:1 / -1}
+    .footer-contact{grid-column:1 / -1}
+    .footer-bottom{flex-direction:column;align-items:flex-start;font-size:11px;gap:8px}
+    .pron-card{grid-template-columns:1fr;padding:24px;gap:24px;border-radius:14px}
+    .pron-syl{font-size:38px;padding:6px 12px}
+    .mode-bar{padding:14px 0 0;margin:0 -18px;padding-left:18px;padding-right:18px;overflow-x:auto;scrollbar-width:none}
+    .mode-bar::-webkit-scrollbar{display:none}
+    .mode-pill{padding:10px 16px;font-size:13px;flex-shrink:0}
+    .mode-pill svg{width:15px;height:15px}
+  }
+
+  /* Larger touch targets for very small screens */
+  @media (max-width: 380px){
+    .container{padding:0 16px}
+    h1{font-size:30px}
+    .summary .big{font-size:26px}
+    .num-big{font-size:120px}
+  }
+
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important;transition-duration:0.01ms !important}
+  }
+</style>
+</head>
+<body data-mode="business">
+
+<div class="container">
+
+  <!-- NAV -->
+  <nav class="topnav">
+    <a href="#" class="logo">
+      <span class="logo-mark">ना</span>
+      <span class="logo-text">
+        <span class="name">Naam <em>Dekho</em></span>
+        <span class="deva">नाम देखो · नाम चेक करो</span>
+      </span>
+    </a>
+    <div class="nav-right">
+      <a href="how-it-works.html" class="nav-link">How it works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="pricing.html#agencies" class="nav-link">For agencies</a>
+      <a href="sign-in.html" class="nav-cta">Sign in</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/></svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MODE SWITCHER -->
+  <div class="mode-bar">
+    <div class="mode-switcher" role="tablist">
+      <button class="mode-pill active" data-mode-target="business" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21V11h6v10"/></svg>
+        Startup / Business
+      </button>
+      <button class="mode-pill" data-mode-target="baby" role="tab">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="4"/><path d="M5 21c0-4 3-7 7-7s7 3 7 7"/><circle cx="9" cy="8" r="0.6" fill="currentColor"/><circle cx="15" cy="8" r="0.6" fill="currentColor"/></svg>
+        Baby Name <span class="deva">शिशु</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <header class="hero">
+    <!-- BUSINESS MODE HERO TEXT -->
+    <div class="business-only">
+      <div class="eyebrow">One search · 62 platforms · <em>poora desh, ek check</em></div>
+      <h1>One name. Three taps. <em>Every check that matters.</em></h1>
+      <p class="sub">Domains, social handles, the MCA registry, IP India trademark across all 45 classes, copyright, GST conflicts, Play Store, brand collisions, linguistic landmines — and a Chaldean numerology read. All in one shot.</p>
+    </div>
+
+    <!-- BABY MODE HERO TEXT -->
+    <div class="baby-only">
+      <div class="eyebrow">Naam rakhne se pehle · 4 zaroori checks · <em>pyaar se</em></div>
+      <h1>Naming your little one? <em>Get every part right.</em></h1>
+      <p class="sub">Will the name be easy to pronounce? Does it mean something unfortunate in another Indian language? What does traditional Chaldean numerology say about the vibrations? And is the social handle still free for when they grow up? Four checks, one search — for the name they will carry for life.</p>
+    </div>
+
+    <form class="search" id="searchForm" autocomplete="off">
+      <input type="text" id="nameInput" value="Vyana" placeholder="Type your startup name…" aria-label="Name to check" />
+      <button type="submit" class="search-btn">
+        <span class="business-only" style="display:inline">Check everywhere</span>
+        <span class="baby-only" style="display:inline">Check the name</span>
+        <span class="kbd">↵</span>
+      </button>
+    </form>
+    <div class="hint business-only">
+      <span class="kbd-hint"><kbd>⌘K</kbd> open anywhere</span>
+      <span><span class="dot"></span> Free instant checks</span>
+      <span><span class="dot"></span> Deep legal scan ₹49</span>
+      <span><span class="dot"></span> Results stream live</span>
+    </div>
+    <div class="hint baby-only">
+      <span><span class="dot"></span> Free pronunciation + meaning check</span>
+      <span><span class="dot"></span> Keepsake PDF ₹29</span>
+      <span><span class="dot"></span> 7 Indian languages + Sanskrit root</span>
+    </div>
+  </header>
+
+  <!-- SUMMARY · BUSINESS MODE -->
+  <div class="summary business-only">
+    <div>
+      <div class="label">Verdict for "<span class="name-echo">Vyana</span>"</div>
+      <div class="big"><em>42</em> / 62 clear</div>
+      <div class="bar">
+        <span class="g" style="width:67%"></span>
+        <span class="p" style="width:21%"></span>
+        <span class="w" style="width:8%"></span>
+        <span class="x" style="width:4%"></span>
+      </div>
+      <div class="meta">Strong overall. 2 critical conflicts to resolve before incorporation.</div>
+    </div>
+    <div>
+      <div class="label">Legal risk</div>
+      <div class="big bad"><em>Moderate</em></div>
+      <div class="meta">TM filed in Class 35 by other party · MCA clear</div>
+    </div>
+    <div>
+      <div class="label">Brand surface</div>
+      <div class="big">Clean</div>
+      <div class="meta">No major Google collision · .com taken, .in free</div>
+    </div>
+    <div>
+      <div class="label">Chaldean number</div>
+      <div class="big">5 <span style="font-size:14px;color:var(--ok-ink);font-style:italic;font-family:'Inter';font-weight:500;">favourable</span></div>
+      <div class="meta">Strong fit for media, tech, communication</div>
+    </div>
+  </div>
+
+  <!-- SUMMARY · BABY MODE -->
+  <div class="summary baby-only">
+    <div>
+      <div class="label">Pronunciation of "<span class="name-echo">Vyana</span>"</div>
+      <div class="big"><em>Easy</em></div>
+      <div class="meta">vyaa-naa · 2 syllables · soft on Indian tongues, medium on Western</div>
+    </div>
+    <div>
+      <div class="label">Linguistic safety</div>
+      <div class="big"><em>6</em> / 7 clear</div>
+      <div class="bar">
+        <span class="g" style="width:85%"></span>
+        <span class="w" style="width:15%"></span>
+      </div>
+      <div class="meta">Neutral or positive in 6 Indian languages · 1 warning in Bengali</div>
+    </div>
+    <div>
+      <div class="label">Chaldean number</div>
+      <div class="big">5 <span style="font-size:14px;color:var(--ok-ink);font-style:italic;font-family:'Inter';font-weight:500;">favourable</span></div>
+      <div class="meta">Mercury-ruled · communication, intelligence, magnetism</div>
+    </div>
+    <div>
+      <div class="label">Social handles</div>
+      <div class="big"><em>5</em> / 9 free</div>
+      <div class="meta">Reserve before they grow up · X, YT, Threads, LinkedIn, Telegram free</div>
+    </div>
+  </div>
+
+  <!-- FILTER TABS · BUSINESS MODE -->
+  <div class="tabs-wrap business-only">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-filter="all">All <span class="count">62</span></button>
+      <button class="tab" data-filter="legal">Legal & Regulatory <span class="count">11</span></button>
+      <button class="tab" data-filter="domains">Domains <span class="count">10</span></button>
+      <button class="tab" data-filter="social">Social <span class="count">9</span></button>
+      <button class="tab" data-filter="market">Marketplaces <span class="count">7</span></button>
+      <button class="tab" data-filter="brand">Brand collision <span class="count">8</span></button>
+      <button class="tab" data-filter="ling">Linguistic <span class="count">6</span></button>
+      <button class="tab" data-filter="num">Numerology <span class="count">1</span></button>
+      <button class="tab" data-filter="pending">⋯ Pending <span class="count">10</span></button>
+    </div>
+  </div>
+
+  <!-- FILTER TABS · BABY MODE -->
+  <div class="tabs-wrap baby-only">
+    <div class="tabs" role="tablist">
+      <button class="tab active" data-filter="all">All checks <span class="count">4</span></button>
+      <button class="tab" data-filter="pron">Pronunciation <span class="count">1</span></button>
+      <button class="tab" data-filter="ling">Linguistic & meaning <span class="count">7</span></button>
+      <button class="tab" data-filter="num">Numerology <span class="count">1</span></button>
+      <button class="tab" data-filter="social">Social handles <span class="count">9</span></button>
+    </div>
+  </div>
+
+  <!-- ──────────────────── LEGAL & REGULATORY ──────────────────── -->
+  <section class="module business-only" data-cat="legal">
+    <div class="section-head">
+      <h2 class="section-title"><span class="num">01</span>Legal & Regulatory</h2>
+      <p class="section-desc">Government sources. This is where you find blockers that cost you ₹2L in rebrand later. Deep check runs via warmed proxy sessions + CAPTCHA solvers.</p>
+    </div>
+
+    <div class="grid cols-3">
+      <div class="tile ok">
+        <div class="tile-head">
+          <div class="tile-platform"><div class="tile-icon">M</div><span class="pname">MCA company name</span></div>
+          <span class="pill ok">Available</span>
+        </div>
+        <div class="tile-detail">No matches in MCA21 registry for <b class="name-echo">Vyana</b> across Pvt Ltd, LLP, OPC. Phonetic variants: 1 weak hit (Vyaana Services LLP, struck off 2019).</div>
+        <div class="tile-foot"><span>mca.gov.in</span><a href="#">Reserve via RUN →</a></div>
+      </div>
+
+      <div class="tile no">
+        <div class="tile-head">
+          <div class="tile-platform"><div class="tile-icon">₹</div><span class="pname">IP India trademark</span></div>
+          <span class="pill no">2 conflicts</span>
+        </div>
+        <div class="tile-detail">Class <b>35</b> (advertising/business): filed 2023, status "Objected". Class <b>42</b> (tech services): registered 2021.</div>
+        <div class="tile-foot"><span>ipindia.gov.in</span><a href="#">View class-wise →</a></div>
+      </div>
+
+      <div class="tile ok">
+        <div class="tile-head">
+          <div class="tile-platform"><div class="tile-icon">©</div><span class="pname">Copyright registry</span></div>
+          <span class="pill ok">Clear</span>
+        </div>
+        <div class="tile-detail">No registered copyright on the wordmark "<span class="name-echo">Vyana</span>". Logo/artistic work clear.</div>
+        <div class="tile-foot"><span>copyright.gov.in</span><a href="#">Details →</a></div>
+      </div>
+
+      <div class="tile ok">
+        <div class="tile-head">
+          <div class="tile-platform"><div class="tile-icon">G</div><span class="pname">GST trade name</span></div>
+          <span class="pill ok">Clear</span>
+        </div>
+        <div class="tile-detail">No active GSTIN registered under trade name "<span class="name-echo">Vyana</span>" across all states.</div>
+        <div class="tile-foot"><span>gst.gov.in</span><a href="#">State filter →</a></div>
+      </div>
+
+      <div class="tile warn">
+        <div class="tile-head">
+          <div class="tile-platform"><div class="tile-icon">D</div><span class="pname">DPIIT Startup India</span></div>
+          <span class="pill warn">Similar</span>
+        </div>
+        <div class="tile-detail">1 recognised startup with name <b>Vyaana</b> (different spelling). Reviewer may flag.</div>
+        <div class="tile-foot"><span>startupindia.gov.in</span><a href="#">Compare →</a></div>
+      </div>
+
+      <div class="tile pending">
+        <div class="tile-head">
+          <div class="tile-platform"><div class="tile-icon">F</div><span class="pname">FSSAI brand name</span></div>
+          <span class="pill pending">Checking…</span>
+        </div>
+        <div class="tile-detail">Relevant only if food/beverage. Scan running across central + state FSSAI databases.</div>
+        <div class="tile-foot"><span>fssai.gov.in</span><a href="#">—</a></div>
+      </div>
+    </div>
+
+    <!-- Trademark class table -->
+    <div class="tm-wrap">
+      <div class="tm-label">Trademark — class-wise breakdown (top relevant classes shown)</div>
+      <div class="tm-table">
+        <div class="tm-row head">
+          <div>Class</div><div>Description</div><div>Status</div><div>Action</div>
+        </div>
+        <div class="tm-row">
+          <div class="tm-class">09</div>
+          <div class="tm-name">Software, electronics, mobile apps</div>
+          <div class="tm-status"><span class="pill ok">Clear</span></div>
+          <a class="tm-action" href="#">File →</a>
+        </div>
+        <div class="tm-row">
+          <div class="tm-class">35</div>
+          <div class="tm-name">Advertising, business management <b>· high overlap with most startups</b></div>
+          <div class="tm-status"><span class="pill no">Objected</span></div>
+          <a class="tm-action" href="#">View filing →</a>
+        </div>
+        <div class="tm-row">
+          <div class="tm-class">36</div>
+          <div class="tm-name">Financial services, insurance, fintech</div>
+          <div class="tm-status"><span class="pill ok">Clear</span></div>
+          <a class="tm-action" href="#">File →</a>
+        </div>
+        <div class="tm-row">
+          <div class="tm-class">38</div>
+          <div class="tm-name">Telecom, broadcasting, messaging</div>
+          <div class="tm-status"><span class="pill ok">Clear</span></div>
+          <a class="tm-action" href="#">File →</a>
+        </div>
+        <div class="tm-row">
+          <div class="tm-class">41</div>
+          <div class="tm-name">Education, entertainment, training</div>
+          <div class="tm-status"><span class="pill warn">Pending opp.</span></div>
+          <a class="tm-action" href="#">Watch →</a>
+        </div>
+        <div class="tm-row">
+          <div class="tm-class">42</div>
+          <div class="tm-name">SaaS, cloud, scientific & tech services</div>
+          <div class="tm-status"><span class="pill no">Registered</span></div>
+          <a class="tm-action" href="#">View filing →</a>
+        </div>
+        <div class="tm-row">
+          <div class="tm-class">44</div>
+          <div class="tm-name">Medical, health, hygiene services</div>
+          <div class="tm-status"><span class="pill ok">Clear</span></div>
+          <a class="tm-action" href="#">File →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── DOMAINS ──────────────────── -->
+  <section class="module business-only" data-cat="domains">
+    <div class="section-head">
+      <h2 class="section-title"><span class="num">02</span>Domains</h2>
+      <p class="section-desc">Live availability + first-year price. Bookmark a TLD or jump straight to registration.</p>
+    </div>
+    <div class="grid">
+      <div class="tile no">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">.com</div><span class="pname domain-echo">vyana.com</span></div><span class="pill no">Taken</span></div>
+        <div class="tile-detail">Parked, owned since 2014. Listed for sale at <b>$8,200</b> via Sedo.</div>
+        <div class="tile-foot"><span>godaddy</span><a href="#">View WHOIS →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">.in</div><span class="pname domain-echo">vyana.in</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">Register from <b>₹699</b>/yr. INRegistry verified.</div>
+        <div class="tile-foot"><span>godaddy</span><a href="#">Register →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">.co</div><span class="pname domain-echo">vyana.co.in</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">From <b>₹599</b>/yr. Good for India-first plays.</div>
+        <div class="tile-foot"><span>godaddy</span><a href="#">Register →</a></div>
+      </div>
+      <div class="tile no">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">.io</div><span class="pname domain-echo">vyana.io</span></div><span class="pill no">Taken</span></div>
+        <div class="tile-detail">Active dev blog, low traffic. Not for sale.</div>
+        <div class="tile-foot"><span>whois</span><a href="#">View site →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">.ai</div><span class="pname domain-echo">vyana.ai</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">From <b>₹15,400</b>/yr. Premium TLD.</div>
+        <div class="tile-foot"><span>godaddy</span><a href="#">Register →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">.app</div><span class="pname domain-echo">vyana.app</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">From <b>₹1,499</b>/yr. HTTPS-only TLD.</div>
+        <div class="tile-foot"><span>godaddy</span><a href="#">Register →</a></div>
+      </div>
+      <div class="tile no">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">.net</div><span class="pname domain-echo">vyana.net</span></div><span class="pill no">Taken</span></div>
+        <div class="tile-detail">Holder since 2018. No active site.</div>
+        <div class="tile-foot"><span>whois</span><a href="#">Backorder →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">.org</div><span class="pname domain-echo">vyana.org</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">From <b>₹999</b>/yr.</div>
+        <div class="tile-foot"><span>godaddy</span><a href="#">Register →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── SOCIAL HANDLES ──────────────────── -->
+  <section class="module" data-cat="social">
+    <div class="section-head">
+      <h2 class="section-title"><span class="num">03</span>Social handles</h2>
+      <p class="section-desc">Exact handle availability — what your brand will look like on every platform that matters in India.</p>
+    </div>
+    <div class="grid">
+      <div class="tile no">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">IG</div><span class="pname handle-echo">@vyana</span></div><span class="pill no">Taken</span></div>
+        <div class="tile-detail">Personal account, 412 followers, last post 2022. <b class="handle-alt">@vyana.in</b> available.</div>
+        <div class="tile-foot"><span>instagram.com</span><a href="#">Try variants →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">X</div><span class="pname handle-echo">@vyana</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">Handle free on X.</div>
+        <div class="tile-foot"><span>x.com</span><a href="#">Reserve →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">YT</div><span class="pname handle-echo">@vyana</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">YouTube channel handle free.</div>
+        <div class="tile-foot"><span>youtube.com</span><a href="#">Reserve →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">in</div><span class="pname company-echo">/company/vyana</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">LinkedIn company page URL free.</div>
+        <div class="tile-foot"><span>linkedin.com</span><a href="#">Create →</a></div>
+      </div>
+      <div class="tile no">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">FB</div><span class="pname fb-echo">/vyana</span></div><span class="pill no">Taken</span></div>
+        <div class="tile-detail">Inactive page (2 followers).</div>
+        <div class="tile-foot"><span>facebook.com</span><a href="#">Try variants →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">Th</div><span class="pname handle-echo">@vyana</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">Threads handle free.</div>
+        <div class="tile-foot"><span>threads.net</span><a href="#">Reserve →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">Tg</div><span class="pname tg-echo">t.me/vyana</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">Telegram channel free.</div>
+        <div class="tile-foot"><span>telegram.org</span><a href="#">Create →</a></div>
+      </div>
+      <div class="tile pending">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">Wa</div><span class="pname">WhatsApp Business</span></div><span class="pill pending">Checking…</span></div>
+        <div class="tile-detail">Verifying display-name conflicts in Meta Business directory.</div>
+        <div class="tile-foot"><span>business.facebook.com</span><a href="#">—</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── MARKETPLACES ──────────────────── -->
+  <section class="module business-only" data-cat="market">
+    <div class="section-head">
+      <h2 class="section-title"><span class="num">04</span>Marketplaces & stores</h2>
+      <p class="section-desc">App stores, e-commerce, and developer surfaces where your name might already exist as a published product.</p>
+    </div>
+    <div class="grid">
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">PS</div><span class="pname">Play Store</span></div><span class="pill ok">No app</span></div>
+        <div class="tile-detail">No published Android app titled "<span class="name-echo">Vyana</span>".</div>
+        <div class="tile-foot"><span>play.google.com</span><a href="#">Search →</a></div>
+      </div>
+      <div class="tile no">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">AS</div><span class="pname">App Store</span></div><span class="pill no">App exists</span></div>
+        <div class="tile-detail">"<span class="name-echo">Vyana</span> — meditation timer" published 2021, 12 ratings.</div>
+        <div class="tile-foot"><span>apps.apple.com</span><a href="#">View →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">PH</div><span class="pname">Product Hunt</span></div><span class="pill ok">No product</span></div>
+        <div class="tile-detail">Name free on Product Hunt.</div>
+        <div class="tile-foot"><span>producthunt.com</span><a href="#">Reserve →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">GH</div><span class="pname gh-echo">github.com/vyana</span></div><span class="pill ok">Available</span></div>
+        <div class="tile-detail">Org handle free.</div>
+        <div class="tile-foot"><span>github.com</span><a href="#">Create org →</a></div>
+      </div>
+      <div class="tile no">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">Sh</div><span class="pname shop-echo">vyana.myshopify</span></div><span class="pill no">Taken</span></div>
+        <div class="tile-detail">Subdomain in use, store inactive.</div>
+        <div class="tile-foot"><span>shopify.com</span><a href="#">Variants →</a></div>
+      </div>
+      <div class="tile warn">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">Az</div><span class="pname">Amazon.in seller</span></div><span class="pill warn">Similar</span></div>
+        <div class="tile-detail">1 seller "<span class="name-echo">Vyana</span> Crafts" active in handicrafts. Low overlap if your category differs.</div>
+        <div class="tile-foot"><span>amazon.in</span><a href="#">View →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── BRAND COLLISION ──────────────────── -->
+  <section class="module business-only" data-cat="brand">
+    <div class="section-head">
+      <h2 class="section-title"><span class="num">05</span>Brand collision & SEO</h2>
+      <p class="section-desc">What people will find when they Google your name on day one. Existing brands ranking on page 1 are the silent killer for organic discovery.</p>
+    </div>
+    <div class="grid cols-2">
+      <div class="tile warn">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">G</div><span class="pname">Google page 1 — exact match</span></div><span class="pill warn">3 entities</span></div>
+        <div class="tile-detail">Existing presences ranking for "<span class="name-echo-lower">vyana</span>":<br>· <span class="name-echo">Vyana</span> Meditation (yoga studio, Pune)<br>· <span class="name-echo">Vyana</span> — Ayurvedic concept (Wikipedia)<br>· <span class="domain-echo">vyana.com</span> domain parking page</div>
+        <div class="tile-foot"><span>google.com</span><a href="#">View SERP →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">Tr</div><span class="pname">Google Trends</span></div><span class="pill ok">Low noise</span></div>
+        <div class="tile-detail">Search volume in India is low and stable — you can own the SERP within 6–9 months of SEO work.</div>
+        <div class="tile-foot"><span>trends.google.com</span><a href="#">View graph →</a></div>
+      </div>
+      <div class="tile warn">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">W</div><span class="pname">Wikipedia</span></div><span class="pill warn">Concept page</span></div>
+        <div class="tile-detail">"<span class="name-echo">Vyana</span>" is one of the five pranas in Ayurveda — page exists. Not a competing brand, but means SERP includes definitional results.</div>
+        <div class="tile-foot"><span>wikipedia.org</span><a href="#">View →</a></div>
+      </div>
+      <div class="tile ok">
+        <div class="tile-head"><div class="tile-platform"><div class="tile-icon">FK</div><span class="pname">Flipkart</span></div><span class="pill ok">No seller</span></div>
+        <div class="tile-detail">No brand registered as "<span class="name-echo">Vyana</span>" in Flipkart Brand Registry.</div>
+        <div class="tile-foot"><span>flipkart.com</span><a href="#">View →</a></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── PRONUNCIATION (BABY MODE) ──────────────────── -->
+  <section class="module baby-only" data-cat="pron">
+    <div class="section-head">
+      <h2 class="section-title"><span class="num">01</span>Pronunciation</h2>
+      <p class="section-desc">Will the family say it the same way? Will their school friends? Will their first manager forty years from now? A name is the sound of itself, repeated tens of thousands of times.</p>
+    </div>
+
+    <div class="pron-card">
+      <div>
+        <div class="deva-meta" style="margin-bottom:10px">Syllable break · stress on highlighted</div>
+        <div class="pron-syllables">
+          <span class="pron-syl stress name-pron-1">vyaa</span>
+          <span class="pron-syl name-pron-2">naa</span>
+        </div>
+        <div class="pron-ipa">IPA  /ˈvjɑː.nɑː/  ·  2 syllables  ·  open ending</div>
+      </div>
+      <div class="pron-rules">
+        <div class="pron-rule good">
+          <div class="pron-rule-icon">✓</div>
+          <div class="pron-rule-text"><b>Easy on Indian tongues.</b> The "vyaa-" cluster is natural in Sanskrit-rooted names. Hindi, Marathi, Gujarati and Telugu speakers will produce it correctly on first hearing.</div>
+        </div>
+        <div class="pron-rule tricky">
+          <div class="pron-rule-icon">!</div>
+          <div class="pron-rule-text"><b>Medium for Western tongues.</b> English speakers may simplify the "vy-" cluster to "vee-". Acceptable, but be ready to gently correct.</div>
+        </div>
+        <div class="pron-rule good">
+          <div class="pron-rule-icon">♪</div>
+          <div class="pron-rule-text"><b>Open ending (-aa).</b> Names ending in a long "aa" sound carry warmth and travel well across South Asian languages.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── LINGUISTIC & CULTURAL ──────────────────── -->
+  <section class="module" data-cat="ling">
+    <div class="section-head">
+      <h2 class="section-title"><span class="num">06</span>Linguistic & cultural</h2>
+      <p class="section-desc">India is multilingual. A name that's neutral in English can be unfortunate in Tamil or Bengali. This is the layer every Western naming tool skips.</p>
+    </div>
+
+    <div class="lang-grid">
+      <div class="lang-card">
+        <div class="deva-meta">Devanagari transliteration</div>
+        <div class="deva">व्याना</div>
+        <div style="font-size:14px;color:var(--ink-2);line-height:1.65">
+          <b style="color:var(--ink)">Sanskrit root:</b> <i>व्यान</i> (vyāna) — one of the five vital airs (prāṇas) in Ayurveda governing circulation and full-body movement. Connotes <b style="color:var(--ink)">flow, distribution, pervasion.</b>
+          <br><br>
+          <b style="color:var(--ink)">Pronunciation:</b> vyaa-naa · 2 syllables · easy on Indian tongues, medium on Western (the "vy-" cluster trips some speakers).
+        </div>
+      </div>
+
+      <div class="lang-card">
+        <div class="deva-meta">Meaning & negative-connotation check</div>
+        <div class="lang-list">
+          <div class="lang-row"><span class="lname">Hindi</span><span class="lscript">व्याना</span><span class="pill ok">Neutral</span></div>
+          <div class="lang-row"><span class="lname">Tamil</span><span class="lscript">வியானா</span><span class="pill ok">Neutral</span></div>
+          <div class="lang-row"><span class="lname">Bengali</span><span class="lscript">ভ্যানা</span><span class="pill warn">Sounds like "stupid"</span></div>
+          <div class="lang-row"><span class="lname">Marathi</span><span class="lscript">व्याना</span><span class="pill ok">Positive</span></div>
+          <div class="lang-row"><span class="lname">Telugu</span><span class="lscript">వ్యానా</span><span class="pill ok">Neutral</span></div>
+          <div class="lang-row"><span class="lname">Gujarati</span><span class="lscript">વ્યાના</span><span class="pill ok">Neutral</span></div>
+          <div class="lang-row"><span class="lname">Punjabi</span><span class="lscript">ਵਿਆਨਾ</span><span class="pill ok">Means "Vienna"</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── NUMEROLOGY ──────────────────── -->
+  <section class="module" data-cat="num">
+    <div class="section-head">
+      <h2 class="section-title"><span class="num">07</span>Numerology <span class="tag">Chaldean system</span></h2>
+      <p class="section-desc">Used by traditional Indian business naming consultants (Tata-era, Bollywood astrologers). Reduces letters to a single root number with industry-fit interpretation.</p>
+    </div>
+
+    <div class="numerology">
+      <div class="num-grid">
+        <div class="num-big-wrap">
+          <div class="num-label center">Root number</div>
+          <div class="num-big">5</div>
+        </div>
+        <div>
+          <div class="num-label">Chaldean reading for "<span class="name-echo">Vyana</span>"</div>
+          <h3 class="num-title">The number of <em>movement, communication, & change.</em></h3>
+          <p class="num-desc">V(6) + Y(1) + A(1) + N(5) + A(1) = 14 → 1+4 = <b>5</b>. Mercury-ruled. Quick, magnetic, persuasive — favoured for tech, media, transport, education. Avoid for businesses requiring slow trust-building like banking or insurance.</p>
+          <div class="num-fit">
+            <span class="match">Media</span>
+            <span class="match">SaaS / Tech</span>
+            <span class="match">Communication</span>
+            <span class="match">Mobility</span>
+            <span class="match">Education</span>
+            <span>Banking</span>
+            <span>Insurance</span>
+            <span>Real estate</span>
+          </div>
+        </div>
+        <div class="num-verdict">
+          <div class="num-stat">
+            <div class="k">Compound number</div>
+            <div class="v">14 — "Movement & combinations of people"</div>
+          </div>
+          <div class="num-stat">
+            <div class="k">Ruling planet</div>
+            <div class="v">Mercury · ☿</div>
+          </div>
+          <div class="num-stat">
+            <div class="k">Verdict</div>
+            <div class="v" style="color:#E8C76A">Favourable for your category</div>
+          </div>
+          <div class="num-stat">
+            <div class="k">Lucky pairing</div>
+            <div class="v">Founder DOB sum 1, 3, or 5 strengthens this name</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="num-foot">
+        <span>Chaldean system · not Pythagorean</span>
+        <span>Interpretive, not deterministic — one signal among many.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ──────────────────── CTA · BUSINESS ──────────────────── -->
+  <div class="cta-strip business-only">
+    <div>
+      <h3>Instant tier is free. <em>Run the deep legal scan to be sure.</em></h3>
+      <p>The deep scan opens warmed sessions on MCA, IP India and copyright.gov.in with proxy rotation + CAPTCHA solving. Takes ~40 seconds. Returns a downloadable PDF you can hand to your CA or lawyer.</p>
+    </div>
+    <div class="cta-buttons">
+      <a href="pricing.html" class="cta-btn">Run deep legal scan <small>₹49</small></a>
+      <a href="pricing.html#agencies" class="cta-btn outline">Unlimited for agencies <small>₹999 / month</small></a>
+    </div>
+  </div>
+
+  <!-- ──────────────────── CTA · BABY ──────────────────── -->
+  <div class="cta-strip baby-only">
+    <div>
+      <h3>The naming-day keepsake. <em>A beautiful PDF for the family.</em></h3>
+      <p>Pronunciation guide, language-by-language meaning, Sanskrit root, traditional Chaldean numerology reading, and reserved social handles — formatted as a gentle keepsake to share with grandparents, godparents, and the child themselves one day.</p>
+    </div>
+    <div class="cta-buttons">
+      <a href="pricing.html" class="cta-btn">Generate keepsake PDF <small>₹29</small></a>
+      <a href="#" class="cta-btn outline" id="tryAltBtn">Try alternative spellings <small>Free</small></a>
+    </div>
+  </div>
+
+</div>
+
+<!-- ═════════════════════════════ PROFESSIONAL FOOTER ═════════════════════════════ -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">ना</span>
+        <span class="logo-text">
+          <span class="name">Naam <em>Dekho</em></span>
+          <span class="deva">नाम देखो · नाम चेक करो</span>
+        </span>
+      </a>
+      <p class="footer-tagline">India's first all-in-one name verification platform. From boardroom to baby cot — one search, every check that matters.</p>
+      <div class="footer-social" aria-label="Social media">
+        <a href="https://instagram.com/naamdekho" aria-label="Instagram" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="https://x.com/naamdekho" aria-label="X (Twitter)" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2H21l-6.52 7.45L22 22h-6.812l-4.79-6.27L4.8 22H2l7-8.012L1.8 2h6.96l4.36 5.78L18.244 2zM17.084 20h1.88L7.04 4H5.05l12.034 16z"/></svg>
+        </a>
+        <a href="https://linkedin.com/company/naamdekho" aria-label="LinkedIn" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        </a>
+        <a href="https://youtube.com/@naamdekho" aria-label="YouTube" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"/><polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"/></svg>
+        </a>
+        <a href="https://wa.me/919000000000" aria-label="WhatsApp" class="social-btn">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="pricing.html#agencies">For agencies</a>
+      <a href="sign-in.html">Sign in</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Use cases</h4>
+      <a href="index.html">Startup naming</a>
+      <a href="index.html?mode=baby">Baby naming</a>
+      <a href="pricing.html#agencies">Naming agencies</a>
+      <a href="pricing.html#agencies">CA & legal firms</a>
+      <a href="how-it-works.html#api">API access</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#about">About us</a>
+      <a href="#blog">Blog</a>
+      <a href="#press">Press</a>
+      <a href="#contact">Contact</a>
+      <a href="#careers">Careers</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="terms.html">Terms of use</a>
+      <a href="cookies.html">Cookies policy</a>
+      <a href="cancellation-refund.html">Cancellation & refund</a>
+      <a href="payment-terms.html">Payment terms</a>
+    </div>
+
+    <div class="footer-col footer-contact">
+      <h4>Talk to us</h4>
+      <p><b>Email</b><br><a href="mailto:hello@naamdekho.in">hello@naamdekho.in</a></p>
+      <p><b>Support</b><br><a href="mailto:support@naamdekho.in">support@naamdekho.in</a></p>
+      <p><b>Agencies</b><br><a href="mailto:partners@naamdekho.in">partners@naamdekho.in</a></p>
+      <p><b>Phone</b><br><a href="tel:+919000000000">+91 90000 00000</a></p>
+      <p class="footer-addr">Naam Dekho Technologies Pvt Ltd<br>Bangalore · Mumbai · Delhi</p>
+    </div>
+  </div>
+
+  <div class="container footer-bottom">
+    <span>© 2026 Naam Dekho Technologies Pvt Ltd · नाम देखो</span>
+    <span class="footer-meta">Made with care for Indian founders & families · v1.0</span>
+  </div>
+</footer>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-head">
+      <a href="#" class="logo">
+        <span class="logo-mark">ना</span>
+        <span class="logo-text">
+          <span class="name">Naam <em>Dekho</em></span>
+        </span>
+      </a>
+      <button class="menu-close" id="menuClose" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="6" y1="6" x2="18" y2="18"/><line x1="6" y1="18" x2="18" y2="6"/></svg>
+      </button>
+    </div>
+    <a href="#how">How it works</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#agencies">For agencies</a>
+    <a href="#" class="nav-cta">Sign in</a>
+  </div>
+</div>
+
+<script>
+  // ── Mode switcher (Business ⇄ Baby) ──────────────────────────
+  const modePills = document.querySelectorAll('.mode-pill');
+  function setMode(mode) {
+    document.body.dataset.mode = mode;
+    modePills.forEach(p => p.classList.toggle('active', p.dataset.modeTarget === mode));
+    // Reset the active tab to "All" so we don't end up showing nothing
+    document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+    const allTab = document.querySelector(`body[data-mode="${mode}"] .tab[data-filter="all"]`);
+    document.querySelectorAll(`.${mode}-only .tab[data-filter="all"]`).forEach(t => t.classList.add('active'));
+    // Show all sections relevant to the current mode
+    document.querySelectorAll('section.module').forEach(s => s.style.display = '');
+    // Update search placeholder
+    if (mode === 'baby') {
+      input.placeholder = "Type your baby's name…";
+    } else {
+      input.placeholder = "Type your startup name…";
+    }
+    // Persist
+    try { localStorage.setItem('naamdekho-mode', mode); } catch (e) {}
+  }
+  modePills.forEach(p => p.addEventListener('click', () => setMode(p.dataset.modeTarget)));
+
+  // ── Tab filter ────────────────────────────────────────────────
+  const sections = document.querySelectorAll('section.module');
+  function bindTabs() {
+    document.querySelectorAll('.tab').forEach(t => {
+      t.addEventListener('click', () => {
+        // Only toggle siblings in the same tabs container
+        const container = t.closest('.tabs');
+        container.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+        t.classList.add('active');
+        const filter = t.dataset.filter;
+        const currentMode = document.body.dataset.mode;
+        sections.forEach(s => {
+          // Don't override mode visibility rules; only filter within the visible mode
+          const inMode = (currentMode === 'business' ? !s.classList.contains('baby-only') : !s.classList.contains('business-only'));
+          if (!inMode) { s.style.display = ''; return; }
+          const cat = s.dataset.cat;
+          if (filter === 'all' || filter === 'pending') {
+            s.style.display = '';
+          } else {
+            s.style.display = (cat === filter) ? '' : 'none';
+          }
+        });
+        // Scroll-into-view on mobile
+        if (filter !== 'all' && window.innerWidth < 760) {
+          const visible = [...sections].find(s => getComputedStyle(s).display !== 'none');
+          if (visible) visible.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  }
+  bindTabs();
+
+  // ── Live name update across the page ──────────────────────────
+  const input = document.getElementById('nameInput');
+  const form = document.getElementById('searchForm');
+
+  function updateName(raw) {
+    const name = (raw || '').trim() || 'Vyana';
+    const lower = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const cap = name.charAt(0).toUpperCase() + name.slice(1);
+
+    document.querySelectorAll('.name-echo').forEach(el => el.textContent = cap);
+    document.querySelectorAll('.name-echo-lower').forEach(el => el.textContent = lower);
+    document.querySelectorAll('.domain-echo').forEach(el => {
+      // preserve the TLD after the dot
+      const tld = el.textContent.includes('.') ? el.textContent.substring(el.textContent.indexOf('.')) : '.com';
+      el.textContent = lower + tld;
+    });
+    document.querySelectorAll('.handle-echo').forEach(el => el.textContent = '@' + lower);
+    document.querySelectorAll('.handle-alt').forEach(el => el.textContent = '@' + lower + '.in');
+    document.querySelectorAll('.company-echo').forEach(el => el.textContent = '/company/' + lower);
+    document.querySelectorAll('.fb-echo').forEach(el => el.textContent = '/' + lower);
+    document.querySelectorAll('.tg-echo').forEach(el => el.textContent = 't.me/' + lower);
+    document.querySelectorAll('.gh-echo').forEach(el => el.textContent = 'github.com/' + lower);
+    document.querySelectorAll('.shop-echo').forEach(el => el.textContent = lower + '.myshopify');
+  }
+
+  input.addEventListener('input', e => updateName(e.target.value));
+  form.addEventListener('submit', e => {
+    e.preventDefault();
+    updateName(input.value);
+    // Subtle "scanning" feedback
+    const btn = form.querySelector('.search-btn');
+    const original = btn.innerHTML;
+    btn.innerHTML = 'Scanning… <span class="kbd">··</span>';
+    btn.disabled = true;
+    setTimeout(() => {
+      btn.innerHTML = original;
+      btn.disabled = false;
+    }, 900);
+  });
+
+  // ── Mobile menu ────────────────────────────────────────────────
+  const navToggle = document.getElementById('navToggle');
+  const mobileMenu = document.getElementById('mobileMenu');
+  const menuClose = document.getElementById('menuClose');
+  navToggle?.addEventListener('click', () => mobileMenu.classList.add('open'));
+  menuClose?.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  mobileMenu?.addEventListener('click', e => {
+    if (e.target === mobileMenu) mobileMenu.classList.remove('open');
+  });
+  mobileMenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileMenu.classList.remove('open')));
+
+  // ── ⌘K / Ctrl+K to focus search ────────────────────────────────
+  document.addEventListener('keydown', e => {
+    if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+      e.preventDefault();
+      input.focus();
+      input.select();
+    }
+  });
+
+  // ── Boot: restore mode from URL ?mode=baby or localStorage ─────
+  (function boot() {
+    const urlMode = new URLSearchParams(location.search).get('mode');
+    let saved = null;
+    try { saved = localStorage.getItem('naamdekho-mode'); } catch (e) {}
+    const initial = (urlMode === 'baby' || urlMode === 'business') ? urlMode : (saved || 'business');
+    if (initial !== 'business') setMode(initial);
+  })();
+</script>
+
+</body>
+</html>

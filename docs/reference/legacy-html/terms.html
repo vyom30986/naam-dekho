@@ -1,0 +1,378 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAF8F3" />
+<title>Terms of Use — Naam Dekho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FAF8F3; --bg-2:#F3EFE5; --ink:#0F1419; --ink-2:#3D4751; --ink-3:#6B7480;
+    --line:#E5DFD0; --line-2:#D8D0BC; --accent:#B8501C; --accent-2:#7A2E0E;
+    --ok-bg:#E7F2E9; --ok-ink:#1B5E20; --warn-bg:#FFF4D9; --warn-ink:#8A5A00;
+    --gold:#E8C76A;
+    --radius:14px; --radius-lg:18px;
+    --shadow-sm:0 1px 2px rgba(15,20,25,0.04), 0 4px 12px -4px rgba(15,20,25,0.06);
+    --shadow-md:0 1px 0 rgba(15,20,25,0.04), 0 12px 32px -16px rgba(15,20,25,0.12);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  body{background:radial-gradient(900px 500px at 80% -200px, rgba(184,80,28,0.05), transparent 60%), var(--bg);min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav.topnav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(250,248,243,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:50}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);display:grid;place-items:center;color:#fff;font-family:'Noto Sans Devanagari',serif;font-weight:600;font-size:17px}
+  .logo-text{display:flex;flex-direction:column;line-height:1}
+  .logo-text .name{font-family:'Fraunces',serif;font-weight:500;font-size:20px;letter-spacing:-0.02em}
+  .logo-text .name em{font-style:italic;color:var(--accent);font-weight:500}
+  .logo-text .deva{font-family:'Noto Sans Devanagari',serif;font-size:11px;color:var(--ink-3);margin-top:2px}
+  .nav-right{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2)}
+  .nav-right a.nav-link{padding:8px 14px;border-radius:8px;font-weight:500;transition:background .15s}
+  .nav-right a.nav-link:hover{background:var(--bg-2)}
+  .nav-cta{padding:10px 18px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--bg);font-weight:500;font-size:13px}
+
+  /* Hero */
+  .page-hero{padding:56px 0 28px;text-align:center;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:14px}
+  h1.page-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(32px,4.5vw,52px);line-height:1.05;letter-spacing:-0.025em;margin:0 0 14px;max-width:880px;margin-left:auto;margin-right:auto}
+  h1.page-title em{font-style:italic;color:var(--accent)}
+  .page-sub{font-size:15px;color:var(--ink-2);max-width:640px;margin:0 auto;line-height:1.65}
+  .effective-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.1em;margin-top:14px}
+
+  /* Policy tab strip — links to other pages */
+  .policy-tabs-wrap{position:sticky;top:75px;background:rgba(250,248,243,0.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:30;padding:18px 0;border-bottom:1px solid var(--line)}
+  .policy-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+  .policy-tabs::-webkit-scrollbar{display:none}
+  .policy-tab{
+    padding:11px 18px;border-radius:12px;background:#fff;border:1px solid var(--line);
+    font-weight:500;font-size:13.5px;color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+    box-shadow:var(--shadow-sm);transition:all .2s;white-space:nowrap;flex-shrink:0;font-family:inherit;text-decoration:none;
+  }
+  .policy-tab:hover{border-color:var(--ink-3);transform:translateY(-1px);color:var(--ink)}
+  .policy-tab.active{background:var(--ink);color:#FAF8F3;border-color:var(--ink);box-shadow:0 4px 14px -4px rgba(15,20,25,0.3)}
+  .policy-tab .num{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg-2);padding:3px 7px;border-radius:5px;color:var(--ink-3)}
+  .policy-tab.active .num{background:rgba(255,255,255,0.15);color:#FAF8F3}
+
+  /* Content */
+  .policy-section{padding:48px 0 64px}
+  .policy-layout{display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:flex-start}
+
+  /* Sidebar */
+  .policy-toc{position:sticky;top:160px;font-size:13px;line-height:1.7}
+  .policy-toc h4{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);margin:0 0 10px}
+  .policy-toc a{display:block;color:var(--ink-3);padding:5px 10px;border-radius:6px;margin-bottom:2px;transition:all .15s;border-left:2px solid transparent}
+  .policy-toc a:hover{color:var(--ink);background:var(--bg-2)}
+  .policy-toc a.current{color:var(--accent);background:var(--bg-2);border-left-color:var(--accent);font-weight:500}
+
+  /* Body */
+  .policy-body{max-width:780px}
+  .policy-body h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;margin:0 0 18px;line-height:1.2;scroll-margin-top:200px}
+  .policy-body h3{font-family:'Fraunces',serif;font-weight:500;font-size:22px;margin:42px 0 12px;line-height:1.25;scroll-margin-top:200px}
+  .policy-body h4{font-family:'Fraunces',serif;font-weight:500;font-size:18px;margin:28px 0 10px;line-height:1.25;color:var(--ink-2)}
+  .policy-body p{font-size:15.5px;line-height:1.75;color:var(--ink-2);margin:0 0 14px}
+  .policy-body p b, .policy-body li b{color:var(--ink);font-weight:600}
+  .policy-body ul{margin:6px 0 18px;padding-left:0;list-style:none}
+  .policy-body ul li{font-size:15px;line-height:1.7;color:var(--ink-2);margin:0 0 10px;padding-left:24px;position:relative}
+  .policy-body ul li::before{content:"";position:absolute;left:6px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .policy-body ol{margin:6px 0 18px;padding-left:24px}
+  .policy-body ol li{font-size:15px;line-height:1.7;color:var(--ink-2);margin:0 0 10px}
+
+  /* Tables */
+  .policy-body table{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:13.5px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .policy-body th{background:var(--ink);color:#FAF8F3;text-align:left;padding:12px 14px;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace}
+  .policy-body td{padding:12px 14px;border-top:1px solid var(--line);color:var(--ink-2);vertical-align:top;line-height:1.55}
+  .policy-body td b{color:var(--ink);font-weight:500}
+
+  /* Callout */
+  .callout{background:var(--warn-bg);border-left:4px solid var(--accent);padding:18px 22px;border-radius:0 12px 12px 0;margin:22px 0}
+  .callout-title{font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:var(--accent);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+  .callout p{font-size:14.5px;color:var(--ink);margin:0;line-height:1.65}
+
+  /* Plain-language summary */
+  .plain-summary{background:var(--ok-bg);border:1px solid var(--ok-ink);border-radius:12px;padding:16px 20px;margin:18px 0}
+  .plain-summary .label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ok-ink);font-weight:600;margin-bottom:6px}
+  .plain-summary p{margin:0;color:var(--ok-ink);font-size:14.5px;line-height:1.6}
+
+  /* Next-prev navigation */
+  .policy-nav-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:48px 0 0;padding-top:32px;border-top:1px solid var(--line)}
+  .policy-nav-bottom a{padding:18px 22px;background:#fff;border:1px solid var(--line);border-radius:14px;transition:all .2s;display:flex;flex-direction:column;gap:4px}
+  .policy-nav-bottom a:hover{border-color:var(--ink-3);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .policy-nav-bottom .label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3)}
+  .policy-nav-bottom .name{font-family:'Fraunces',serif;font-weight:500;font-size:18px;color:var(--ink)}
+  .policy-nav-bottom .next{text-align:right}
+
+  /* Footer */
+  .site-footer{background:#0F1419;color:#C5B58A;padding:48px 0 24px;margin-top:40px}
+  .footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;padding-bottom:32px;border-bottom:1px solid rgba(245,235,216,0.1)}
+  .footer-brand .logo-text .name{color:#F5EBD8}
+  .footer-brand .logo-text .name em{color:var(--gold)}
+  .footer-brand .logo-text .deva{color:#8A7E5E}
+  .footer-tagline{font-size:13px;color:#8A9099;max-width:340px;margin:16px 0 0;line-height:1.6}
+  .footer-col h4{font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:#F5EBD8;margin:0 0 12px}
+  .footer-col a{display:block;color:#8A9099;font-size:13px;padding:4px 0;transition:color .15s}
+  .footer-col a:hover{color:var(--gold)}
+  .footer-bottom{padding-top:20px;font-size:11px;color:#6B7480;font-family:'JetBrains Mono',monospace;text-align:center}
+
+  /* Responsive */
+  @media (max-width: 1024px){
+    .policy-layout{grid-template-columns:1fr}
+    .policy-toc{position:static;display:none}
+    .footer-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width: 760px){
+    .container{padding:0 18px}
+    .nav-right .nav-link{display:none}
+    .page-hero{padding:36px 0 24px}
+    .policy-tabs-wrap{top:69px;padding:14px 0}
+    .policy-tabs{margin:0 -18px;padding:0 18px}
+    .policy-tab{padding:10px 14px;font-size:13px}
+    .policy-section{padding:32px 0 48px}
+    .policy-body h2{font-size:24px}
+    .policy-body h3{font-size:18px;margin:32px 0 10px}
+    .policy-body p, .policy-body ul li, .policy-body ol li{font-size:14.5px}
+    .policy-body table{font-size:12px}
+    .policy-body th, .policy-body td{padding:8px 10px}
+    .policy-nav-bottom{grid-template-columns:1fr;gap:10px}
+    .policy-nav-bottom .next{text-align:left}
+    .footer-grid{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+</head>
+<body>
+
+
+<nav class="topnav">
+  <div class="container" style="display:contents">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">ना</span>
+      <span class="logo-text">
+        <span class="name">Naam <em>Dekho</em></span>
+        <span class="deva">नाम देखो</span>
+      </span>
+    </a>
+    <div class="nav-right">
+      <a href="how-it-works.html" class="nav-link">How it works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="pricing.html#agencies" class="nav-link">For agencies</a>
+      <a href="sign-in.html" class="nav-cta">Sign in</a>
+    </div>
+  </div>
+</nav>
+
+
+<header class="page-hero">
+  <div class="container">
+    <div class="eyebrow">— Legal</div>
+    <h1 class="page-title">Our <em>Terms of Use</em>.</h1>
+    <p class="page-sub">The agreement between you and Naam Dekho — what we promise, what you accept, and the boundaries of the service. Drafted under Indian contract and consumer law.</p>
+    <div class="effective-date">Effective date — 15 May 2026  ·  Version 1.0</div>
+  </div>
+</header>
+
+
+<div class="policy-tabs-wrap">
+  <div class="container">
+    <div class="policy-tabs" role="tablist">
+      <a href="privacy.html" class="policy-tab"><span class="num">1</span>Privacy Policy</a><a href="terms.html" class="policy-tab active"><span class="num">2</span>Terms of Use</a><a href="cookies.html" class="policy-tab"><span class="num">3</span>Cookies Policy</a><a href="cancellation-refund.html" class="policy-tab"><span class="num">4</span>Cancellation & Refund</a><a href="payment-terms.html" class="policy-tab"><span class="num">5</span>Payment Terms</a>
+    </div>
+  </div>
+</div>
+
+
+<section class="policy-section">
+  <div class="container policy-layout">
+    <aside class="policy-toc">
+      <h4>On this page</h4>
+      <a href="#accept" class="toc-link current">Acceptance</a><a href="#eligible" class="toc-link">Eligibility</a><a href="#account" class="toc-link">Account & sign-in</a><a href="#scope" class="toc-link">Scope & nature</a><a href="#thirdparty" class="toc-link">Third-Party delays</a><a href="#warranty" class="toc-link">No warranty</a><a href="#liability" class="toc-link">Limitation of liability</a><a href="#conduct" class="toc-link">Prohibited conduct</a><a href="#ip" class="toc-link">Intellectual property</a><a href="#indemnity" class="toc-link">Indemnity</a><a href="#availability" class="toc-link">Availability</a><a href="#force" class="toc-link">Force majeure</a><a href="#law" class="toc-link">Governing law</a>
+    </aside>
+    <div class="policy-body">
+      
+<h2 id="accept">2. Terms of Use</h2>
+<p>These Terms of Use constitute a legally binding agreement between <b>you</b> and <b>Naam Dekho Technologies Private Limited</b>. By accessing, browsing, registering on, or transacting upon the Platform, you signify unconditional acceptance and agree to be bound by these Terms, together with the <a href="privacy.html" style="color:var(--accent)">Privacy Policy</a>, the <a href="cookies.html" style="color:var(--accent)">Cookies Policy</a>, the <a href="cancellation-refund.html" style="color:var(--accent)">Cancellation & Refund Policy</a> and the <a href="payment-terms.html" style="color:var(--accent)">Payment Terms</a>. These Terms are an electronic record within the meaning of Section 2(t) of the Information Technology Act, 2000.</p>
+
+<h3 id="eligible">Eligibility</h3>
+<ul>
+  <li>Use of the Platform is permitted only to persons competent to contract under the Indian Contract Act, 1872. Persons below 18, undischarged insolvents, and persons of unsound mind may not transact upon Paid Tiers.</li>
+  <li>Use by a juridical person (company, LLP, partnership, association) is deemed use by its authorised representative, who warrants authority to bind that juridical person.</li>
+  <li>Baby mode is intended only for parents, guardians or family elders of the child being named. <b>You may not use Baby mode to research, compile, profile, market to, or identify any minor without parental consent.</b></li>
+  <li>Use from any jurisdiction in which such use would be unlawful is expressly prohibited.</li>
+</ul>
+
+<h3 id="account">Account registration and authentication</h3>
+<ul>
+  <li>Free Tier may be used without account registration.</li>
+  <li>Paid Tiers require sign-in via phone-number OTP. You warrant that the phone number supplied is lawfully held by you.</li>
+  <li>You are solely responsible for the confidentiality of your phone, SIM and OTP, and for all activity under your account.</li>
+  <li>Each natural person may hold one account; each agency may hold one organisational account.</li>
+</ul>
+
+<h3 id="scope">Scope and nature of the service</h3>
+<div class="callout">
+  <div class="callout-title">⚠ Critical disclosure</div>
+  <p>Naam Dekho is a <b>decision-support tool</b>. The Results we present are informational in nature and are <b>not a substitute for legal, tax, accounting or naming consultancy advice</b>. You must consult a qualified professional — a CA, an advocate, a trademark agent, or a registered naming consultant — before incorporation, trademark filing, domain purchase, brand launch, or formal naming of a child.</p>
+</div>
+<p>The Platform performs queries against publicly available data sources and consolidates the results. <b>The Platform does NOT:</b></p>
+<ul>
+  <li>File any application, return, registration or document with any Government authority on your behalf</li>
+  <li>Reserve, register or pay for any domain, trademark, social handle or company name</li>
+  <li>Provide legal, tax, regulatory, financial or astrological advice</li>
+  <li>Guarantee the registrability, distinctiveness or commercial success of any name</li>
+  <li>Guarantee that a name found "available" today will remain available later, or that a name found "taken" today will not be released later</li>
+</ul>
+
+<h3 id="thirdparty">Third-Party Sources — disclaimers, delays and availability</h3>
+<div class="callout">
+  <div class="callout-title">⚠ This section is critical to your understanding of the service</div>
+  <p>The Platform's output depends entirely on the availability, accuracy and responsiveness of Third-Party Sources. <b>We do not control these sources. We do not guarantee that any source will be available at the time of your search, or that any source's data will be accurate, current or complete.</b></p>
+</div>
+
+<h4>Source unavailability and downtime</h4>
+<ul>
+  <li><b>Government portals</b> (MCA21, IP India, Copyright, GST, FSSAI, DPIIT and others) routinely experience scheduled and unscheduled downtime, redesigns, blocking of automated access, throttling, CAPTCHA challenges, infrastructure migrations and policy changes. <b>We have no advance notice of, and no influence over, any such event.</b></li>
+  <li><b>Domain registries, registrars and WHOIS servers</b> experience similar outages and rate-limiting.</li>
+  <li><b>Social-media platforms</b> unilaterally and frequently change their public API contracts, terms, rate limits, authentication and the data they expose.</li>
+  <li>When a source is unavailable, slow or returning errors, the corresponding tile displays "Checking…", "Pending" or "Source temporarily unavailable", and the verdict is computed as if that source returned no result.</li>
+</ul>
+
+<h4>Delays in result delivery</h4>
+<ul>
+  <li>Target time for Free-Tier scan: ~ <b>4 seconds</b>. Target for Deep Legal Scan: ~ <b>40 seconds</b>. These are <b>best-effort targets, not service-level guarantees</b>.</li>
+  <li>Actual delivery time will vary based on Third-Party Source responsiveness, network conditions, CAPTCHA latency, and platform load. Delays may extend to several minutes or, exceptionally, result in incomplete delivery.</li>
+  <li><b>A delay or failure attributable wholly or in substantial part to any Third-Party Source shall not constitute a deficiency in service within the meaning of the Consumer Protection Act, 2019, and shall not entitle you to a refund or compensation</b>, except as expressly provided in the Cancellation & Refund Policy.</li>
+</ul>
+
+<h4>Accuracy of source data</h4>
+<ul>
+  <li>Data returned by Third-Party Sources is presented in substantially the same form in which it was returned. <b>We do not verify, audit or independently corroborate the contents of source databases.</b></li>
+  <li>Government registers are imperfect — they contain typographical errors, stale entries, missing entries (e.g. recently filed trademarks not yet indexed), and conflicting entries.</li>
+  <li>A search returning "No conflict" today does not exempt you from the obligation to perform a formal pre-incorporation or pre-filing search before any binding step.</li>
+</ul>
+
+<h3 id="warranty">No warranty</h3>
+<p>The Platform is provided on an <b>"as-is" and "as-available"</b> basis. To the maximum extent permitted by Applicable Laws, we expressly disclaim all warranties, whether express, implied, statutory or otherwise, including warranties of merchantability, fitness for a particular purpose, title and non-infringement; warranties that the Platform will be uninterrupted, error-free, timely, secure or virus-free; warranties as to the accuracy, completeness, reliability, currency or non-misleading nature of any Result; and warranties that the Chaldean numerology reading, linguistic-landmine detection or any other interpretive layer will produce outcomes you find favourable.</p>
+
+<h3 id="liability">Limitation of liability</h3>
+<div class="callout">
+  <div class="callout-title">⚠ Maximum aggregate liability cap</div>
+  <p>Our total aggregate liability arising out of or relating to the Platform, regardless of the form of action or the theory of liability, shall not in any event exceed <b>the higher of (a) the aggregate fees paid by you to us in the three (3) months immediately preceding the event giving rise to the claim, or (b) Indian Rupees One Thousand (₹1,000)</b>.</p>
+</div>
+<p>Without limiting the foregoing, we shall not be liable for any:</p>
+<ul>
+  <li>Indirect, special, incidental, consequential, exemplary or punitive damages — including lost profits, revenue, business, goodwill, opportunity, brand value, rebrand costs, lost customers or contracts</li>
+  <li>Damage from relying on a Result that proved incomplete, stale or inaccurate where the issue was attributable to a Third-Party Source</li>
+  <li>Damage from any delay attributable to a Third-Party Source or Force Majeure Event</li>
+  <li>Damage from proceeding with an incorporation, trademark filing or formal child-naming without consulting a qualified professional</li>
+  <li>Damage from unauthorised access to your account due to your failure to safeguard credentials</li>
+</ul>
+<p>Nothing in this clause excludes liability for (a) death or personal injury caused by our negligence; (b) fraud or fraudulent misrepresentation; or (c) any other liability which cannot lawfully be excluded under Applicable Laws.</p>
+
+<h3 id="conduct">Prohibited conduct</h3>
+<p>You undertake that you shall not, and shall not permit any third party to:</p>
+<ul>
+  <li>Use the Platform in violation of any Applicable Laws or these Terms</li>
+  <li>Use the Platform for harassment, defamation, impersonation or doxxing of any person</li>
+  <li>Use any automated means (scrapers, bots, crawlers) to access the Platform, except under a written Agency / API agreement with us</li>
+  <li>Probe, scan, test the vulnerability of, or breach the security of the Platform</li>
+  <li>Reverse-engineer, decompile or disassemble any portion of the Platform</li>
+  <li>Submit Search Inputs containing obscene, defamatory, racially or religiously offensive or unlawful content</li>
+  <li>Use Results or PDF reports for any purpose other than your own bona fide name-evaluation — bulk redistribution, resale or use of Results to construct a competing service is expressly prohibited</li>
+  <li>Use the Platform in connection with money-laundering, terrorist financing, fraud or any criminal offence</li>
+  <li>Interfere with the proper operation of the Platform — including DDoS, malicious code, or vulnerability exploitation</li>
+</ul>
+
+<h3 id="ip">Intellectual property</h3>
+<ul>
+  <li>All intellectual property in the Platform — source code, UI design, editorial content, the proprietary 12-step process flow, the Chaldean numerology engine and industry-fit overlay, the linguistic-landmine methodology, the brand, the trademarks, the trade dress and the documentation — is our exclusive property under the Copyright Act 1957, the Trade Marks Act 1999 and the Designs Act 2000. <b>All rights reserved.</b></li>
+  <li>No portion may be reproduced, distributed, modified or commercially exploited without our prior written consent, except (i) for your own non-commercial reference, (ii) for a single downloaded PDF report used by you and your professional advisor, and (iii) for any use permitted by Applicable Laws.</li>
+  <li>Third-party trademarks referenced are the property of their respective owners and are used only on a nominative-fair-use basis.</li>
+</ul>
+
+<h3 id="indemnity">Indemnification</h3>
+<p>You shall indemnify, defend and hold harmless Naam Dekho, our directors, officers, employees, contractors and agents from and against any and all claims, demands, suits, proceedings, damages, losses, costs and expenses (including reasonable attorneys' fees) arising out of or in connection with: (a) your use of the Platform in violation of these Terms or Applicable Laws; (b) your submission of unlawful or infringing User Content; (c) your negligent or wrongful conduct; (d) any third-party claim arising from such use, submission or conduct.</p>
+
+<h3 id="availability">Service availability, modifications and suspension</h3>
+<ul>
+  <li>The Platform is generally available 24×7 but we give <b>no warranty of uninterrupted availability</b>. The Platform may be temporarily unavailable due to scheduled maintenance, unscheduled outages, infrastructure failure, third-party-dependency outage or Force Majeure.</li>
+  <li>We reserve the right to modify, suspend or discontinue any feature at any time, with or without notice.</li>
+  <li>We may suspend or terminate access of any User who, in our reasonable opinion, is in breach of these Terms or poses a security or reputational risk.</li>
+</ul>
+
+<h3 id="force">Force Majeure</h3>
+<p>Neither party shall be liable for any failure or delay caused by a Force Majeure Event — including acts of God, war, terrorism, civil disturbance, strikes, regulatory action, pandemic, internet or telecommunications outage, denial-of-service attack, and <b>any outage, redesign, blocking, throttling or unavailability of any Third-Party Source</b>. If a Force Majeure Event continues for more than 30 consecutive days, either party may terminate the affected service by written notice.</p>
+
+<h3 id="law">Governing law and dispute resolution</h3>
+<ul>
+  <li>These Terms shall be governed by the laws of the Republic of India.</li>
+  <li>Subject to arbitration, the courts at <b>Bangalore, Karnataka</b> shall have exclusive jurisdiction.</li>
+  <li>Any dispute shall first be attempted amicably for 30 days. Failing that, the dispute shall be referred to and finally resolved by arbitration under the Arbitration and Conciliation Act, 1996, by a sole arbitrator. Seat and venue: Bangalore. Language: English.</li>
+</ul>
+
+      <div class="policy-nav-bottom"><a href="privacy.html"><span class="label">← Previous</span><span class="name">Privacy Policy</span></a><a href="cookies.html" class="next"><span class="label">Next →</span><span class="name">Cookies Policy</span></a></div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">ना</span>
+        <span class="logo-text">
+          <span class="name">Naam <em>Dekho</em></span>
+          <span class="deva">नाम देखो</span>
+        </span>
+      </a>
+      <p class="footer-tagline">India's first all-in-one name verification platform. From boardroom to baby cot — one search, every check that matters.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="sign-in.html">Sign in</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="terms.html">Terms of use</a>
+      <a href="cookies.html">Cookies policy</a>
+      <a href="cancellation-refund.html">Cancellation & refund</a>
+      <a href="payment-terms.html">Payment terms</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@naamdekho.in">hello@naamdekho.in</a>
+      <a href="mailto:support@naamdekho.in">support@naamdekho.in</a>
+      <a href="mailto:refunds@naamdekho.in">refunds@naamdekho.in</a>
+      <a href="mailto:grievance@naamdekho.in">grievance@naamdekho.in</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">© 2026 Naam Dekho Technologies Pvt Ltd · नाम देखो · All rights reserved</div>
+</footer>
+
+
+<script>
+  // Active anchor in side TOC as user scrolls
+  const allTocLinks = document.querySelectorAll('.toc-link');
+  const allHeadings = document.querySelectorAll('.policy-body h2, .policy-body h3');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.target.id) {
+        const id = e.target.id;
+        allTocLinks.forEach(l => l.classList.toggle('current', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-180px 0px -70% 0px' });
+  allHeadings.forEach(h => h.id && observer.observe(h));
+</script>
+
+</body>
+</html>

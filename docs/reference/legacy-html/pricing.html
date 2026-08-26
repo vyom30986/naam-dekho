@@ -1,0 +1,593 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAF8F3" />
+<title>Pricing — Naam Dekho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FAF8F3; --bg-2:#F3EFE5; --ink:#0F1419; --ink-2:#3D4751; --ink-3:#6B7480;
+    --line:#E5DFD0; --line-2:#D8D0BC; --accent:#B8501C; --accent-2:#7A2E0E;
+    --ok-bg:#E7F2E9; --ok-ink:#1B5E20; --gold:#E8C76A;
+    --radius:14px; --radius-lg:20px;
+    --shadow-sm:0 1px 2px rgba(15,20,25,0.04), 0 4px 12px -4px rgba(15,20,25,0.06);
+    --shadow-md:0 1px 0 rgba(15,20,25,0.04), 0 12px 32px -16px rgba(15,20,25,0.12);
+    --shadow-lg:0 1px 0 rgba(15,20,25,0.04), 0 24px 56px -20px rgba(15,20,25,0.22);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  body{
+    background:radial-gradient(1200px 600px at 80% -200px, rgba(184,80,28,0.06), transparent 60%),
+               radial-gradient(900px 500px at -10% 300px, rgba(27,94,32,0.04), transparent 60%), var(--bg);
+    min-height:100vh; overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none}
+  button{font-family:inherit}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav.topnav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(250,248,243,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:50}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);display:grid;place-items:center;color:#fff;font-family:'Noto Sans Devanagari',serif;font-weight:600;font-size:17px}
+  .logo-text{display:flex;flex-direction:column;line-height:1}
+  .logo-text .name{font-family:'Fraunces',serif;font-weight:500;font-size:20px;letter-spacing:-0.02em}
+  .logo-text .name em{font-style:italic;color:var(--accent);font-weight:500}
+  .logo-text .deva{font-family:'Noto Sans Devanagari',serif;font-size:11px;color:var(--ink-3);margin-top:2px}
+  .nav-right{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2)}
+  .nav-right a.nav-link{padding:8px 14px;border-radius:8px;font-weight:500;transition:background .15s}
+  .nav-right a.nav-link.active{color:var(--ink);background:var(--bg-2)}
+  .nav-right a.nav-link:hover{background:var(--bg-2)}
+  .nav-cta{padding:10px 18px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--bg);font-weight:500;font-size:13px}
+
+  /* Page header */
+  .page-hero{padding:64px 0 36px;text-align:center;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:18px}
+  h1.page-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(36px,5vw,58px);line-height:1.05;letter-spacing:-0.025em;margin:0 0 16px;max-width:880px;margin-left:auto;margin-right:auto}
+  h1.page-title em{font-style:italic;color:var(--accent)}
+  .page-sub{font-size:clamp(15px,1.6vw,17px);color:var(--ink-2);max-width:660px;margin:0 auto;line-height:1.6}
+
+  /* Audience tabs */
+  .audience-tabs{display:flex;justify-content:center;padding:28px 0 0;gap:8px}
+  .audience-pill{
+    padding:11px 22px;border-radius:999px;background:#fff;border:1px solid var(--line-2);
+    font-weight:500;font-size:14px;color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+    box-shadow:var(--shadow-sm);transition:all .2s;
+  }
+  .audience-pill:hover{border-color:var(--ink-3);transform:translateY(-1px)}
+  .audience-pill.active{background:var(--ink);color:#FAF8F3;border-color:var(--ink);box-shadow:0 4px 14px -4px rgba(15,20,25,0.3)}
+  .audience-pill .deva{font-family:'Noto Sans Devanagari',serif;font-size:13px;opacity:0.7}
+
+  /* Pricing section */
+  section{padding:56px 0;border-bottom:1px solid var(--line)}
+  section:last-of-type{border-bottom:0}
+  .pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:8px}
+
+  .plan{
+    background:#fff;border:2px solid var(--line);border-radius:var(--radius-lg);padding:32px;
+    display:flex;flex-direction:column;gap:18px;box-shadow:var(--shadow-sm);
+    transition:transform .2s, border-color .2s, box-shadow .2s;
+    position:relative;
+  }
+  .plan:hover{transform:translateY(-3px);border-color:var(--ink-3);box-shadow:var(--shadow-md)}
+  .plan.featured{border-color:var(--accent);background:linear-gradient(180deg, #FFF4D9 0%, #fff 60%)}
+  .plan.featured::before{
+    content:"Most popular";position:absolute;top:-12px;right:24px;
+    background:var(--accent);color:#fff;font-size:11px;font-weight:500;padding:5px 12px;border-radius:999px;
+    font-family:'JetBrains Mono',monospace;letter-spacing:0.08em;
+  }
+  .plan-tier{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.12em}
+  .plan-name{font-family:'Fraunces',serif;font-size:28px;font-weight:500;margin:0;line-height:1.15}
+  .plan-name em{font-style:italic;color:var(--accent)}
+  .plan-price{display:flex;align-items:baseline;gap:8px;margin:6px 0}
+  .plan-price .amt{font-family:'Fraunces',serif;font-size:48px;font-weight:400;line-height:1;letter-spacing:-0.02em}
+  .plan-price .per{font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--ink-3)}
+  .plan-desc{font-size:14px;color:var(--ink-2);line-height:1.6;min-height:60px}
+  .plan-cta{
+    background:var(--ink);color:#FAF8F3;border:0;padding:14px 22px;border-radius:12px;
+    font-weight:500;font-size:14px;cursor:pointer;display:flex;justify-content:center;align-items:center;gap:8px;
+    transition:transform .15s, background .15s;text-decoration:none;
+  }
+  .plan-cta:hover{transform:translateY(-1px);background:var(--accent)}
+  .plan.featured .plan-cta{background:var(--accent)}
+  .plan.featured .plan-cta:hover{background:var(--accent-2)}
+  .plan-cta.outline{background:transparent;color:var(--ink);border:1px solid var(--ink)}
+  .plan-cta.outline:hover{background:var(--ink);color:#FAF8F3}
+  .plan-features{display:flex;flex-direction:column;gap:10px;padding-top:14px;border-top:1px dashed var(--line)}
+  .plan-features li{list-style:none;display:flex;gap:10px;align-items:flex-start;font-size:13.5px;color:var(--ink-2);line-height:1.5}
+  .plan-features .tick{width:20px;height:20px;border-radius:50%;background:var(--ok-bg);color:var(--ok-ink);display:grid;place-items:center;font-size:11px;flex-shrink:0;font-weight:600}
+  .plan-features .x{width:20px;height:20px;border-radius:50%;background:var(--bg-2);color:var(--ink-3);display:grid;place-items:center;font-size:11px;flex-shrink:0}
+
+  /* Audience-specific visibility */
+  body[data-audience="corporate"] .parent-only, body[data-audience="corporate"] .agency-only{display:none}
+  body[data-audience="parent"] .corp-only, body[data-audience="parent"] .agency-only{display:none}
+  body[data-audience="agency"] .corp-only, body[data-audience="agency"] .parent-only{display:none}
+
+  /* Comparison table */
+  .compare-wrap{background:#fff;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;margin-top:36px;box-shadow:var(--shadow-sm)}
+  table.compare{width:100%;border-collapse:collapse;font-size:13.5px}
+  table.compare th,table.compare td{padding:14px 18px;text-align:left;border-bottom:1px solid var(--line)}
+  table.compare th{background:var(--bg-2);font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;color:var(--ink-3);letter-spacing:0.08em;font-weight:500}
+  table.compare td.feature{font-weight:500;color:var(--ink)}
+  table.compare td.center{text-align:center}
+  table.compare tr:last-child td{border-bottom:0}
+  .check-y{color:var(--ok-ink);font-weight:600;font-size:16px}
+  .check-n{color:var(--ink-3);font-size:14px}
+
+  /* Agency lead form */
+  .agency-section{background:linear-gradient(135deg, #1A1410 0%, #2A1A0E 100%);color:#F5EBD8;padding:80px 0;border-bottom:0}
+  .agency-section h2{font-family:'Fraunces',serif;font-size:clamp(28px,4vw,42px);font-weight:400;margin:0 0 16px;color:#F5EBD8;line-height:1.1}
+  .agency-section h2 em{color:var(--gold);font-style:italic}
+  .agency-section .lead{font-size:16px;color:#C5B58A;max-width:560px;line-height:1.65;margin:0 0 32px}
+  .agency-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start}
+  .agency-info ul{padding-left:0;list-style:none;margin:0;display:flex;flex-direction:column;gap:14px}
+  .agency-info li{display:flex;gap:12px;align-items:flex-start;color:#C5B58A;font-size:14.5px;line-height:1.55}
+  .agency-info .num{
+    font-family:'Fraunces',serif;font-weight:500;font-size:13px;background:rgba(232,199,106,0.15);
+    color:var(--gold);width:28px;height:28px;border-radius:50%;display:grid;place-items:center;flex-shrink:0;
+  }
+  .agency-info b{color:#F5EBD8;font-weight:500;display:block;margin-bottom:2px}
+
+  form.agency-form{
+    background:rgba(245,235,216,0.04);border:1px solid rgba(245,235,216,0.12);border-radius:var(--radius-lg);
+    padding:32px;display:flex;flex-direction:column;gap:18px;
+  }
+  form.agency-form h3{font-family:'Fraunces',serif;font-size:22px;font-weight:500;margin:0;color:#F5EBD8}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .form-field{display:flex;flex-direction:column;gap:6px}
+  .form-field label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:#8A7E5E}
+  .form-field input, .form-field select, .form-field textarea{
+    background:rgba(245,235,216,0.08);border:1px solid rgba(245,235,216,0.15);
+    color:#F5EBD8;border-radius:10px;padding:14px 16px;font-size:14px;font-family:inherit;
+    outline:none;transition:border-color .15s, background .15s;
+  }
+  .form-field input:focus, .form-field select:focus, .form-field textarea:focus{
+    border-color:var(--gold);background:rgba(245,235,216,0.12);
+  }
+  .form-field input::placeholder, .form-field textarea::placeholder{color:#6B7480}
+  .form-field textarea{min-height:96px;resize:vertical;font-family:inherit}
+  .form-field select option{background:#1A1410;color:#F5EBD8}
+  .agency-submit{
+    background:var(--gold);color:#1A1410;border:0;padding:16px 28px;border-radius:12px;
+    font-weight:600;font-size:15px;cursor:pointer;display:inline-flex;justify-content:center;align-items:center;gap:10px;
+    transition:transform .15s, background .15s;margin-top:8px;
+  }
+  .agency-submit:hover{transform:translateY(-1px);background:#fff;color:#1A1410}
+  .agency-form .small{font-size:11px;color:#6B7480;line-height:1.6;margin-top:4px}
+
+  /* Success message */
+  .form-success{
+    display:none;padding:24px;border-radius:12px;background:rgba(27,94,32,0.2);
+    border:1px solid #6FA572;color:#9CC2A2;font-size:14px;line-height:1.6;text-align:center;
+  }
+  .form-success b{color:var(--gold);display:block;margin-bottom:4px;font-family:'Fraunces',serif;font-size:18px}
+
+  /* FAQ */
+  .faq-list{display:flex;flex-direction:column;gap:12px;max-width:820px;margin:0 auto}
+  .faq{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:22px 26px;transition:border-color .15s}
+  .faq:hover{border-color:var(--ink-3)}
+  .faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;font-family:'Fraunces',serif;font-size:17px;font-weight:500;cursor:pointer}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:"+";font-family:'JetBrains Mono',monospace;font-size:22px;color:var(--accent);transition:transform .2s}
+  .faq[open] summary::after{transform:rotate(45deg)}
+  .faq-answer{margin-top:14px;font-size:14px;color:var(--ink-2);line-height:1.7}
+
+  /* Footer */
+  .site-footer{background:#0F1419;color:#C5B58A;padding:56px 0 24px}
+  .footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;padding-bottom:36px;border-bottom:1px solid rgba(245,235,216,0.1)}
+  .footer-brand .logo-text .name{color:#F5EBD8}
+  .footer-brand .logo-text .name em{color:var(--gold)}
+  .footer-brand .logo-text .deva{color:#8A7E5E}
+  .footer-tagline{font-size:13px;color:#8A9099;max-width:340px;margin:18px 0 0;line-height:1.6}
+  .footer-col h4{font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:#F5EBD8;margin:0 0 14px}
+  .footer-col a{display:block;color:#8A9099;font-size:13px;padding:5px 0;transition:color .15s}
+  .footer-col a:hover{color:var(--gold)}
+  .footer-bottom{padding-top:20px;font-size:11px;color:#6B7480;font-family:'JetBrains Mono',monospace;text-align:center}
+
+  /* Responsive */
+  @media (max-width: 1024px){
+    .pricing-grid{grid-template-columns:1fr;gap:14px}
+    .agency-grid{grid-template-columns:1fr;gap:36px}
+    .footer-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width: 760px){
+    .container{padding:0 18px}
+    .nav-right .nav-link{display:none}
+    section{padding:40px 0}
+    .audience-tabs{gap:6px;overflow-x:auto;padding:24px 0 0;scrollbar-width:none}
+    .audience-tabs::-webkit-scrollbar{display:none}
+    .audience-pill{padding:10px 16px;font-size:13px;flex-shrink:0}
+    .plan{padding:26px}
+    .plan-price .amt{font-size:42px}
+    .form-row{grid-template-columns:1fr}
+    .footer-grid{grid-template-columns:1fr;gap:28px}
+    .agency-section{padding:48px 0}
+    .agency-section h2{font-size:28px}
+    table.compare{font-size:12px}
+    table.compare th,table.compare td{padding:10px 12px}
+  }
+</style>
+</head>
+<body data-audience="corporate">
+
+<nav class="topnav">
+  <div class="container" style="display:contents">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">ना</span>
+      <span class="logo-text">
+        <span class="name">Naam <em>Dekho</em></span>
+        <span class="deva">नाम देखो · नाम चेक करो</span>
+      </span>
+    </a>
+    <div class="nav-right">
+      <a href="how-it-works.html" class="nav-link">How it works</a>
+      <a href="pricing.html" class="nav-link active">Pricing</a>
+      <a href="#agencies" class="nav-link">For agencies</a>
+      <a href="sign-in.html" class="nav-cta">Sign in</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="container">
+    <div class="eyebrow">— Pricing</div>
+    <h1 class="page-title">Free forever for the search. <em>Pay only for legal-grade proof.</em></h1>
+    <p class="page-sub">No subscription wall to see your verdict. Pay ₹49 once when you actually need the deep scan, or subscribe at agency rates if you name brands or babies for a living.</p>
+
+    <div class="audience-tabs" role="tablist">
+      <button class="audience-pill active" data-aud="corporate">Founders & startups</button>
+      <button class="audience-pill" data-aud="parent">Parents <span class="deva">माता-पिता</span></button>
+      <button class="audience-pill" data-aud="agency">Agencies & API</button>
+    </div>
+  </div>
+</header>
+
+<!-- ───────────── CORPORATE / FOUNDER PRICING ───────────── -->
+<section class="corp-only">
+  <div class="container">
+    <div class="pricing-grid">
+
+      <div class="plan">
+        <div class="plan-tier">Free · forever</div>
+        <h2 class="plan-name">Instant Check</h2>
+        <div class="plan-price"><span class="amt">₹0</span><span class="per">/ unlimited names</span></div>
+        <p class="plan-desc">All 62 surface checks across every register, TLD, social, marketplace, brand and language. Live streamed verdict. No signup required.</p>
+        <a href="index.html" class="plan-cta outline">Start a free search →</a>
+        <ul class="plan-features">
+          <li><span class="tick">✓</span>62-platform surface check</li>
+          <li><span class="tick">✓</span>Verdict + 4-card HUD summary</li>
+          <li><span class="tick">✓</span>Live result streaming</li>
+          <li><span class="tick">✓</span>All 7 Indian languages + Sanskrit</li>
+          <li><span class="tick">✓</span>Chaldean numerology</li>
+          <li><span class="x">−</span>No deep scan / no warmed proxies</li>
+          <li><span class="x">−</span>No downloadable PDF</li>
+        </ul>
+      </div>
+
+      <div class="plan featured">
+        <div class="plan-tier">One-time payment</div>
+        <h2 class="plan-name">Deep <em>Legal Scan</em></h2>
+        <div class="plan-price"><span class="amt">₹49</span><span class="per">/ per name</span></div>
+        <p class="plan-desc">For the one name you actually want to incorporate. CAPTCHA-solved deep checks, full class-wise trademark breakdown, advocate-ready PDF.</p>
+        <a href="sign-in.html?intent=deep-scan" class="plan-cta">Run deep legal scan →</a>
+        <ul class="plan-features">
+          <li><span class="tick">✓</span>Everything in Instant Check</li>
+          <li><span class="tick">✓</span>Warmed proxy sessions on MCA, IP India, Copyright</li>
+          <li><span class="tick">✓</span>CAPTCHA solving included</li>
+          <li><span class="tick">✓</span>Class-wise TM breakdown for your industry</li>
+          <li><span class="tick">✓</span>Phonetic-variant deep matching</li>
+          <li><span class="tick">✓</span>Downloadable PDF report</li>
+          <li><span class="tick">✓</span>Scan ID for evidentiary use</li>
+        </ul>
+      </div>
+
+      <div class="plan">
+        <div class="plan-tier">Monthly · cancel anytime</div>
+        <h2 class="plan-name">Founder Pro</h2>
+        <div class="plan-price"><span class="amt">₹499</span><span class="per">/ month</span></div>
+        <p class="plan-desc">For serial founders, accelerators and student entrepreneurs who screen many names per quarter. Twenty deep scans included monthly.</p>
+        <a href="sign-in.html?intent=founder-pro" class="plan-cta outline">Subscribe</a>
+        <ul class="plan-features">
+          <li><span class="tick">✓</span>Everything in Deep Legal Scan</li>
+          <li><span class="tick">✓</span>20 deep scans / month included</li>
+          <li><span class="tick">✓</span>Additional scans at ₹39 each</li>
+          <li><span class="tick">✓</span>Save searches & compare names</li>
+          <li><span class="tick">✓</span>Email alerts on register changes</li>
+          <li><span class="tick">✓</span>Priority support · 24-hour SLA</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <h3 style="font-family:'Fraunces',serif;font-size:24px;font-weight:500;margin:60px 0 20px;text-align:center;letter-spacing:-0.01em">Plan comparison</h3>
+    <div class="compare-wrap">
+      <table class="compare">
+        <thead><tr><th>Feature</th><th class="center">Instant<br>Free</th><th class="center">Deep Scan<br>₹49</th><th class="center">Founder Pro<br>₹499/mo</th></tr></thead>
+        <tbody>
+          <tr><td class="feature">62-platform surface check</td><td class="center"><span class="check-y">✓</span></td><td class="center"><span class="check-y">✓</span></td><td class="center"><span class="check-y">✓</span></td></tr>
+          <tr><td class="feature">Live WebSocket result stream</td><td class="center"><span class="check-y">✓</span></td><td class="center"><span class="check-y">✓</span></td><td class="center"><span class="check-y">✓</span></td></tr>
+          <tr><td class="feature">Warmed proxy + CAPTCHA-solved deep scan</td><td class="center"><span class="check-n">—</span></td><td class="center"><span class="check-y">✓</span></td><td class="center"><span class="check-y">✓</span></td></tr>
+          <tr><td class="feature">Full class-wise TM breakdown (all 45 classes)</td><td class="center"><span class="check-n">—</span></td><td class="center"><span class="check-y">✓</span></td><td class="center"><span class="check-y">✓</span></td></tr>
+          <tr><td class="feature">Downloadable PDF — advocate-ready</td><td class="center"><span class="check-n">—</span></td><td class="center"><span class="check-y">✓</span></td><td class="center"><span class="check-y">✓</span></td></tr>
+          <tr><td class="feature">Save & compare multiple names</td><td class="center"><span class="check-n">—</span></td><td class="center"><span class="check-n">—</span></td><td class="center"><span class="check-y">✓</span></td></tr>
+          <tr><td class="feature">Register-change email alerts</td><td class="center"><span class="check-n">—</span></td><td class="center"><span class="check-n">—</span></td><td class="center"><span class="check-y">✓</span></td></tr>
+          <tr><td class="feature">Priority support · 24h SLA</td><td class="center"><span class="check-n">—</span></td><td class="center"><span class="check-n">—</span></td><td class="center"><span class="check-y">✓</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── PARENT PRICING ───────────── -->
+<section class="parent-only">
+  <div class="container">
+    <div class="pricing-grid">
+
+      <div class="plan">
+        <div class="plan-tier">Free · forever</div>
+        <h2 class="plan-name">Instant Name Check</h2>
+        <div class="plan-price"><span class="amt">₹0</span><span class="per">/ unlimited names</span></div>
+        <p class="plan-desc">Pronunciation, meaning across seven Indian languages, Sanskrit root, Chaldean numerology, and live social handle availability. All free, all the time.</p>
+        <a href="index.html?mode=baby" class="plan-cta outline">Check a baby name →</a>
+        <ul class="plan-features">
+          <li><span class="tick">✓</span>Pronunciation report with IPA</li>
+          <li><span class="tick">✓</span>Meaning across 7 Indian languages</li>
+          <li><span class="tick">✓</span>Sanskrit root analysis</li>
+          <li><span class="tick">✓</span>Chaldean numerology read</li>
+          <li><span class="tick">✓</span>Live social handle scan</li>
+          <li><span class="x">−</span>No downloadable keepsake PDF</li>
+        </ul>
+      </div>
+
+      <div class="plan featured">
+        <div class="plan-tier">One-time payment</div>
+        <h2 class="plan-name">Keepsake <em>PDF Report</em></h2>
+        <div class="plan-price"><span class="amt">₹29</span><span class="per">/ per name</span></div>
+        <p class="plan-desc">A beautifully formatted PDF for the family. Pronunciation guide, meaning, etymology, numerology reading, and reserved social handles — all in one shareable file.</p>
+        <a href="sign-in.html?intent=keepsake" class="plan-cta">Generate keepsake PDF →</a>
+        <ul class="plan-features">
+          <li><span class="tick">✓</span>Everything in Instant</li>
+          <li><span class="tick">✓</span>Beautifully formatted 4-page PDF</li>
+          <li><span class="tick">✓</span>Full Sanskrit etymology section</li>
+          <li><span class="tick">✓</span>Founder/parent DOB lucky-pairing</li>
+          <li><span class="tick">✓</span>Detailed Chaldean reading</li>
+          <li><span class="tick">✓</span>Reserved social handle checklist</li>
+          <li><span class="tick">✓</span>Print-ready · share with family</li>
+        </ul>
+      </div>
+
+      <div class="plan">
+        <div class="plan-tier">One-time payment</div>
+        <h2 class="plan-name">Shortlist of Five</h2>
+        <div class="plan-price"><span class="amt">₹99</span><span class="per">/ five-name set</span></div>
+        <p class="plan-desc">Picking between five favourites? Get a side-by-side comparison PDF — same depth as the keepsake, but laid out for the family decision meeting.</p>
+        <a href="sign-in.html?intent=shortlist" class="plan-cta outline">Compare five names →</a>
+        <ul class="plan-features">
+          <li><span class="tick">✓</span>Up to 5 names side-by-side</li>
+          <li><span class="tick">✓</span>Comparison matrix across 4 dimensions</li>
+          <li><span class="tick">✓</span>Recommended ranking</li>
+          <li><span class="tick">✓</span>Compatible-with-sibling check</li>
+          <li><span class="tick">✓</span>Individual keepsake PDFs included</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── AGENCIES PRICING (lead gen) ───────────── -->
+<section class="agency-only agency-section" id="agencies">
+  <div class="container">
+    <div class="agency-grid">
+      <div class="agency-info">
+        <div class="eyebrow" style="color:var(--gold)">— For Agencies & API access</div>
+        <h2>Naming firms, CA practices, brand-strategy houses & developers — <em>let's talk pricing.</em></h2>
+        <p class="lead">Every agency we've worked with has a different volume, a different category mix, and different output requirements. So instead of a fixed price page, drop us your details and we will call you within one working day to design a plan that actually fits.</p>
+
+        <ul>
+          <li><span class="num">1</span><div><b>Volume-based plans from ₹3 per name</b>Bulk packages of 100, 500, 5,000 and 50,000 deep scans. Annual contracts for predictable invoicing.</div></li>
+          <li><span class="num">2</span><div><b>White-labelled PDF</b>Your logo, your colours, your contact block on every report. Hand it to your client without ours appearing anywhere.</div></li>
+          <li><span class="num">3</span><div><b>API access — REST + WebSocket</b>Same engine, your portal. Per-organisation quotas, sandboxed staging, OpenAPI spec, full audit logs.</div></li>
+          <li><span class="num">4</span><div><b>CSV bulk upload</b>Drop in a list of 20–500 candidate names, get back a ranked CSV with verdict, score, and key conflicts per row.</div></li>
+          <li><span class="num">5</span><div><b>Dedicated account manager</b>One point of contact for setup, training, troubleshooting and renewals. Phone, email, and WhatsApp.</div></li>
+          <li><span class="num">6</span><div><b>India-first compliance</b>DPDP-Act-compliant data handling, MSA + DPA available, India-region data residency on request.</div></li>
+        </ul>
+      </div>
+
+      <form class="agency-form" id="agencyForm" novalidate>
+        <h3>Tell us about your firm — we'll call within 24 hours.</h3>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="afName">Your name</label>
+            <input id="afName" type="text" placeholder="Full name" required />
+          </div>
+          <div class="form-field">
+            <label for="afRole">Your role</label>
+            <input id="afRole" type="text" placeholder="Founder, partner, Head of Naming…" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="afCompany">Company / firm</label>
+            <input id="afCompany" type="text" placeholder="Company name" required />
+          </div>
+          <div class="form-field">
+            <label for="afType">Firm type</label>
+            <select id="afType">
+              <option>Naming / brand-strategy agency</option>
+              <option>Chartered Accountancy firm</option>
+              <option>Law / IP firm</option>
+              <option>Trademark agent</option>
+              <option>Accelerator / VC firm</option>
+              <option>SaaS / Developer (API)</option>
+              <option>Other</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="afEmail">Work email</label>
+            <input id="afEmail" type="email" placeholder="you@firm.com" required />
+          </div>
+          <div class="form-field">
+            <label for="afPhone">Phone (with country code)</label>
+            <input id="afPhone" type="tel" placeholder="+91 98765 43210" required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-field">
+            <label for="afVolume">Expected monthly volume</label>
+            <select id="afVolume">
+              <option>Under 50 names / month</option>
+              <option>50 – 200 names / month</option>
+              <option>200 – 1,000 names / month</option>
+              <option>1,000 – 5,000 names / month</option>
+              <option>Over 5,000 names / month</option>
+              <option>Not sure — please advise</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="afBudget">Monthly budget range (₹)</label>
+            <select id="afBudget">
+              <option>Under ₹10,000</option>
+              <option>₹10,000 – ₹50,000</option>
+              <option>₹50,000 – ₹2,00,000</option>
+              <option>Over ₹2,00,000</option>
+              <option>Open / depends on plan</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-field">
+          <label for="afNotes">Anything else we should know? (optional)</label>
+          <textarea id="afNotes" placeholder="Tell us about your client mix, current naming workflow, API needs, white-labelling preferences, contract timeline…"></textarea>
+        </div>
+
+        <button type="submit" class="agency-submit">
+          Request a callback →
+        </button>
+        <div class="small">By submitting this form you consent to Naam Dekho contacting you about agency plans. We will not share your details with any third party. See our <a href="#" style="color:var(--gold)">privacy policy</a>.</div>
+      </form>
+
+      <div class="form-success" id="agencySuccess">
+        <b>Thank you, we've received your request.</b>
+        Our partnerships team will call you within one working day to discuss the right plan. If you don't hear from us, write to <a href="mailto:partners@naamdekho.in" style="color:var(--gold)">partners@naamdekho.in</a>.
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── FAQ ───────────── -->
+<section>
+  <div class="container">
+    <h2 style="font-family:'Fraunces',serif;font-weight:400;font-size:clamp(26px,3.5vw,36px);text-align:center;letter-spacing:-0.02em;margin:0 0 14px">Pricing questions</h2>
+    <p style="text-align:center;color:var(--ink-3);font-size:14.5px;margin:0 0 36px">Anything else? Email <a href="mailto:hello@naamdekho.in" style="color:var(--accent)">hello@naamdekho.in</a>.</p>
+
+    <div class="faq-list">
+      <details class="faq"><summary>Why is the free tier really free? Where's the catch?</summary>
+        <div class="faq-answer">No catch. The free tier surfaces verdicts using the public-search endpoints of each source. The paid tier opens warmed proxy sessions with CAPTCHA solving on the registers (MCA, IP India, Copyright) that block bots — and produces a PDF you can hand to a CA or advocate. Most users get what they need on free.</div>
+      </details>
+      <details class="faq"><summary>Do I need to sign up for the free tier?</summary>
+        <div class="faq-answer">No. Just type a name on the home page. Sign-in is required only for paid scans (so we can email you the PDF and your scan history).</div>
+      </details>
+      <details class="faq"><summary>What payment methods do you accept?</summary>
+        <div class="faq-answer">UPI (PhonePe, GPay, Paytm), all major credit and debit cards via Razorpay, and net banking from 50+ Indian banks. For agency contracts we accept NEFT/RTGS with proper GST invoicing.</div>
+      </details>
+      <details class="faq"><summary>Are GST and other taxes included in the prices?</summary>
+        <div class="faq-answer">Prices shown are inclusive of GST at applicable rates. A GST-compliant invoice is generated automatically and emailed within minutes of payment.</div>
+      </details>
+      <details class="faq"><summary>Can I get a refund if the result wasn't useful?</summary>
+        <div class="faq-answer">Yes — we offer a full no-questions-asked refund within 24 hours of the scan, provided the PDF has not been downloaded more than three times. Write to support@naamdekho.in. For agency subscriptions, refunds are prorated.</div>
+      </details>
+      <details class="faq"><summary>Is the agency price genuinely as low as ₹3 per name?</summary>
+        <div class="faq-answer">For very large annual commitments (50,000+ names), yes. The exact per-name price depends on volume, classes of TM cover requested, white-labelling, API usage, and contract length. Submit the form above and we'll send a written quote.</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ───────────── FOOTER ───────────── -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">ना</span>
+        <span class="logo-text">
+          <span class="name">Naam <em>Dekho</em></span>
+          <span class="deva">नाम देखो</span>
+        </span>
+      </a>
+      <p class="footer-tagline">India's first all-in-one name verification platform. From boardroom to baby cot — one search, every check that matters.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="sign-in.html">Sign in</a>
+    </div>
+    <div class="footer-col">
+      <h4>Use cases</h4>
+      <a href="index.html">Startup naming</a>
+      <a href="index.html?mode=baby">Baby naming</a>
+      <a href="#agencies">Agencies & CA firms</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="#">Terms</a>
+      <a href="#">Privacy</a>
+      <a href="#">DPDP compliance</a>
+      <a href="#">Refunds</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">© 2026 Naam Dekho Technologies Pvt Ltd · नाम देखो</div>
+</footer>
+
+<script>
+  // Audience switcher
+  const aud = document.querySelectorAll('.audience-pill');
+  function setAudience(a) {
+    document.body.dataset.audience = a;
+    aud.forEach(b => b.classList.toggle('active', b.dataset.aud === a));
+    if (a === 'agency') {
+      setTimeout(() => document.getElementById('agencies')?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 80);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+  aud.forEach(b => b.addEventListener('click', () => setAudience(b.dataset.aud)));
+
+  // Honour deep links
+  if (location.hash === '#agencies') setAudience('agency');
+
+  // Agency form submit
+  const form = document.getElementById('agencyForm');
+  const success = document.getElementById('agencySuccess');
+  form?.addEventListener('submit', e => {
+    e.preventDefault();
+    // Simple required-field validation
+    const required = ['afName','afCompany','afEmail','afPhone'];
+    let ok = true;
+    required.forEach(id => {
+      const f = document.getElementById(id);
+      if (!f.value.trim()) { f.style.borderColor = '#E89AB3'; ok = false; }
+      else f.style.borderColor = '';
+    });
+    if (!ok) return;
+    // In production, post to /api/agency-leads
+    form.style.display = 'none';
+    success.style.display = 'block';
+    success.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  });
+</script>
+
+</body>
+</html>

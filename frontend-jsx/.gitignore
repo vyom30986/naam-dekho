@@ -1,0 +1,21 @@
+# Naam Dekho frontend.
+#
+# public/ is deliberately absent from this list. It holds the 697 pre-rendered
+# SEO pages, sitemap.xml and robots.txt, and rebuilding them requires the
+# populated corpus (see docs/SEO-PAGES.md). They stay tracked.
+
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+# VITE_GOOGLE_CLIENT_ID lives here. The tracked reference is .env.example.
+.env
+.env.local
+.env.*.local
+
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
+.vite/

@@ -1,0 +1,63 @@
+{
+  "name": "naamdekho-backend",
+  "version": "1.0.0",
+  "description": "Naam Dekho — production backend (Fastify + Socket.IO + BullMQ + Postgres + Redis)",
+  "type": "module",
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "scripts": {
+    "dev": "tsx watch src/server.ts",
+    "dev:worker": "tsx watch src/queue/worker.ts",
+    "build": "tsc -p tsconfig.json",
+    "start": "node dist/server.js",
+    "start:worker": "node dist/queue/worker.js",
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "tsx src/db/migrate.ts",
+    "db:studio": "drizzle-kit studio",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "check:bhashini": "tsx src/scripts/check-bhashini.ts",
+    "build:names": "tsx src/scripts/build-name-pages.ts",
+    "build:logo": "tsx src/scripts/build-logo.ts",
+    "enrich:meanings": "tsx src/scripts/enrich-meanings.ts"
+  },
+  "dependencies": {
+    "@fastify/cors": "^9.0.1",
+    "@fastify/helmet": "^11.1.1",
+    "@fastify/rate-limit": "^9.1.0",
+    "@indic-transliteration/sanscript": "^1.3.3",
+    "@socket.io/redis-adapter": "^8.3.0",
+    "bullmq": "^5.7.0",
+    "dotenv": "^16.4.5",
+    "drizzle-orm": "^0.30.10",
+    "fastify": "^4.27.0",
+    "google-play-scraper": "^10.1.3",
+    "ioredis": "^5.4.1",
+    "jsonwebtoken": "^9.0.2",
+    "node-fetch": "^3.3.2",
+    "pg": "^8.11.5",
+    "pino": "^9.1.0",
+    "pino-pretty": "^11.1.0",
+    "razorpay": "^2.9.4",
+    "socket.io": "^4.7.5",
+    "ulid": "^2.3.0",
+    "whois-json": "^2.0.4",
+    "zod": "^3.23.8"
+  },
+  "overrides": {
+    "@esbuild-kit/core-utils": {
+      "esbuild": "^0.21.5"
+    }
+  },
+  "devDependencies": {
+    "@types/jsonwebtoken": "^9.0.6",
+    "@types/node": "^20.12.12",
+    "@types/pg": "^8.11.6",
+    "drizzle-kit": "^0.21.4",
+    "tsx": "^4.10.5",
+    "typescript": "^5.4.5",
+    "vitest": "^4.1.10"
+  }
+}

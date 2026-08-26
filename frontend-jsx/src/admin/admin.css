@@ -1,0 +1,242 @@
+/*
+ * Founder console — one set of rules for every page.
+ *
+ * Written 5 Aug 2026 to replace inline styles that had drifted: eleven
+ * distinct font sizes (including 13.5px and 9.5px), card padding in three
+ * variants, and vertical gaps scattered across 14/16/20/22/26px. Each page
+ * had invented its own, so nothing lined up with anything else.
+ *
+ * Everything below is presentation only. No behaviour was touched.
+ */
+
+.admin {
+  /* Type — six steps, and nothing between them. */
+  --t-micro: 0.625rem;   /* 10px  mono labels, uppercase */
+  --t-sm:    0.8125rem;  /* 13px  secondary text, notes */
+  --t-base:  0.875rem;   /* 14px  body */
+  --t-md:    1rem;       /* 16px  emphasis, row titles */
+  --t-lg:    1.3125rem;  /* 21px  section headings */
+  --t-xl:    1.875rem;   /* 30px  page title */
+  --t-num:   2rem;       /* 32px  metric figures */
+
+  /* Space — a 4px base, used for every gap and every padding. */
+  --s1: 0.25rem;  --s2: 0.5rem;   --s3: 0.75rem;
+  --s4: 1rem;     --s5: 1.5rem;   --s6: 2rem;    --s7: 3rem;
+
+  --ink:    #f5ebd8;
+  --ink-2:  rgba(245, 235, 216, 0.72);
+  --ink-3:  rgba(245, 235, 216, 0.48);
+  --line:   rgba(245, 235, 216, 0.12);
+  --line-2: rgba(245, 235, 216, 0.22);
+  --surface: rgba(245, 235, 216, 0.045);
+  --field:  #1c1915;
+  --accent: #c98b2d;
+  --ok:     #7fbf6a;
+  --warn:   #e3a13c;
+  --err:    #e07a6a;
+
+  --radius: 10px;
+  --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Consolas, monospace;
+  --serif: 'Fraunces', Georgia, serif;
+}
+
+/* ── Page frame ─────────────────────────────────────────────── */
+
+/* One column, one rhythm. Sections space themselves; no page adds margins. */
+.a-page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--s6);
+  max-width: 68rem;
+}
+
+.a-head { display: flex; flex-direction: column; gap: var(--s2); }
+.a-head h1 {
+  font-family: var(--serif);
+  font-size: var(--t-xl);
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+.a-head p {
+  color: var(--ink-3);
+  font-size: var(--t-sm);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 60ch;
+}
+
+.a-section { display: flex; flex-direction: column; gap: var(--s3); }
+.a-section > h2 {
+  font-family: var(--serif);
+  font-size: var(--t-lg);
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: -0.005em;
+}
+.a-section > p.a-note {
+  color: var(--ink-3);
+  font-size: var(--t-sm);
+  line-height: 1.55;
+  margin: 0;
+  max-width: 62ch;
+}
+
+/* ── Surfaces ───────────────────────────────────────────────── */
+
+.a-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: var(--s4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--s2);
+  min-width: 0;
+}
+.a-card--tight { padding: var(--s3) var(--s4); }
+.a-card--accent { border-color: var(--accent); }
+
+/* ── Grids ──────────────────────────────────────────────────── */
+
+/* Metrics: equal columns that wrap cleanly, never a ragged last row. */
+.a-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+  gap: var(--s3);
+}
+.a-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  gap: var(--s3);
+}
+.a-stack { display: flex; flex-direction: column; gap: var(--s2); }
+.a-actions { display: flex; flex-wrap: wrap; gap: var(--s2); align-items: center; }
+
+/* ── Text roles ─────────────────────────────────────────────── */
+
+.a-label {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-3);
+  line-height: 1.4;
+}
+.a-num {
+  font-family: var(--serif);
+  font-size: var(--t-num);
+  line-height: 1.05;
+  font-variant-numeric: tabular-nums;
+}
+.a-num small { font-size: var(--t-md); color: var(--ink-3); }
+.a-meta {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  color: var(--ink-3);
+  line-height: 1.5;
+}
+.a-body { font-size: var(--t-base); line-height: 1.55; color: var(--ink-2); }
+.a-note { font-size: var(--t-sm); color: var(--ink-3); line-height: 1.55; }
+.a-title { font-size: var(--t-md); line-height: 1.35; }
+.a-serif { font-family: var(--serif); font-weight: 400; }
+
+.is-ok { color: var(--ok); }
+.is-warn { color: var(--warn); }
+.is-err { color: var(--err); }
+.is-muted { color: var(--ink-3); }
+
+/* ── A list row: label left, value right, aligned across every row ── */
+
+/*
+ * flex-direction is stated explicitly because .a-row is often combined with
+ * .a-card, which sets `column`. Without this the two fight: the row inherits
+ * `column`, and `justify-content: space-between` then pushes the label to the
+ * top of the box and the value to the bottom — a tall band of dead space
+ * between them instead of a compact line.
+ */
+.a-row {
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--s4);
+  flex-wrap: wrap;
+}
+.a-row__main { min-width: 0; flex: 1 1 16rem; display: flex; flex-direction: column; gap: var(--s1); }
+.a-row__side { display: flex; align-items: center; gap: var(--s2); flex-wrap: wrap; }
+
+/* ── Controls ───────────────────────────────────────────────── */
+
+.a-input,
+.a-select {
+  background: var(--field);
+  border: 1px solid var(--line-2);
+  border-radius: 8px;
+  color: var(--ink);
+  padding: var(--s2) var(--s3);
+  font-size: var(--t-base);
+  font-family: inherit;
+  width: 100%;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.a-input:focus-visible,
+.a-select:focus-visible { border-color: var(--accent); }
+.a-input::placeholder { color: var(--ink-3); }
+
+.a-field { display: flex; flex-direction: column; gap: var(--s1); min-width: 0; }
+
+.a-btn {
+  background: var(--accent);
+  color: #12100d;
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: var(--s2) var(--s4);
+  font-size: var(--t-sm);
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+  line-height: 1.4;
+  white-space: nowrap;
+  transition: filter 0.15s;
+}
+.a-btn:hover:not(:disabled) { filter: brightness(1.08); }
+.a-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+.a-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.a-btn--ghost { background: transparent; color: var(--ink); border-color: var(--line-2); }
+.a-btn--ghost:hover:not(:disabled) { border-color: var(--ink-3); filter: none; }
+.a-btn--go { background: var(--ok); }
+.a-btn--danger { background: transparent; color: var(--err); border-color: rgba(224, 122, 106, 0.4); }
+.a-btn--sm { padding: var(--s1) var(--s3); font-size: var(--t-sm); }
+
+.a-chip {
+  font-family: var(--mono);
+  font-size: var(--t-micro);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.15rem var(--s2);
+  border-radius: 4px;
+  border: 1px solid var(--line-2);
+  color: var(--ink-3);
+  white-space: nowrap;
+}
+.a-chip--ok { color: var(--ok); border-color: rgba(127, 191, 106, 0.4); }
+.a-chip--warn { color: var(--warn); border-color: rgba(227, 161, 60, 0.4); }
+
+/* ── Bar chart ──────────────────────────────────────────────── */
+
+.a-chart { display: flex; align-items: flex-end; gap: 3px; height: 5.5rem; }
+.a-chart__col { flex: 1; display: flex; flex-direction: column; align-items: center; gap: var(--s1); min-width: 0; }
+.a-chart__bar { width: 100%; min-height: 2px; background: var(--accent); border-radius: 3px 3px 0 0; opacity: 0.85; }
+.a-chart__tick { font-family: var(--mono); font-size: 9px; color: var(--ink-3); }
+
+/* ── Narrow screens ─────────────────────────────────────────── */
+
+@media (max-width: 40rem) {
+  .admin { --t-xl: 1.5rem; --t-num: 1.75rem; }
+  .a-page { gap: var(--s5); }
+  .a-row { gap: var(--s2); }
+}

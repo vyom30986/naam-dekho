@@ -1,0 +1,55 @@
+# Naam Dekho, repository root.
+#
+# There was no .gitignore here before the first commit. Without one, an
+# init at the root sweeps in about 327 MB of node_modules across three
+# packages, both dist folders, and every .env file including the one holding
+# the live API keys. Check `git status` after adding this and before the
+# first commit.
+
+# ── Dependencies ──────────────────────────────────────────────────────
+node_modules/
+.pnp
+.pnp.js
+
+# ── Build output ──────────────────────────────────────────────────────
+dist/
+build/
+*.tsbuildinfo
+
+# ── Secrets ───────────────────────────────────────────────────────────
+# backend/.env currently holds 28 real values, among them JWT_SECRET,
+# DATABASE_URL, GEMINI_API_KEY, ADMIN_API_PASSWORD, GITHUB_TOKEN and the R2
+# storage credentials. Committing it publishes all of them. The tracked
+# reference is backend/.env.example, which carries names and no values.
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
+
+# ── Editor and OS ─────────────────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
+# LibreOffice and Word write these beside an open document and delete them
+# on close. They are never worth committing.
+.~lock.*#
+~$*
+
+# ── Logs and scratch ──────────────────────────────────────────────────
+*.log
+npm-debug.log*
+yarn-error.log*
+*.tmp
+coverage/
+
+# ── Deliberately NOT ignored ──────────────────────────────────────────
+# frontend-jsx/public/ holds the 697 generated SEO pages plus sitemap.xml.
+# They are generated, but regenerating them needs a populated database:
+# `npm run build:names` against an empty one falls back to a 50 name corpus
+# and rewrites everything. Until the team has a database dump, those files
+# ARE the artefact, so they stay tracked.

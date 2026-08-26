@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#FAF8F3" />
+<title>Payment Terms — Naam Dekho</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Noto+Sans+Devanagari:wght@400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#FAF8F3; --bg-2:#F3EFE5; --ink:#0F1419; --ink-2:#3D4751; --ink-3:#6B7480;
+    --line:#E5DFD0; --line-2:#D8D0BC; --accent:#B8501C; --accent-2:#7A2E0E;
+    --ok-bg:#E7F2E9; --ok-ink:#1B5E20; --warn-bg:#FFF4D9; --warn-ink:#8A5A00;
+    --gold:#E8C76A;
+    --radius:14px; --radius-lg:18px;
+    --shadow-sm:0 1px 2px rgba(15,20,25,0.04), 0 4px 12px -4px rgba(15,20,25,0.06);
+    --shadow-md:0 1px 0 rgba(15,20,25,0.04), 0 12px 32px -16px rgba(15,20,25,0.12);
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter',ui-sans-serif,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+  body{background:radial-gradient(900px 500px at 80% -200px, rgba(184,80,28,0.05), transparent 60%), var(--bg);min-height:100vh}
+  a{color:inherit;text-decoration:none}
+  .container{max-width:1180px;margin:0 auto;padding:0 24px}
+
+  /* Nav */
+  nav.topnav{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--line);position:sticky;top:0;background:rgba(250,248,243,0.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:50}
+  .logo{display:flex;align-items:center;gap:12px}
+  .logo-mark{width:34px;height:34px;border-radius:10px;background:linear-gradient(135deg,var(--accent) 0%,var(--accent-2) 100%);display:grid;place-items:center;color:#fff;font-family:'Noto Sans Devanagari',serif;font-weight:600;font-size:17px}
+  .logo-text{display:flex;flex-direction:column;line-height:1}
+  .logo-text .name{font-family:'Fraunces',serif;font-weight:500;font-size:20px;letter-spacing:-0.02em}
+  .logo-text .name em{font-style:italic;color:var(--accent);font-weight:500}
+  .logo-text .deva{font-family:'Noto Sans Devanagari',serif;font-size:11px;color:var(--ink-3);margin-top:2px}
+  .nav-right{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--ink-2)}
+  .nav-right a.nav-link{padding:8px 14px;border-radius:8px;font-weight:500;transition:background .15s}
+  .nav-right a.nav-link:hover{background:var(--bg-2)}
+  .nav-cta{padding:10px 18px;border:1px solid var(--ink);border-radius:999px;background:var(--ink);color:var(--bg);font-weight:500;font-size:13px}
+
+  /* Hero */
+  .page-hero{padding:56px 0 28px;text-align:center;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--accent);text-transform:uppercase;letter-spacing:0.14em;margin-bottom:14px}
+  h1.page-title{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(32px,4.5vw,52px);line-height:1.05;letter-spacing:-0.025em;margin:0 0 14px;max-width:880px;margin-left:auto;margin-right:auto}
+  h1.page-title em{font-style:italic;color:var(--accent)}
+  .page-sub{font-size:15px;color:var(--ink-2);max-width:640px;margin:0 auto;line-height:1.65}
+  .effective-date{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.1em;margin-top:14px}
+
+  /* Policy tab strip — links to other pages */
+  .policy-tabs-wrap{position:sticky;top:75px;background:rgba(250,248,243,0.96);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:30;padding:18px 0;border-bottom:1px solid var(--line)}
+  .policy-tabs{display:flex;gap:8px;overflow-x:auto;scrollbar-width:none}
+  .policy-tabs::-webkit-scrollbar{display:none}
+  .policy-tab{
+    padding:11px 18px;border-radius:12px;background:#fff;border:1px solid var(--line);
+    font-weight:500;font-size:13.5px;color:var(--ink-2);cursor:pointer;display:inline-flex;align-items:center;gap:8px;
+    box-shadow:var(--shadow-sm);transition:all .2s;white-space:nowrap;flex-shrink:0;font-family:inherit;text-decoration:none;
+  }
+  .policy-tab:hover{border-color:var(--ink-3);transform:translateY(-1px);color:var(--ink)}
+  .policy-tab.active{background:var(--ink);color:#FAF8F3;border-color:var(--ink);box-shadow:0 4px 14px -4px rgba(15,20,25,0.3)}
+  .policy-tab .num{font-family:'JetBrains Mono',monospace;font-size:10px;background:var(--bg-2);padding:3px 7px;border-radius:5px;color:var(--ink-3)}
+  .policy-tab.active .num{background:rgba(255,255,255,0.15);color:#FAF8F3}
+
+  /* Content */
+  .policy-section{padding:48px 0 64px}
+  .policy-layout{display:grid;grid-template-columns:240px 1fr;gap:48px;align-items:flex-start}
+
+  /* Sidebar */
+  .policy-toc{position:sticky;top:160px;font-size:13px;line-height:1.7}
+  .policy-toc h4{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3);margin:0 0 10px}
+  .policy-toc a{display:block;color:var(--ink-3);padding:5px 10px;border-radius:6px;margin-bottom:2px;transition:all .15s;border-left:2px solid transparent}
+  .policy-toc a:hover{color:var(--ink);background:var(--bg-2)}
+  .policy-toc a.current{color:var(--accent);background:var(--bg-2);border-left-color:var(--accent);font-weight:500}
+
+  /* Body */
+  .policy-body{max-width:780px}
+  .policy-body h2{font-family:'Fraunces',serif;font-weight:500;font-size:clamp(24px,3vw,32px);letter-spacing:-0.02em;margin:0 0 18px;line-height:1.2;scroll-margin-top:200px}
+  .policy-body h3{font-family:'Fraunces',serif;font-weight:500;font-size:22px;margin:42px 0 12px;line-height:1.25;scroll-margin-top:200px}
+  .policy-body h4{font-family:'Fraunces',serif;font-weight:500;font-size:18px;margin:28px 0 10px;line-height:1.25;color:var(--ink-2)}
+  .policy-body p{font-size:15.5px;line-height:1.75;color:var(--ink-2);margin:0 0 14px}
+  .policy-body p b, .policy-body li b{color:var(--ink);font-weight:600}
+  .policy-body ul{margin:6px 0 18px;padding-left:0;list-style:none}
+  .policy-body ul li{font-size:15px;line-height:1.7;color:var(--ink-2);margin:0 0 10px;padding-left:24px;position:relative}
+  .policy-body ul li::before{content:"";position:absolute;left:6px;top:11px;width:6px;height:6px;border-radius:50%;background:var(--accent)}
+  .policy-body ol{margin:6px 0 18px;padding-left:24px}
+  .policy-body ol li{font-size:15px;line-height:1.7;color:var(--ink-2);margin:0 0 10px}
+
+  /* Tables */
+  .policy-body table{width:100%;border-collapse:collapse;margin:18px 0 28px;font-size:13.5px;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+  .policy-body th{background:var(--ink);color:#FAF8F3;text-align:left;padding:12px 14px;font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;font-family:'JetBrains Mono',monospace}
+  .policy-body td{padding:12px 14px;border-top:1px solid var(--line);color:var(--ink-2);vertical-align:top;line-height:1.55}
+  .policy-body td b{color:var(--ink);font-weight:500}
+
+  /* Callout */
+  .callout{background:var(--warn-bg);border-left:4px solid var(--accent);padding:18px 22px;border-radius:0 12px 12px 0;margin:22px 0}
+  .callout-title{font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:var(--accent);margin:0 0 6px;display:flex;align-items:center;gap:8px}
+  .callout p{font-size:14.5px;color:var(--ink);margin:0;line-height:1.65}
+
+  /* Plain-language summary */
+  .plain-summary{background:var(--ok-bg);border:1px solid var(--ok-ink);border-radius:12px;padding:16px 20px;margin:18px 0}
+  .plain-summary .label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ok-ink);font-weight:600;margin-bottom:6px}
+  .plain-summary p{margin:0;color:var(--ok-ink);font-size:14.5px;line-height:1.6}
+
+  /* Next-prev navigation */
+  .policy-nav-bottom{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:48px 0 0;padding-top:32px;border-top:1px solid var(--line)}
+  .policy-nav-bottom a{padding:18px 22px;background:#fff;border:1px solid var(--line);border-radius:14px;transition:all .2s;display:flex;flex-direction:column;gap:4px}
+  .policy-nav-bottom a:hover{border-color:var(--ink-3);transform:translateY(-2px);box-shadow:var(--shadow-md)}
+  .policy-nav-bottom .label{font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:0.1em;color:var(--ink-3)}
+  .policy-nav-bottom .name{font-family:'Fraunces',serif;font-weight:500;font-size:18px;color:var(--ink)}
+  .policy-nav-bottom .next{text-align:right}
+
+  /* Footer */
+  .site-footer{background:#0F1419;color:#C5B58A;padding:48px 0 24px;margin-top:40px}
+  .footer-grid{display:grid;grid-template-columns:1.8fr 1fr 1fr 1fr;gap:36px;padding-bottom:32px;border-bottom:1px solid rgba(245,235,216,0.1)}
+  .footer-brand .logo-text .name{color:#F5EBD8}
+  .footer-brand .logo-text .name em{color:var(--gold)}
+  .footer-brand .logo-text .deva{color:#8A7E5E}
+  .footer-tagline{font-size:13px;color:#8A9099;max-width:340px;margin:16px 0 0;line-height:1.6}
+  .footer-col h4{font-family:'Fraunces',serif;font-size:14px;font-weight:500;color:#F5EBD8;margin:0 0 12px}
+  .footer-col a{display:block;color:#8A9099;font-size:13px;padding:4px 0;transition:color .15s}
+  .footer-col a:hover{color:var(--gold)}
+  .footer-bottom{padding-top:20px;font-size:11px;color:#6B7480;font-family:'JetBrains Mono',monospace;text-align:center}
+
+  /* Responsive */
+  @media (max-width: 1024px){
+    .policy-layout{grid-template-columns:1fr}
+    .policy-toc{position:static;display:none}
+    .footer-grid{grid-template-columns:1fr 1fr}
+  }
+  @media (max-width: 760px){
+    .container{padding:0 18px}
+    .nav-right .nav-link{display:none}
+    .page-hero{padding:36px 0 24px}
+    .policy-tabs-wrap{top:69px;padding:14px 0}
+    .policy-tabs{margin:0 -18px;padding:0 18px}
+    .policy-tab{padding:10px 14px;font-size:13px}
+    .policy-section{padding:32px 0 48px}
+    .policy-body h2{font-size:24px}
+    .policy-body h3{font-size:18px;margin:32px 0 10px}
+    .policy-body p, .policy-body ul li, .policy-body ol li{font-size:14.5px}
+    .policy-body table{font-size:12px}
+    .policy-body th, .policy-body td{padding:8px 10px}
+    .policy-nav-bottom{grid-template-columns:1fr;gap:10px}
+    .policy-nav-bottom .next{text-align:left}
+    .footer-grid{grid-template-columns:1fr;gap:24px}
+  }
+</style>
+</head>
+<body>
+
+
+<nav class="topnav">
+  <div class="container" style="display:contents">
+    <a href="index.html" class="logo">
+      <span class="logo-mark">ना</span>
+      <span class="logo-text">
+        <span class="name">Naam <em>Dekho</em></span>
+        <span class="deva">नाम देखो</span>
+      </span>
+    </a>
+    <div class="nav-right">
+      <a href="how-it-works.html" class="nav-link">How it works</a>
+      <a href="pricing.html" class="nav-link">Pricing</a>
+      <a href="pricing.html#agencies" class="nav-link">For agencies</a>
+      <a href="sign-in.html" class="nav-cta">Sign in</a>
+    </div>
+  </div>
+</nav>
+
+
+<header class="page-hero">
+  <div class="container">
+    <div class="eyebrow">— Legal</div>
+    <h1 class="page-title">Our <em>Payment Terms</em>.</h1>
+    <p class="page-sub">Razorpay (primary) and Paytm (fallback), supported methods, GST invoicing, transaction security, failed-transaction handling, and subscription billing.</p>
+    <div class="effective-date">Effective date — 15 May 2026  ·  Version 1.0</div>
+  </div>
+</header>
+
+
+<div class="policy-tabs-wrap">
+  <div class="container">
+    <div class="policy-tabs" role="tablist">
+      <a href="privacy.html" class="policy-tab"><span class="num">1</span>Privacy Policy</a><a href="terms.html" class="policy-tab"><span class="num">2</span>Terms of Use</a><a href="cookies.html" class="policy-tab"><span class="num">3</span>Cookies Policy</a><a href="cancellation-refund.html" class="policy-tab"><span class="num">4</span>Cancellation & Refund</a><a href="payment-terms.html" class="policy-tab active"><span class="num">5</span>Payment Terms</a>
+    </div>
+  </div>
+</div>
+
+
+<section class="policy-section">
+  <div class="container policy-layout">
+    <aside class="policy-toc">
+      <h4>On this page</h4>
+      <a href="#gateways" class="toc-link current">Payment gateways</a><a href="#methods" class="toc-link">Supported methods</a><a href="#currency" class="toc-link">Currency, GST, invoicing</a><a href="#security" class="toc-link">Transaction security</a><a href="#failed" class="toc-link">Failed transactions</a><a href="#fallback" class="toc-link">Fallback switching</a><a href="#subscription" class="toc-link">Subscription billing</a><a href="#cancellation-link" class="toc-link">Cancellation & refunds</a>
+    </aside>
+    <div class="policy-body">
+      
+<h2 id="gateways">5. Payment Terms — Razorpay & Paytm</h2>
+<p>All payments on the Platform are processed by third-party payment gateways. We do not handle, hold or store any payment-instrument data save the transaction metadata returned by the gateway.</p>
+<ul>
+  <li><b>Primary gateway: Razorpay</b> (Razorpay Software Private Limited) — a Payment Aggregator licensed by the Reserve Bank of India under the Guidelines on Regulation of Payment Aggregators and Payment Gateways dated 17 March 2020.</li>
+  <li><b>Fallback gateway: Paytm Payment Services Private Limited</b> — also an RBI-licensed Payment Aggregator. The fallback is invoked automatically when the primary is unavailable, returns an unrecoverable error, or rejects your instrument.</li>
+  <li>You will be informed on the checkout page which gateway is being used. You may refresh the page to retry on the primary gateway.</li>
+</ul>
+
+<h3 id="methods">Supported payment methods</h3>
+<ul>
+  <li><b>UPI</b> — PhonePe, Google Pay, Paytm, Cred, any UPI-enabled app</li>
+  <li><b>Debit and credit cards</b> — Visa, Mastercard, Maestro, RuPay, AmEx (subject to issuing-bank approval)</li>
+  <li><b>Net Banking</b> from 50+ Indian banks</li>
+  <li><b>Wallets</b> — Paytm Wallet, PhonePe Wallet, Mobikwik, Amazon Pay</li>
+  <li><b>EMI</b> on supported credit cards (for amounts above ₹2,000)</li>
+  <li><b>International cards</b> for users transacting from outside India — subject to gateway support and applicable currency-conversion margins charged by your bank</li>
+</ul>
+
+<h3 id="currency">Currency, GST and invoicing</h3>
+<ul>
+  <li>All prices in <b>Indian Rupees (₹ / INR)</b>, inclusive of GST at the applicable rate.</li>
+  <li>For user-supplied Indian GSTIN, a CGST-Rules-2017-compliant invoice (Form GST INV-1) is generated and emailed within 5 minutes of successful payment.</li>
+  <li>For users without a GSTIN, a Bill of Supply or B2C tax invoice is generated.</li>
+  <li>Invoices accessible from your account dashboard for <b>8 years</b> from payment, per CGST Act §36.</li>
+  <li>Where you are established outside India and the supply qualifies as export of services under IGST Act §2(6), GST is charged at <b>0%</b> subject to §16 conditions.</li>
+</ul>
+
+<h3 id="security">Transaction security</h3>
+<ul>
+  <li>All payment transactions over <b>TLS 1.2 or higher</b>, with end-to-end encryption between your browser, the gateway and your card-issuing bank.</li>
+  <li>Card data (PAN, CVV, expiry) is <b>never transmitted to or stored by us</b>. The gateway tokenises the card and provides only a transaction reference.</li>
+  <li>Three-Domain-Secure (<b>3DS</b>) authentication is mandatorily invoked for all Indian-card transactions per RBI directions.</li>
+  <li>For UPI transactions, two-factor authentication via your UPI PIN is mandatory.</li>
+</ul>
+
+<h3 id="failed">Failed transactions</h3>
+<ul>
+  <li>A transaction may fail for many reasons — insufficient funds, expired card, mismatched details, bank-side outage, exceeded daily limit, gateway timeout.</li>
+  <li>Where it fails <b>before debit</b>, no further action required.</li>
+  <li>Where it fails <b>after debit</b>, the amount is auto-reversed by the gateway within 3–7 working days. No action required from you.</li>
+  <li>If reversal has not occurred within 7 working days, write to <a href="mailto:support@naamdekho.in" style="color:var(--accent)">support@naamdekho.in</a>.</li>
+</ul>
+
+<h3 id="fallback">Fallback gateway switching — Razorpay → Paytm</h3>
+<ul>
+  <li>We continuously monitor Razorpay's health and response-time. Upon detection of degraded availability (<b>error rate > 5% over a 5-minute window, or median response > 10 seconds</b>), new checkout sessions automatically switch to Paytm.</li>
+  <li>You are informed of the gateway at checkout. Pending transactions on the primary gateway are not migrated — they complete or auto-reverse normally.</li>
+  <li>After <b>30 minutes</b> of stable primary-gateway operation, new sessions revert to the primary.</li>
+  <li>In the rare event both gateways are simultaneously unavailable, the Platform displays a notice and does not levy any charge.</li>
+</ul>
+
+<h3 id="subscription">Subscription billing — Founder Pro & Agency</h3>
+<ul>
+  <li>Recurring subscriptions billed in advance monthly (or as set out in the MSA for Agency Tier).</li>
+  <li>Auto-renewal is enabled by default at sign-up. You may disable it any time from the dashboard.</li>
+  <li>Failed renewals are retried up to 3 times over 5 days. If all retries fail, the subscription is suspended and you are notified by email.</li>
+  <li>Our recurring-billing mandate is established with the gateway in accordance with RBI directions on e-mandate processing dated 16 August 2019, as amended.</li>
+</ul>
+
+<h3 id="cancellation-link">Cancellation, refunds and chargebacks</h3>
+<p>For the rules and process governing cancellations, refunds, double-debits, chargebacks and disputed transactions, see the <a href="cancellation-refund.html" style="color:var(--accent)">Cancellation & Refund Policy</a>.</p>
+
+      <div class="policy-nav-bottom"><a href="cancellation-refund.html"><span class="label">← Previous</span><span class="name">Cancellation & Refund</span></a><span></span></div>
+    </div>
+  </div>
+</section>
+
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-brand">
+      <a href="index.html" class="logo">
+        <span class="logo-mark">ना</span>
+        <span class="logo-text">
+          <span class="name">Naam <em>Dekho</em></span>
+          <span class="deva">नाम देखो</span>
+        </span>
+      </a>
+      <p class="footer-tagline">India's first all-in-one name verification platform. From boardroom to baby cot — one search, every check that matters.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Product</h4>
+      <a href="index.html">Home</a>
+      <a href="how-it-works.html">How it works</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="sign-in.html">Sign in</a>
+    </div>
+    <div class="footer-col">
+      <h4>Legal</h4>
+      <a href="privacy.html">Privacy policy</a>
+      <a href="terms.html">Terms of use</a>
+      <a href="cookies.html">Cookies policy</a>
+      <a href="cancellation-refund.html">Cancellation & refund</a>
+      <a href="payment-terms.html">Payment terms</a>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <a href="mailto:hello@naamdekho.in">hello@naamdekho.in</a>
+      <a href="mailto:support@naamdekho.in">support@naamdekho.in</a>
+      <a href="mailto:refunds@naamdekho.in">refunds@naamdekho.in</a>
+      <a href="mailto:grievance@naamdekho.in">grievance@naamdekho.in</a>
+    </div>
+  </div>
+  <div class="container footer-bottom">© 2026 Naam Dekho Technologies Pvt Ltd · नाम देखो · All rights reserved</div>
+</footer>
+
+
+<script>
+  // Active anchor in side TOC as user scrolls
+  const allTocLinks = document.querySelectorAll('.toc-link');
+  const allHeadings = document.querySelectorAll('.policy-body h2, .policy-body h3');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.target.id) {
+        const id = e.target.id;
+        allTocLinks.forEach(l => l.classList.toggle('current', l.getAttribute('href') === '#' + id));
+      }
+    });
+  }, { rootMargin: '-180px 0px -70% 0px' });
+  allHeadings.forEach(h => h.id && observer.observe(h));
+</script>
+
+</body>
+</html>

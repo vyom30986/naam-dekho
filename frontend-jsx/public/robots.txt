@@ -1,0 +1,8 @@
+# Naam Dekho
+User-agent: *
+Disallow: /account
+Disallow: /sign-in
+Disallow: /admin
+Allow: /
+
+Sitemap: https://naamdekho.net/sitemap.xml

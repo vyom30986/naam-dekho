@@ -1,0 +1,13 @@
+-- The Devanagari spelling a Hindi reader would actually write (23 Aug 2026).
+--
+-- Roman spelling does not record vowel length, so it cannot be transliterated
+-- back reliably: our engine renders Rahul as रहुल rather than राहुल, Ram as
+-- रम rather than राम, and Kiran as किरन rather than किरण. Measured against
+-- verified spellings, 63% of the 486 names came out wrong that way — and the
+-- wrong form was printing on the name pages, the new keyword clusters and the
+-- keepsake certificate a family frames.
+--
+-- This column is the lexicon that fixes it for the names we publish. A name a
+-- customer types that is not in the corpus still falls back to transliteration,
+-- which is the best that can be done without an entry for it.
+ALTER TABLE "corpus_names" ADD COLUMN IF NOT EXISTS "native_spelling" text;
