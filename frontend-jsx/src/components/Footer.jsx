@@ -52,6 +52,31 @@ export default function Footer() {
           <Link to="/pricing?audience=agency">CA &amp; legal firms</Link>
         </div>
 
+        {/*
+          * The static SEO cluster — 697 generated pages under public/.
+          *
+          * Plain <a>, never <Link>. These files sit outside the SPA; a
+          * client-side navigation hands the path to the router, which has no
+          * matching route and sends the visitor to the catch-all redirect
+          * back home.
+          *
+          * Until this column existed the 697 pages were orphans: named in
+          * sitemap.xml and linked from nowhere on the site. A sitemap entry
+          * alone is the weakest discovery signal there is, and it passes no
+          * internal link equity at all. This is the path in.
+          */}
+        <div className="footer-col footer-explore">
+          <h4>Explore</h4>
+          <a href="/explore/">Everything we publish</a>
+          <a href="/n/">Baby names A–Z</a>
+          <a href="/numerology/">Chaldean numerology</a>
+          <a href="/nakshatra/">All 27 nakshatras</a>
+          <a href="/rashi/">The 12 rashis</a>
+          <a href="/trademark-class/">45 trademark classes</a>
+          <a href="/domains/">Domain prices in India</a>
+          <a href="/script/">Your name in 9 scripts</a>
+        </div>
+
         <div className="footer-col">
           <h4>Legal</h4>
           <Link to="/privacy">Privacy policy</Link>

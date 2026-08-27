@@ -43,6 +43,7 @@ const LINKS = [
   ['/admin/api', 'API keys', false],
   ['/admin/audit', 'Audit log', false],
   ['/admin/test', 'Test menu', false],
+  ['/admin/legal', 'Legal pages', false],
   // Last on purpose. It is opened a few times a year, and it is the one
   // screen where a mis-click changes who can read the customers' data.
   ['/admin/access', 'Admin access', false],

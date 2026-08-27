@@ -17,6 +17,7 @@ import AdminAudit from './admin/AuditPage.jsx'
 import AdminTest from './admin/TestPage.jsx'
 import AdminApi from './admin/ApiPage.jsx'
 import AdminAccess from './admin/AccessPage.jsx'
+import AdminLegal from './admin/LegalPage.jsx'
 
 export default function App() {
   return (
@@ -53,6 +54,7 @@ export default function App() {
         <Route path='api' element={<AdminApi />} />
         <Route path='audit' element={<AdminAudit />} />
         <Route path='test' element={<AdminTest />} />
+        <Route path='legal' element={<AdminLegal />} />
         <Route path='access' element={<AdminAccess />} />
       </Route>
 

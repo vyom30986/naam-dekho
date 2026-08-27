@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { Link, useSearchParams, useNavigate } from 'react-router-dom'
 import BrandLogo from '../components/BrandLogo.jsx'
 import { renderGoogleButton } from '../lib/googleSignIn.js'
+import { refreshMe } from '../lib/useMe.js'
 
 const INTENT_BANNERS = {
   'deep-scan':  <>After signing in, your <b>₹50 Deep Search</b> will be ready to launch.</>,
@@ -44,10 +45,29 @@ export default function SignIn() {
       if (!res.ok) throw new Error('Google could not sign you in. Please try again.')
       const data = await res.json()
       localStorage.setItem('nd_token', data.id_token)
+      /* useMe caches the account in a module-level singleton. Arriving here
+         signed out already resolved that cache to null, and navigate() below
+         is a client-side route change, so nothing re-reads it: the nav went
+         on saying "Sign in", the token balance stayed hidden and the Console
+         link never appeared, until a hard refresh rebuilt the module. The
+         one moment the answer is guaranteed to have changed is right here,
+         so this is where the cache has to be told. */
+      await refreshMe()
       setStep(2)
       setTimeout(() => navigate(intent === 'deep-scan' ? '/' : '/account'), 1200)
     } catch (e) {
-      setError(e.message || 'Something went wrong. Please try again.')
+      /* fetch() rejects with a TypeError when the request never left the
+         browser at all — the API is down, the machine is offline, or CORS
+         refused it. Chrome words that as "Failed to fetch", which is what a
+         customer was being shown on the sign-in screen: an error naming a
+         browser API, offering no way forward. The errors thrown above are
+         ours and already read as sentences, so only the network case needs
+         translating. */
+      setError(
+        e instanceof TypeError
+          ? 'Cannot reach Naam Dekho right now. Please check your internet connection and try again.'
+          : e.message || 'Something went wrong. Please try again.',
+      )
     } finally {
       setLoading(false)
     }

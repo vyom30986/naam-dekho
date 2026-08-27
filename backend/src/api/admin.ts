@@ -6,6 +6,19 @@ import { eq, sql } from "drizzle-orm";
 import { db } from "../db/index.js";
 import { users, scans, auditLog, corpusNames, adminGrants } from "../db/schema.js";
 import { stackHealth, devUserGet } from "../lib/devstack.js";
+import {
+  LEGAL_SLUGS,
+  LEGAL_LABELS,
+  isLegalSlug,
+  legalDocSchema,
+  legalDocProblems,
+  getAllLegalRows,
+  getLegalRow,
+  saveLegalDraft,
+  publishLegal,
+  discardLegalDraft,
+  revertLegalToBundled,
+} from "../lib/legalDocs.js";
 import { grantTokens } from "../lib/tokens.js";
 import {
   MANAGED_KEYS, maskKey, checkApiPassword, issueUnlock, verifyUnlock,
@@ -97,17 +110,42 @@ async function grantedAdminEmails(): Promise<string[]> {
 }
 
 /**
- * A cheap, possibly-stale answer for the UI only.
+ * Owner-only, synchronous, environment-only.
  *
- * /v1/me calls this to decide whether to show the console link, and it is
- * synchronous because its four call sites are. It reads the environment alone,
- * so a delegated admin does not get the link offered automatically. That is a
- * missing convenience, not a missing permission: /admin still lets them in, and
- * the real check on every admin route is requireAdmin below, which does hit the
- * database. Authorisation is never decided here.
+ * Used where the answer must not depend on a database read: previewing draft
+ * pricing, and re-verifying identity before an API password change. Both are
+ * permissions rather than hints, so widening them to delegated admins is a
+ * deliberate decision, not something to inherit by accident.
+ *
+ * For "should this person see the console link", use isConsoleUser below.
  */
 export function isAdminIdentity(...identities: (string | null | undefined)[]): boolean {
   return isOwnerIdentity(...identities);
+}
+
+/**
+ * Can this identity actually use the console?
+ *
+ * True for owners, and for anyone granted access from inside the console. This
+ * is the same question requireAdmin answers on every admin route, and /v1/me
+ * needs the same answer so the Console link is offered to exactly the people
+ * the server will let in.
+ *
+ * It used to be owner-only and synchronous, which meant a delegated admin was
+ * admitted by /admin but never shown the way to it — they had to know to type
+ * the URL. Granting somebody access from a screen built for granting access
+ * and then hiding the door from them is not a convenience worth keeping.
+ *
+ * Read fresh every time, never cached: a revoked grant has to stop offering
+ * the link on the next request, not when a cache decides to expire.
+ */
+export async function isConsoleUser(
+  ...identities: (string | null | undefined)[]
+): Promise<boolean> {
+  if (isOwnerIdentity(...identities)) return true;
+  const granted = await grantedAdminEmails();
+  if (granted.length === 0) return false;
+  return identities.some((i) => !!i && granted.includes(i.toLowerCase()));
 }
 
 type AdminGate =
@@ -356,6 +394,103 @@ export default async function adminRoutes(app: FastifyInstance) {
     await discardPricingDraft(gate.actor);
     return reply.send({ discarded: true });
   });
+
+  // ── Legal documents ───────────────────────────────
+  //
+  // Same draft → publish → discard shape as pricing above. The extra verb is
+  // "revert", which drops the override entirely and returns the page to the
+  // document that shipped with the build: the safe way out of a bad edit to
+  // a policy, without retyping it from memory under pressure.
+  app.get("/admin/legal", async (req, reply) => {
+    const gate = await requireAdmin(req);
+    if (!gate.ok) return reply.code(gate.code).send({ error: gate.error });
+    const rows = await getAllLegalRows();
+    return reply.send({
+      documents: LEGAL_SLUGS.map((slug) => ({
+        slug,
+        label: LEGAL_LABELS[slug],
+        edited: rows[slug].published !== null,
+        has_draft: rows[slug].draft !== null,
+        updated_at: rows[slug].updatedAt,
+        updated_by: rows[slug].updatedBy,
+      })),
+    });
+  });
+
+  app.get<{ Params: { slug: string } }>("/admin/legal/:slug", async (req, reply) => {
+    const gate = await requireAdmin(req);
+    if (!gate.ok) return reply.code(gate.code).send({ error: gate.error });
+    const { slug } = req.params;
+    if (!isLegalSlug(slug)) return reply.code(404).send({ error: "unknown_document" });
+    const row = await getLegalRow(slug);
+    return reply.send({
+      slug,
+      label: LEGAL_LABELS[slug],
+      published: row.published,
+      draft: row.draft,
+      updated_at: row.updatedAt,
+      updated_by: row.updatedBy,
+    });
+  });
+
+  app.put<{ Params: { slug: string } }>("/admin/legal/:slug/draft", async (req, reply) => {
+    const gate = await requireAdmin(req);
+    if (!gate.ok) return reply.code(gate.code).send({ error: gate.error });
+    const { slug } = req.params;
+    if (!isLegalSlug(slug)) return reply.code(404).send({ error: "unknown_document" });
+
+    const body = legalDocSchema.safeParse(req.body);
+    if (!body.success) {
+      return reply.code(400).send({ error: "invalid_document", detail: body.error.issues });
+    }
+
+    const saved = await saveLegalDraft(slug, body.data, gate.actor);
+    await audit(gate.actor, "legal.draft", "legal:" + slug, null, saved);
+    // Answering with the stored copy rather than the submitted one means the
+    // editor shows exactly what was kept after sanitising, never a version
+    // that only exists in the browser.
+    return reply.send({ saved: true, draft: saved, problems: legalDocProblems(saved) });
+  });
+
+  app.post<{ Params: { slug: string } }>("/admin/legal/:slug/publish", async (req, reply) => {
+    const gate = await requireAdmin(req);
+    if (!gate.ok) return reply.code(gate.code).send({ error: gate.error });
+    const { slug } = req.params;
+    if (!isLegalSlug(slug)) return reply.code(404).send({ error: "unknown_document" });
+
+    try {
+      const result = await publishLegal(slug, gate.actor);
+      if (!result) return reply.code(409).send({ error: "no_draft_to_publish" });
+      await audit(gate.actor, "legal.publish", "legal:" + slug, result.before, result.after);
+      return reply.send({ published: true, document: result.after });
+    } catch (err) {
+      const problems = (err as { problems?: string[] }).problems;
+      if (problems) return reply.code(422).send({ error: "not_publishable", problems });
+      throw err;
+    }
+  });
+
+  app.post<{ Params: { slug: string } }>("/admin/legal/:slug/discard", async (req, reply) => {
+    const gate = await requireAdmin(req);
+    if (!gate.ok) return reply.code(gate.code).send({ error: gate.error });
+    const { slug } = req.params;
+    if (!isLegalSlug(slug)) return reply.code(404).send({ error: "unknown_document" });
+    const before = (await getLegalRow(slug)).draft;
+    if (before) await audit(gate.actor, "legal.discard", "legal:" + slug, before, null);
+    await discardLegalDraft(slug, gate.actor);
+    return reply.send({ discarded: true });
+  });
+
+  app.post<{ Params: { slug: string } }>("/admin/legal/:slug/revert", async (req, reply) => {
+    const gate = await requireAdmin(req);
+    if (!gate.ok) return reply.code(gate.code).send({ error: gate.error });
+    const { slug } = req.params;
+    if (!isLegalSlug(slug)) return reply.code(404).send({ error: "unknown_document" });
+    const before = await revertLegalToBundled(slug, gate.actor);
+    await audit(gate.actor, "legal.revert", "legal:" + slug, before, null);
+    return reply.send({ reverted: true });
+  });
+
 
   // ── Check toggles ────────────────────────────────────────────
   app.get("/admin/scanners", async (req, reply) => {

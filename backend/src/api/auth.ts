@@ -8,7 +8,7 @@ import { users, scans } from "../db/schema.js";
 import { stackHealth, devUserGet } from "../lib/devstack.js";
 import { signInWithGoogle, isGoogleConfigured } from "../auth/google.js";
 import { affords, refreshPricing, currentPricing } from "../lib/tokens.js";
-import { isAdminIdentity } from "./admin.js";
+import { isConsoleUser } from "./admin.js";
 
 export default async function authRoutes(app: FastifyInstance) {
   // ─────────────────────────────────────────────────────────────
@@ -63,7 +63,7 @@ export default async function authRoutes(app: FastifyInstance) {
         email: u.email ?? null,
         // So the nav can show a console link to the founder instead of making
         // them remember the /admin URL.
-        is_admin: isAdminIdentity(u.email, u.phone),
+        is_admin: await isConsoleUser(u.email, u.phone),
         tokens: {
           balance: u.tokens,
           affords: affords(u.tokens),
@@ -87,7 +87,7 @@ export default async function authRoutes(app: FastifyInstance) {
       id: u.id,
       phone: u.phone,
       email: u.email ?? null,
-      is_admin: isAdminIdentity(u.email, u.phone),
+      is_admin: await isConsoleUser(u.email, u.phone),
       tokens: {
         balance: u.tokens,
         affords: affords(u.tokens),

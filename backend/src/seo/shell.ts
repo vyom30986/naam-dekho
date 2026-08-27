@@ -168,7 +168,15 @@ export function renderSeoPage({
 <meta property="og:title" content="${esc(title)}" />
 <meta property="og:description" content="${esc(metaDesc)}" />
 <meta property="og:url" content="${url}" />
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" content="Naam Dekho" />
+<meta property="og:locale" content="en_IN" />
+<meta property="og:image" content="${siteOrigin}/og.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="${esc(title)}" />
+<meta name="twitter:description" content="${esc(metaDesc)}" />
+<meta name="twitter:image" content="${siteOrigin}/og.png" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 ${FONT_LINKS}
 ${ld}

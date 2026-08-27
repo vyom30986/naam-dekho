@@ -259,22 +259,25 @@ boot, and it currently fails. See troubleshooting.
 
 ## 9. Load the name corpus
 
-The migration creates `corpus_names` empty. The real content is not in the
-repository: 536 published names, of which 260 carry a meaning that the public
-pages print and 210 carry a verified Devanagari spelling, live only in the
-founder database.
-
-**Ask for a `pg_dump` before you need it.** There is no seed script, and there
-is no exported copy anywhere in the tree.
-
-Restoring depends on the dump format, so check what you were sent first. For a
-plain SQL dump:
+The migration creates `corpus_names` empty. Fill it:
 
 ```bash
-docker exec -i naamdekho-postgres psql -U naamdekho -d naamdekho < naamdekho.sql
+npm run db:seed
 ```
 
-For a custom format dump, use `pg_restore` against the same container.
+That loads `backend/seed/corpus_names.sql` — 536 published names, 519
+carrying a meaning that the public pages print, and 210 carrying a
+Devanagari spelling that was verified rather than transliterated. It is
+safe to re-run: every row upserts on the slug, so a second run refreshes
+the corpus rather than failing, and no other table is touched.
+
+This is the one piece of project data that cannot be regenerated from the
+code, which is why it ships in the repository rather than being something
+you have to ask for. It contains no customer data — names, meanings and
+citations only.
+
+Verified on 27 August 2026: `db:migrate` then `db:seed` twice, against a
+scratch database created from nothing, gives 536 / 519 / 210 both times.
 
 The other route in is `POST /v1/admin/corpus/import`, which takes up to 1000
 entries at a time and upserts them by slug. It requires you to be signed in with
@@ -399,6 +402,7 @@ currently work are marked.
 | `npm start` | Runs the compiled `dist/server.js` |
 | `npm run start:worker` | Runs the compiled worker |
 | `npm run db:migrate` | Applies `backend/drizzle/*.sql`. Works. |
+| `npm run db:seed` | Loads the 536-name corpus. Safe to re-run. Works. |
 | `npm run db:generate` | **Broken locally.** drizzle-kit fails with an esbuild spawn error. |
 | `npm run db:studio` | drizzle-kit studio. Same tool as above, so expect the same failure. Unverified. |
 | `npm run typecheck` | `tsc --noEmit`. Clean. |

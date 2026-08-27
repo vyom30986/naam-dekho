@@ -7,14 +7,29 @@ const API_ORIGIN = import.meta.env.DEV ? 'http://localhost:3000' : ''
  */
 async function call(path, options = {}) {
   const token = localStorage.getItem('nd_token')
-  const res = await fetch(`${API_ORIGIN}/v1${path}`, {
-    ...options,
-    headers: {
-      'Content-Type': 'application/json',
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...(options.headers ?? {}),
-    },
-  })
+  let res
+  try {
+    res = await fetch(`${API_ORIGIN}/v1${path}`, {
+      ...options,
+      headers: {
+        'Content-Type': 'application/json',
+        ...(token ? { Authorization: `Bearer ${token}` } : {}),
+        ...(options.headers ?? {}),
+      },
+    })
+  } catch (cause) {
+    // fetch only rejects when the request never left the browser: the API is
+    // not running, the machine is offline, or CORS blocked it. Chrome words
+    // all three as "Failed to fetch", and every screen in this console used
+    // to print that string verbatim, which said nothing about which of the
+    // three it was. The usual cause by far is the API simply not being
+    // started, so the message says where to look.
+    // status 0 keeps this distinct from any real HTTP status handled below.
+    throw Object.assign(
+      new Error('Cannot reach the API. Check that the backend is running on port 3000.'),
+      { status: 0, cause },
+    )
+  }
   if (res.status === 401) {
     // Not every 401 means the session died. The API-keys screen answers 401
     // for "wrong second password" and "locked" — treating those as an expired
@@ -98,6 +113,16 @@ export const adminApi = {
   saveDraft: (draft) => call('/admin/settings/pricing/draft', { method: 'PUT', body: JSON.stringify(draft) }),
   publish: () => call('/admin/settings/pricing/publish', { method: 'POST' }),
   discard: () => call('/admin/settings/pricing/discard', { method: 'POST' }),
+
+  /* Legal documents. Draft -> publish -> discard, the same shape as pricing.
+     'revert' throws the override away and puts the shipped document back. */
+  legalDocs: () => call('/admin/legal'),
+  legalDoc: (slug) => call(`/admin/legal/${slug}`),
+  saveLegalDraft: (slug, doc) =>
+    call(`/admin/legal/${slug}/draft`, { method: 'PUT', body: JSON.stringify(doc) }),
+  publishLegal: (slug) => call(`/admin/legal/${slug}/publish`, { method: 'POST' }),
+  discardLegal: (slug) => call(`/admin/legal/${slug}/discard`, { method: 'POST' }),
+  revertLegal: (slug) => call(`/admin/legal/${slug}/revert`, { method: 'POST' }),
 
   scanners: () => call('/admin/scanners'),
   setScanners: (disabled) => call('/admin/scanners', { method: 'PUT', body: JSON.stringify({ disabled }) }),

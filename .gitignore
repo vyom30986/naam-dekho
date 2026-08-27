@@ -53,3 +53,6 @@ coverage/
 # `npm run build:names` against an empty one falls back to a 50 name corpus
 # and rewrites everything. Until the team has a database dump, those files
 # ARE the artefact, so they stay tracked.
+
+# Editor/agent tooling configs - not part of the product
+.claude/

@@ -93,19 +93,20 @@ message itself, because each one looks like a broken repository.
    collapse to about 50 and `sitemap.xml` is rewritten to match. See
    `docs/SEO-PAGES.md`.
 
-## 5. Send a database dump with the code
+## 5. The corpus ships with the code
 
-The corpus is not in the repository. It is 536 names, of which 260 carry a
-verified meaning and 210 carry a verified Devanagari spelling. Without it the
-team cannot rebuild the SEO pages, and the transliterator falls back to
-guessing vowel length, which is wrong for roughly 63% of names. Ram renders as
-रम rather than राम.
+It used to be true that the corpus lived only in the founder database and
+had to be sent separately. It no longer is. `backend/seed/corpus_names.sql`
+is in the repository and `npm run db:seed` loads it.
 
-```bash
-pg_dump --no-owner --no-privileges naamdekho > naamdekho.sql
-```
+536 names, 519 with a meaning, 210 with a Devanagari spelling that was
+verified rather than guessed. That last number is the one that matters:
+without it the transliterator falls back to guessing vowel length, which is
+wrong for roughly 63% of names, and Ram renders as रम rather than राम.
 
-Send that alongside, or give them access to a shared instance.
+Only the corpus is exported. Customer data — 7 accounts and 164 scans on
+the founder machine — is deliberately left out, so nobody receives personal
+data they have no reason to hold.
 
 ## 6. What is verified working, so they know the baseline
 

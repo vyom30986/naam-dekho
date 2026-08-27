@@ -76,9 +76,11 @@ npm run dev               # http://localhost:5173, /v1 proxied to :3000
 The BullMQ worker is a separate process, `npm run dev:worker` in `backend/`.
 Whether a scan completes without it is unverified, confirm before relying on it.
 
-A fresh database gives you an empty corpus. The 536 published names and the
-697 static pages are data, not code, so ask the founder for a database dump
-before you go anywhere near the corpus or the SEO build.
+A fresh database gives you an empty corpus. `npm run db:seed` fills it from
+`backend/seed/corpus_names.sql`, which is in the repository: 536 names, 519
+with a meaning, 210 with a verified Devanagari spelling. Run it after
+`db:migrate` and before the SEO build, or the 697 static pages collapse to
+about 50.
 
 ## Commands, and which of them work
 
@@ -92,6 +94,7 @@ before you go anywhere near the corpus or the SEO build.
 | `npm run typecheck` | The same compile with `--noEmit` | Works, CI runs it |
 | `npm test` | `vitest run`, 60 tests in 3 files | Passes |
 | `npm run db:migrate` | Applies `drizzle/` | Clean on an empty database |
+| `npm run db:seed` | Loads `seed/corpus_names.sql` | 536 names, idempotent |
 | `npm run build:names` | Regenerates the static SEO pages | Works, but read the warning below |
 | `npm run enrich:meanings -- --dry` | Looks up meanings and Devanagari spellings for names that have none | Works. Needs `GEMINI_API_KEY`. Writes nothing without `--write` |
 | `npm run db:generate` | `drizzle-kit generate` | **Broken.** esbuild spawn error on the founder's machine. The binary is there, so this looks like a local install artefact rather than a repo fault. Try a fresh `npm install`. Migration 0005 was hand written in the project's SQL format because of it. |
@@ -137,6 +140,7 @@ assuming the subject was never written up.
 
 | Document | Read it for |
 |---|---|
+| `docs/WHATS-INCLUDED.md` | **Start here.** The full inventory, what is verified working, and every command that will not work with the reason why. |
 | `docs/EXPORT-CHECKLIST.md` | What must happen before the repo changes hands: the 28 keys in `backend/.env`, putting it under git, and why a zip carries secrets that a git hand over does not. |
 | `docs/KNOWN-ISSUES.md` | The outstanding security work and everything that is broken or still stubbed. Read it before you plan a sprint. |
 | `docs/SEO-PAGES.md` | How the 697 static pages are built, the cluster contract in `backend/src/seo/shell.ts`, and the fallback corpus trap. |
@@ -152,4 +156,4 @@ they disagree with `docs/`, `docs/` is right.
 | `docs/FRONTEND_LOCKED.md` | The signed off UI, changes need the founder | August 2026 |
 | `docs/V2_BACKLOG.md` | Deliberately deferred work | August 2026 |
 | `docs/SEO_PLAYBOOK.md` | The original 50 page pilot | Superseded by `docs/SEO-PAGES.md` |
-| `backend/README.md` | The May 2026 shape of the project | Predates the React frontend and describes OTP auth and Paytm. `HANDOFF.md` was removed in the same pass, along with the static prototype it told you to open. |
+| `backend/README.md` | Backend orientation: stack, auth, payments, scripts, file layout | Rewritten 27 Aug 2026. The May 2026 version described OTP sign-in and a static HTML front end, both gone; `HANDOFF.md` was removed in the same pass. |

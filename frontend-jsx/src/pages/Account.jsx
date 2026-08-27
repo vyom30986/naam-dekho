@@ -66,11 +66,24 @@ export default function Account() {
     <div className="container">
       <div className="page-hero" style={{ textAlign: 'left' }}>
         <div className="eyebrow">Your account</div>
-        <h1 className="page-title" style={{ margin: 0 }}>{me.phone}</h1>
+        {/* Google sign-in is the only way in, so phone is null for every
+            account created since 6 Aug 2026 and this heading rendered blank.
+            Email is what we actually know about you. */}
+        <h1 className="page-title" style={{ margin: 0 }}>{me.email ?? me.phone ?? 'Your account'}</h1>
         <p className="page-sub" style={{ margin: '12px 0 0' }}>
-          <b style={{ color: 'var(--accent)' }}>{me.credits.total}</b> Deep Search credit{me.credits.total === 1 ? '' : 's'} remaining
-          {me.credits.bundle > 0 && me.credits.bundle_expires_at && (
-            <> · bundle expires {new Date(me.credits.bundle_expires_at).toLocaleDateString('en-IN')}</>
+          {/* Tokens are the live balance and what a search actually spends.
+              This line used to show only credits — the legacy pre-token shape
+              the API still sends — so an account holding 15,425 tokens read
+              as "0 Deep Search credits remaining" and looked empty. */}
+          <b style={{ color: 'var(--accent)' }}>{me.tokens.balance.toLocaleString('en-IN')}</b>
+          {' '}token{me.tokens.balance === 1 ? '' : 's'} remaining
+          {me.credits.total > 0 && (
+            <>
+              {' '}· <b style={{ color: 'var(--accent)' }}>{me.credits.total}</b> Deep Search credit{me.credits.total === 1 ? '' : 's'}
+              {me.credits.bundle > 0 && me.credits.bundle_expires_at && (
+                <> · bundle expires {new Date(me.credits.bundle_expires_at).toLocaleDateString('en-IN')}</>
+              )}
+            </>
           )}
           {' '}· <Link to="/pricing" style={{ color: 'var(--accent)', fontWeight: 500 }}>top up</Link>
         </p>

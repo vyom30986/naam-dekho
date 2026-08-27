@@ -2,6 +2,11 @@ import { useEffect } from 'react'
 
 const SITE = 'Naam Dekho'
 
+/* Absolute, because a relative og:image is dropped by every social crawler.
+   The same file is named statically in index.html — that copy is the one
+   WhatsApp and Facebook actually read, since they never run JavaScript. */
+const OG_IMAGE = 'https://naamdekho.net/og.png'
+
 function setMeta(selector, attr, value) {
   let el = document.head.querySelector(selector)
   if (!el) {
@@ -34,7 +39,7 @@ function setLink(rel, href) {
  *
  * Pass `noindex` for anything private (account, admin).
  */
-export function useSeo({ title, description, path, noindex = false, jsonLd = null }) {
+export function useSeo({ title, description, path, noindex = false, jsonLd = null, image = null }) {
   useEffect(() => {
     const fullTitle = title ? `${title} | ${SITE}` : SITE
     document.title = fullTitle
@@ -46,6 +51,12 @@ export function useSeo({ title, description, path, noindex = false, jsonLd = nul
     setMeta('meta[property="og:title"]', 'content', fullTitle)
     setMeta('meta[property="og:type"]', 'content', 'website')
     setMeta('meta[name="twitter:card"]', 'content', 'summary_large_image')
+    setMeta('meta[property="og:site_name"]', 'content', SITE)
+    setMeta('meta[property="og:locale"]', 'content', 'en_IN')
+    setMeta('meta[property="og:image"]', 'content', image || OG_IMAGE)
+    setMeta('meta[name="twitter:image"]', 'content', image || OG_IMAGE)
+    setMeta('meta[name="twitter:title"]', 'content', fullTitle)
+    if (description) setMeta('meta[name="twitter:description"]', 'content', description)
 
     if (path) {
       const url = `${window.location.origin}${path}`
@@ -69,7 +80,7 @@ export function useSeo({ title, description, path, noindex = false, jsonLd = nul
       document.head.appendChild(ldTag)
     }
     return () => { if (ldTag) ldTag.remove() }
-  }, [title, description, path, noindex, jsonLd])
+  }, [title, description, path, noindex, jsonLd, image])
 }
 
 /** Organisation + site search markup — used once, on the homepage. */

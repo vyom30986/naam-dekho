@@ -1866,48 +1866,21 @@ export default function Home() {
         </form>
         {mode === 'baby' && (
           <div style={{ marginTop: 12, display: 'flex', flexWrap: 'wrap', gap: 10 }}>
-            {/* Optional, and it says what it is for. An optional field with no
-                stated purpose reads as collection for its own sake — and this
-                one is about a child, so it earns its place or it goes. */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', width: '100%' }}>
-              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9.5, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>
-                Whose name is it?
-              </span>
-              {GENDERS.map(([v, label]) => (
-                <button
-                  key={v}
-                  type="button"
-                  onClick={() => setGender(gender === v ? '' : v)}
-                  aria-pressed={gender === v}
-                  style={{
-                    padding: '7px 14px', fontSize: 13, borderRadius: 999, cursor: 'pointer',
-                    border: `1px solid ${gender === v ? 'var(--accent)' : 'var(--line)'}`,
-                    background: gender === v ? 'var(--accent)' : 'var(--surface)',
-                    color: gender === v ? 'var(--on-accent)' : 'var(--ink-2)',
-                    fontWeight: gender === v ? 600 : 400,
-                  }}
-                >{label}</button>
-              ))}
-              <span style={{ fontSize: 12.5, color: 'var(--ink-3)' }}>
-                optional — it only shapes the alternative names we suggest
-              </span>
-            </div>
-            <input
-              type="text"
-              value={siblingName}
-              onChange={e => setSiblingName(e.target.value)}
-              placeholder="Sibling's name (optional) — we'll check how the two sound together"
-              aria-label="Sibling name for harmony comparison"
-              style={{ width: 'min(420px, 100%)', padding: '10px 16px', fontSize: 14, border: '1px solid var(--hairline)', borderRadius: 10, background: 'var(--surface)', color: 'var(--ink)', outline: 'none' }}
-            />
             {/* Birth details turn the Avakahada chakra the right way round: the
                 star at birth prescribes the syllables, which is how a pandit
                 actually works. Both optional — a family without the time still
-                gets an answer, with the uncertainty stated. */}
-            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center' }}>
+                gets an answer, with the uncertainty stated.
+
+                These sit on their own full-width row, ABOVE the sibling's name,
+                and the label says whose date it is. This row previously had no
+                width, so it wrapped up alongside the 420px sibling field and the
+                date read as the SIBLING's date of birth — the one misreading of
+                this form that changes the answer, because the birth star being
+                calculated is the baby's. */}
+            <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', alignItems: 'center', width: '100%' }}>
               <label style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
                 <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9.5, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>
-                  Date of birth (optional)
+                  Baby&rsquo;s date of birth (optional)
                 </span>
                 <input
                   type="date"
@@ -1950,6 +1923,42 @@ export default function Home() {
                 The moon changes star roughly once a day — a birth time makes the reading exact.
               </div>
             )}
+            {/* Optional, and it says what it is for. An optional field with no
+                stated purpose reads as collection for its own sake — and this
+                one is about a child, so it earns its place or it goes. */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flexWrap: 'wrap', width: '100%' }}>
+              <span style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 9.5, letterSpacing: '.06em', textTransform: 'uppercase', color: 'var(--ink-3)' }}>
+                Whose name is it?
+              </span>
+              {GENDERS.map(([v, label]) => (
+                <button
+                  key={v}
+                  type="button"
+                  onClick={() => setGender(gender === v ? '' : v)}
+                  aria-pressed={gender === v}
+                  style={{
+                    padding: '7px 14px', fontSize: 13, borderRadius: 999, cursor: 'pointer',
+                    border: `1px solid ${gender === v ? 'var(--accent)' : 'var(--line)'}`,
+                    background: gender === v ? 'var(--accent)' : 'var(--surface)',
+                    color: gender === v ? 'var(--on-accent)' : 'var(--ink-2)',
+                    fontWeight: gender === v ? 600 : 400,
+                  }}
+                >{label}</button>
+              ))}
+              <span style={{ fontSize: 12.5, color: 'var(--ink-3)' }}>
+                optional — it only shapes the alternative names we suggest
+              </span>
+            </div>
+            {/* Last, and on its own row. Nothing follows it, so there is no
+                second field beside it for a reader to attach this name to. */}
+            <input
+              type="text"
+              value={siblingName}
+              onChange={e => setSiblingName(e.target.value)}
+              placeholder="Sibling's name (optional) — we'll check how the two sound together"
+              aria-label="Sibling name for harmony comparison"
+              style={{ width: 'min(420px, 100%)', padding: '10px 16px', fontSize: 14, border: '1px solid var(--hairline)', borderRadius: 10, background: 'var(--surface)', color: 'var(--ink)', outline: 'none' }}
+            />
           </div>
         )}
         {mode === 'business' && (

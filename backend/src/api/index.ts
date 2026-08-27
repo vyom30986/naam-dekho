@@ -5,6 +5,7 @@ import billingRoutes from "./billing.js";
 import agencyRoutes from "./agency.js";
 import adminRoutes from "./admin.js";
 import pricingRoutes from "./pricing.js";
+import legalRoutes from "./legalDocs.js";
 import { verifyJwt } from "../auth/otp.js";
 import { disabledScanners } from "../lib/settings.js";
 
@@ -24,6 +25,7 @@ export default async function apiRoutes(app: FastifyInstance) {
   await app.register(agencyRoutes);
   await app.register(adminRoutes);
   await app.register(pricingRoutes);
+  await app.register(legalRoutes);
 
   /*
    * Which checks are switched off — public, and deliberately so.
